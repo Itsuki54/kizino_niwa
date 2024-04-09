@@ -15,10 +15,11 @@ erDiagram
     String id "🗝️"
     String title 
     String content 
-    String icon "❓"
+    String image "❓"
     Boolean published 
     DateTime createdAt 
-    Int Like 
+    DateTime updatedAt 
+    Int like 
     String userId 
     String tagId 
     String bookmarkId 
@@ -27,7 +28,9 @@ erDiagram
 
   "Notification" {
     String id "🗝️"
-    String content 
+    String title 
+    String description 
+    String image "❓"
     Boolean read 
     DateTime createdAt 
     String userId 
@@ -69,8 +72,8 @@ erDiagram
     "User" o{--}o "Group" : "group"
     "User" o{--}o "Article" : "articles"
     "User" o{--}o "Notification" : "notification"
-    "User" o{--}o "Comment" : "Comment"
-    "Article" o|--|| "User" : "users"
+    "User" o{--}o "Comment" : "comment"
+    "Article" o|--|| "User" : "user"
     "Article" o|--|| "Tag" : "tag"
     "Article" o|--|| "Bookmark" : "bookmark"
     "Article" o{--}o "Comment" : "comment"

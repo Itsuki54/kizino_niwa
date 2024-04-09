@@ -3,17 +3,17 @@ import { Text } from "@chakra-ui/react";
 interface NotificationListProps {
     title: string;
     description: string;
-    imageUrl: string;
+    image: string;
 }
 
 export function NotificationList({
     title,
     description,
-    imageUrl,
+    image,
 }: NotificationListProps) {
     return (
         <div>
-            <Image src={imageUrl} alt={title} width={16} height={40} />
+            <Image src={image} alt={title} width={16} height={40} />
             <Text color="black">{title}</Text>
             <Text color="black">{description}</Text>
         </div>

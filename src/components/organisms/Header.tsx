@@ -1,28 +1,20 @@
-import {
-    HStack,
-    Input,
-    InputGroup,
-    InputLeftElement,
-    Box,
-    Text,
-} from "@chakra-ui/react";
-import SearchIcon from "@mui/icons-material/Search";
-import Image from "next/image";
+import { HStack } from "@chakra-ui/react";
+import { User } from "@prisma/client";
+import { LogoTitle } from "../molecules/LogoTitle";
 import { NotificationButton } from "../molecules/NotificationBell";
 import { ProfileButton } from "../molecules/ProfileButton";
-import { UserType } from "@/types/UserType";
-import { LogoTitle } from "../molecules/LogoTitle";
 import { SearchArticle } from "../molecules/SearchArticle";
-
-export function Header({ user }: { user: UserType }) {
+import { Notification } from "@prisma/client";
+import { notificationMock } from "../../mock/notification.mock";
+export function Header({ user }: { user: User }) {
     return (
         <HStack padding="8px" width="100%" justifyContent="space-between">
             <LogoTitle />
             <SearchArticle />
             <HStack>
-                <NotificationButton notifications={user.notifications} />
+                <NotificationButton notifications={notificationMock} />
                 <ProfileButton
-                    imageUrl={user.iconUrl}
+                    imageUrl={user.icon!}
                     name="Profile"
                     userId={user.id}
                 />
@@ -30,4 +22,3 @@ export function Header({ user }: { user: UserType }) {
         </HStack>
     );
 }
-1;

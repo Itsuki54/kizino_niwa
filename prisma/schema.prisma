@@ -33,7 +33,7 @@ model User {
   group        Group[]
   articles     Article[]
   notification Notification[]
-  Comment      Comment[]
+  comment      Comment[]
 }
 
 // テーブル: Article
@@ -41,12 +41,13 @@ model Article {
   id         String    @id @default(cuid())
   title      String
   content    String
-  icon       String?
+  image      String?
   published  Boolean
   createdAt  DateTime  @default(now())
-  Like       Int       @default(0)
+  updatedAt  DateTime  @updatedAt
+  like       Int       @default(0)
   userId     String
-  users      User      @relation(fields: [userId], references: [id])
+  user       User      @relation(fields: [userId], references: [id])
   tagId      String
   tag        Tag       @relation(fields: [tagId], references: [id])
   bookmarkId String
@@ -56,12 +57,14 @@ model Article {
 
 // テーブル: Notification
 model Notification {
-  id        String   @id @default(cuid())
-  content   String
-  read      Boolean
-  createdAt DateTime @default(now())
-  userId    String
-  users     User     @relation(fields: [userId], references: [id])
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image       String?
+  read        Boolean
+  createdAt   DateTime @default(now())
+  userId      String
+  users       User     @relation(fields: [userId], references: [id])
 }
 
 // テーブル: Tag

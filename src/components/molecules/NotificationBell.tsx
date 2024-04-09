@@ -9,12 +9,7 @@ import {
 import { Notifications } from "@mui/icons-material";
 import Image from "next/image";
 import { NotificationList } from "../atoms/NotificationList";
-
-interface Notification {
-    imageUrl: string;
-    title: string;
-    description: string;
-}
+import { Notification } from "@prisma/client";
 
 interface NotificationButtonProps {
     notifications: Notification[];
@@ -37,7 +32,11 @@ export function NotificationButton({ notifications }: NotificationButtonProps) {
                 {notifications.map((item, index) => (
                     <MenuItem key={index}>
                         <NotificationList
-                            imageUrl={item.imageUrl}
+                            image={
+                                item.image
+                                    ? item.image
+                                    : "https://bit.ly/dan-abramov"
+                            }
                             title={item.title}
                             description={item.description}
                         />
