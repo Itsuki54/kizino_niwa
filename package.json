@@ -8,7 +8,8 @@
         "start": "next start",
         "lint": "next lint",
         "prepare": "husky && husky install",
-        "commit": "git add . && cz && git push"
+        "commit": "git add . && cz && git push",
+        "erd": "prisma generate"
     },
     "dependencies": {
         "@chakra-ui/react": "^2.8.2",
@@ -16,6 +17,7 @@
         "@emotion/styled": "^11.11.5",
         "@mui/icons-material": "^5.15.15",
         "@mui/material": "^5.15.15",
+        "@prisma/client": "^5.12.1",
         "framer-motion": "^11.0.24",
         "next": "14.1.4",
         "react": "^18",
@@ -24,6 +26,8 @@
     "devDependencies": {
         "@commitlint/cli": "^19.2.1",
         "@commitlint/config-conventional": "^19.1.0",
+        "@mermaid-js/mermaid-cli": "^10.8.0",
+        "@prisma/generator-helper": "^5.12.1",
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",
@@ -33,6 +37,7 @@
         "eslint-config-next": "14.1.4",
         "husky": "^8.0.0",
         "prisma": "^5.12.1",
+        "prisma-erd-generator": "^1.11.2",
         "typescript": "^5"
     },
     "commitlint": {

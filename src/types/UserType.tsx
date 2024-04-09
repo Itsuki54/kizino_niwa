@@ -6,7 +6,12 @@ export interface UserType {
     tag: string[]; //ユーザーが登録しているタグ
     like_article: string[]; //ユーザーがいいねした記事
     bookmark_article: string[]; //ユーザーがブックマークした記事
-    follow_user: Profile[]; //ユーザーがフォローしているユーザー
+    follow_user: [
+        {
+            image_url: string; //フォローしているユーザーのアイコン画像 URL
+            username: string; //フォローしているユーザーのユーザー名
+        }
+    ]; //ユーザーがフォローしているユーザー
     group_list: string[]; //ユーザーが所属しているグループ
     notifications: Notification[]; //ユーザーに届いた通知
 }
@@ -45,9 +50,4 @@ interface Notification {
     id: string; //通知のID PK
     update_at: string; //通知が更新された日時
     status: string; //通知の状態 未読か既読か
-}
-
-interface Profile {
-    image_url: string; //プロフィール画像
-    username: string; //ユーザー名
 }

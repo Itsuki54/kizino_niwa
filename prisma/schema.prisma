@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator erd {
+  provider                  = "prisma-erd-generator"
+  theme                     = "forest"
+  output                    = "ERD.md"
+  includeRelationFromFields = true
+}
+
+// テーブル: User
+model User {
+  id           String         @id @default(cuid())
+  name         String
+  email        String         @unique
+  icon         String?
+  admin        Boolean
+  createdAt    DateTime       @default(now())
+  tag          Tag[]
+  bookmark     Bookmark[]
+  group        Group[]
+  articles     Article[]
+  notification Notification[]
+  Comment      Comment[]
+}
+
+// テーブル: Article
+model Article {
+  id         String    @id @default(cuid())
+  title      String
+  content    String
+  icon       String?
+  published  Boolean
+  createdAt  DateTime  @default(now())
+  Like       Int       @default(0)
+  userId     String
+  users      User      @relation(fields: [userId], references: [id])
+  tagId      String
+  tag        Tag       @relation(fields: [tagId], references: [id])
+  bookmarkId String
+  bookmark   Bookmark  @relation(fields: [bookmarkId], references: [id])
+  comment    Comment[]
+}
+
+// テーブル: Notification
+model Notification {
+  id        String   @id @default(cuid())
+  content   String
+  read      Boolean
+  createdAt DateTime @default(now())
+  userId    String
+  users     User     @relation(fields: [userId], references: [id])
+}
+
+// テーブル: Tag
+model Tag {
+  id       String    @id @default(cuid())
+  name     String
+  userId   String
+  users    User      @relation(fields: [userId], references: [id])
+  articles Article[]
+}
+
+// テーブル: Bookmark
+model Bookmark {
+  id       String    @id @default(cuid())
+  name     String
+  users    User[]
+  articles Article[]
+}
+
+// テーブル: Group
+model Group {
+  id          String   @id @default(cuid())
+  name        String
+  icon        String?
+  description String
+  createdAt   DateTime @default(now())
+  users       User[]
+}
+
+// テーブル: Comment
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  createdAt DateTime @default(now())
+  userId    String
+  users     User     @relation(fields: [userId], references: [id])
+  articleId String
+  articles  Article  @relation(fields: [articleId], references: [id])
+}
