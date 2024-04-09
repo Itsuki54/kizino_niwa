@@ -4,7 +4,7 @@ export const userMock: User = {
     id: "1",
     name: "Mock User",
     email: "sample",
-    icon: "https://bit.ly/dan-abramov",
+    icon: "/images/anonyms.png",
     admin: false,
     createdAt: new Date(),
 };
