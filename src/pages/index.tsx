@@ -1,8 +1,9 @@
 import { Header } from "@/components/organisms/Header";
 import { Sidebar } from "@/components/organisms/Sidebar";
-import { Box, ChakraProvider, HStack } from "@chakra-ui/react";
+import { ChakraProvider, HStack } from "@chakra-ui/react";
 import { userMock } from "@/mock/user.mock";
-const App = () => {
+
+function Kizinoniwa() {
     return (
         <ChakraProvider>
             <HStack align="flex-start" gap="0px">
@@ -11,6 +12,6 @@ const App = () => {
             </HStack>
         </ChakraProvider>
     );
-};
+}
 
-export default App;
+export default Kizinoniwa;
