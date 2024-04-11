@@ -1,17 +1,16 @@
 import { Header } from "@/components/organisms/Header";
 import { Sidebar } from "@/components/organisms/Sidebar";
-import { ChakraProvider, HStack } from "@chakra-ui/react";
+import { ChakraProvider, HStack, Spinner } from "@chakra-ui/react";
 import { userMock } from "@/mock/user.mock";
+import { useSession } from "next-auth/react";
+import { CreateUser } from "@/components/organisms/CreateUser";
+import {Home} from "@/components/template/Home";
 
 function Kizinoniwa() {
-    return (
-        <ChakraProvider>
-            <HStack align="flex-start" gap="0px">
-                <Sidebar />
-                <Header user={userMock} />
-            </HStack>
-        </ChakraProvider>
-    );
+  const { data: session, status } = useSession();
+  if (status === "loading") return <Spinner />;
+  if (status === "unauthenticated") return <CreateUser />;
+  if (status === "authenticated") return <Home />;
 }
 
 export default Kizinoniwa;

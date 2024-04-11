@@ -4,7 +4,6 @@ import { LogoTitle } from "../molecules/LogoTitle";
 import { NotificationButton } from "../molecules/NotificationBell";
 import { ProfileButton } from "../molecules/ProfileButton";
 import { SearchArticle } from "../molecules/SearchArticle";
-import { Notification } from "@prisma/client";
 import { notificationMock } from "../../mock/notification.mock";
 export function Header({ user }: { user: User }) {
     return (

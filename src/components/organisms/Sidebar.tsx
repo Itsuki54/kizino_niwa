@@ -3,7 +3,7 @@ import { Accordion, Box, Text, VStack } from "@chakra-ui/react";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import { useState } from "react";
-import { SidebarItem } from "@/components/atoms/SideBarItem";
+import { SidebarItem } from "@/components/atoms/SidebarItem";
 import { Home } from "@mui/icons-material";
 import FeedIcon from "@mui/icons-material/Feed";
 import GroupIcon from "@mui/icons-material/Group";
