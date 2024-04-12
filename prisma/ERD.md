@@ -5,7 +5,7 @@ erDiagram
     String id "🗝️"
     String name 
     String email 
-    String icon "❓"
+    String image "❓"
     Boolean admin 
     DateTime createdAt 
     }
@@ -53,7 +53,7 @@ erDiagram
   "Group" {
     String id "🗝️"
     String name 
-    String icon "❓"
+    String image "❓"
     String description 
     DateTime createdAt 
     }
