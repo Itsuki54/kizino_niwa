@@ -6,48 +6,50 @@ import GoogleProvider from "next-auth/providers/google";
 
 const prisma = new PrismaClient();
 
-export default NextAuth({
+export const authOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.GOOGLE_CLIENT_ID || "",
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
   ],
   callbacks: {
     async signIn(user, account, profile) {
       const { email } = user.user;
-      const userExists = await prisma.user.findFirst({
-        where: {
-          email,
+      await prisma.user.upsert({
+        where: { email },
+        update: {},
+        create: {
+          name: user.user.name,
+          email: user.user.email,
+          image: user.user.image,
+          admin: false,
         },
       });
-
-      if (!userExists) {
-        await prisma.user.create({
-          data: {
-            name: user.user.name,
-            email: user.user.email,
-            image: user.user.image,
-            admin: false,
-          },
-        });
-      }
 
       return await true;
     },
     async session({ session, token, user }) {
       session.accessToken = token.accessToken;
-      session.user.id = token.id;
 
+      session.user.id = token.id;
+      session.user.uid = token.uid;
       return session;
     },
 
-    async jwt({ token, account, profile }) {
-      if (account) {
-        token.accessToken = account.access_token;
-        token.id = profile.id;
+    async jwt({ token, user }) {
+      if (user) {
+        const userExist = await prisma.user.findUnique({
+          where: {
+            email: user.email,
+          },
+        });
+        token.uid = userExist?.id;
+        token.accessToken = user.access_token;
       }
       return token;
     },
   },
-});
+};
+
+export default NextAuth(authOptions);

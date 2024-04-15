@@ -1,6 +1,6 @@
 import { HStack, VStack } from "@chakra-ui/react";
 import { LogoTitle } from "../molecules/LogoTitle";
-import { CreateUserForm } from "../organisms/CreateUserForm.1";
+import { CreateUserForm } from "../organisms/CreateUserForm";
 
 interface CreateUserProps {
   setUser: Function;
