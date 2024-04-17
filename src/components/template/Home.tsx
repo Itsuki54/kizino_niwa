@@ -15,7 +15,6 @@ export function Home({ user, notification }: HomeProps) {
       <HStack align="flex-start" gap="0px">
         <Sidebar />
         <Header user={user} notification={notification} />
-        <Button onClick={() => signOut()}>Hello, World!</Button>
       </HStack>
     </ChakraProvider>
   );
