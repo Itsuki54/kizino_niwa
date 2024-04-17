@@ -1,10 +1,11 @@
 import React from "react";
 
-import { ArticleCard, ArticleCardProps } from "../molecules/ArticleCard";
+import { Article } from "@prisma/client";
+import { ArticleCard } from "../molecules/ArticleCard";
 
 interface HomeLayoutProps {
   header: React.ReactNode;
-  articles: ArticleCardProps[];
+  articles: Article[];
 }
 
 export function HomeLayout({ header, articles }: HomeLayoutProps) {
@@ -12,8 +13,12 @@ export function HomeLayout({ header, articles }: HomeLayoutProps) {
     <div>
       <header>{header}</header>
       <main>
-        {articles.map((article, index) => (
-          <ArticleCard key={index} {...article} />
+        {articles.map((article) => (
+          <ArticleCard
+            key={article.id}
+            title={article.title}
+            content={article.content}
+          />
         ))}
       </main>
     </div>

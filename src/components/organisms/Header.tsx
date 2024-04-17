@@ -6,6 +6,7 @@ import { LogoTitle } from "../molecules/LogoTitle";
 import { NotificationButton } from "../molecules/NotificationBell";
 import { ProfileButton } from "../molecules/ProfileButton";
 import { SearchArticle } from "../molecules/SearchArticle";
+import { MakeArticleButton } from "../atoms/MakeArticleButton";
 
 interface HeaderProps {
   user: User;
@@ -25,6 +26,7 @@ export function Header({ user, notification }: HeaderProps) {
           name={user.name}
           userId={user.id}
         />
+        <MakeArticleButton id= {user.id}/>
       </HStack>
     </HStack>
   );

@@ -21,8 +21,6 @@ erDiagram
     DateTime updatedAt
     Int like
     String userId
-    String tagId
-    String bookmarkId
     }
 
 
@@ -74,8 +72,8 @@ erDiagram
     "User" o{--}o "Notification" : "notification"
     "User" o{--}o "Comment" : "comment"
     "Article" o|--|| "User" : "user"
-    "Article" o|--|| "Tag" : "tag"
-    "Article" o|--|| "Bookmark" : "bookmark"
+    "Article" o{--}o "Tag" : "tagId"
+    "Article" o{--}o "Bookmark" : "bookmarkId"
     "Article" o{--}o "Comment" : "comment"
     "Notification" o|--|| "User" : "users"
     "Tag" o|--|| "User" : "users"

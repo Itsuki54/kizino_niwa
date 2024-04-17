@@ -24,7 +24,7 @@ generator erd {
 model User {
   id           String         @id @default(cuid())
   name         String
-  email        String        @unique
+  email        String         @unique
   image        String?
   admin        Boolean
   createdAt    DateTime       @default(now())
@@ -88,7 +88,7 @@ model Bookmark {
 model Group {
   id          String   @id @default(cuid())
   name        String
-  image        String?
+  image       String?
   description String
   createdAt   DateTime @default(now())
   users       User[]
