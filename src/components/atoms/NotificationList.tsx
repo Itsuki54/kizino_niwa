@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Text } from "@chakra-ui/react";
+
 interface NotificationListProps {
   title: string;
   description: string;

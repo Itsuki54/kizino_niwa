@@ -1,16 +1,14 @@
-import { Home } from "@/components/template/Home";
-import {
-  NotificationQuery,
-  UserDataQuery,
-} from "@/components/utils/UserDataQuery";
-
+import { useState } from "react";
+import { GetServerSideProps } from "next";
 import { userMock } from "@/mock/user.mock";
 import { Spinner } from "@chakra-ui/react";
-import { GetServerSideProps } from "next";
+import { Notification, User } from "@prisma/client";
+import { NotificationQuery } from "@query/NotificationDataQuery";
+import { UserDataQuery } from "@query/UserDataQuery";
 import { getServerSession } from "next-auth";
-import { User, Notification } from "@prisma/client";
 import { signIn, useSession } from "next-auth/react";
-import { useState } from "react";
+
+import { Home } from "@/components/template/Home";
 import { authOptions } from "./api/auth/[...nextauth]";
 
 interface Props {

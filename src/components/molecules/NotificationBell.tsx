@@ -1,3 +1,4 @@
+import Image from "next/image";
 import {
   Button,
   IconButton,
@@ -7,9 +8,9 @@ import {
   MenuList,
 } from "@chakra-ui/react";
 import { Notifications } from "@mui/icons-material";
-import Image from "next/image";
-import { NotificationList } from "../atoms/NotificationList";
 import { Notification } from "@prisma/client";
+
+import { NotificationList } from "../atoms/NotificationList";
 
 interface NotificationButtonProps {
   notifications: Notification[];

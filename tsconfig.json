@@ -23,7 +23,9 @@
       "@pages/*": ["./src/pages/*"],
       "@styles/*": ["./src/styles/*"],
       "@images/*": ["./public/images/*"],
-      "@types/*": ["./src/types/*"]
+      "@types/*": ["./src/types/*"],
+      "@query/*": ["./src/components/utils/query/*"],
+      "@mutation/*": ["./src/components/utils/mutation/*"]
     }
   },
   "include": [

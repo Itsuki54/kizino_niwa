@@ -1,8 +1,9 @@
+import { Button, ChakraProvider, HStack, Spinner } from "@chakra-ui/react";
+import { Notification, User } from "@prisma/client";
+import { signOut } from "next-auth/react";
+
 import { Header } from "@/components/organisms/Header";
 import { Sidebar } from "@/components/organisms/Sidebar";
-import { Button, ChakraProvider, HStack, Spinner } from "@chakra-ui/react";
-import { signOut } from "next-auth/react";
-import { User, Notification } from "@prisma/client";
 
 interface HomeProps {
   user: User;

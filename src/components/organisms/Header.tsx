@@ -1,5 +1,6 @@
 import { HStack } from "@chakra-ui/react";
 import { Notification, User } from "@prisma/client";
+
 import { notificationMock } from "../../mock/notification.mock";
 import { LogoTitle } from "../molecules/LogoTitle";
 import { NotificationButton } from "../molecules/NotificationBell";

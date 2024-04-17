@@ -1,14 +1,46 @@
 {
+  "env": {
+    "node": true,
+    "es6": true
+  },
   "extends": [
-    "next/core-web-vitals",
-
-    // 追記
-    "plugin:tailwindcss/recommended"
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
-  "plugins": ["prettier"],
-  // 追記
-  "ignorePatterns": ["*.config.js"],
+  "plugins": ["import", "unused-imports"], // eslint-plugin- 接頭辞は省略
   "rules": {
-    "prettier/prettier": "error"
+    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "warn",
+    "import/order": [
+      "warn",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": { "order": "asc", "caseInsensitive": true },
+        "pathGroups": [
+          {
+            "pattern": "src/types/**",
+            "group": "internal",
+            "position": "before"
+          },
+          {
+            "pattern": "src/repositories/**",
+            "group": "internal",
+            "position": "before"
+          }
+        ]
+      }
+    ]
   }
 }
