@@ -1,4 +1,4 @@
-import { PrismaClient, User } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 export async function NotificationQuery(id: string) {
   const prisma = new PrismaClient();

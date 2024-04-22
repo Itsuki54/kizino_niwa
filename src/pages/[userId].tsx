@@ -1,7 +1,7 @@
-import { useRouter } from "next/router";
+import { useRouter } from 'next/router';
 
 const UserProfilePage = () => {
-  const { userId, name } = useRouter().query;
+  const {  name } = useRouter().query;
   return <div>{name}</div>;
 };
 

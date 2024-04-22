@@ -3,68 +3,70 @@ erDiagram
 
   "User" {
     String id "🗝️"
-    String name
-    String email
+    String name 
+    String email 
     String image "❓"
-    Boolean admin
-    DateTime createdAt
+    Boolean admin 
+    DateTime createdAt 
     }
-
+  
 
   "Article" {
     String id "🗝️"
-    String title
-    String content
+    String title 
+    String content 
     String image "❓"
-    Boolean published
-    DateTime createdAt
-    DateTime updatedAt
-    Int like
-    String userId
+    Boolean published 
+    DateTime createdAt 
+    DateTime updatedAt 
+    Int like 
+    String userId 
+    String tagId 
+    String bookmarkId 
     }
-
+  
 
   "Notification" {
     String id "🗝️"
-    String title
-    String description
+    String title 
+    String description 
     String image "❓"
-    Boolean read
-    DateTime createdAt
-    String userId
+    Boolean read 
+    DateTime createdAt 
+    String userId 
     }
-
+  
 
   "Tag" {
     String id "🗝️"
-    String name
-    String userId
+    String name 
+    String userId 
     }
-
+  
 
   "Bookmark" {
     String id "🗝️"
-    String name
+    String name 
     }
-
+  
 
   "Group" {
     String id "🗝️"
-    String name
+    String name 
     String image "❓"
-    String description
-    DateTime createdAt
+    String description 
+    DateTime createdAt 
     }
-
+  
 
   "Comment" {
     String id "🗝️"
-    String content
-    DateTime createdAt
-    String userId
-    String articleId
+    String content 
+    DateTime createdAt 
+    String userId 
+    String articleId 
     }
-
+  
     "User" o{--}o "Tag" : "tag"
     "User" o{--}o "Bookmark" : "bookmark"
     "User" o{--}o "Group" : "group"
@@ -72,8 +74,8 @@ erDiagram
     "User" o{--}o "Notification" : "notification"
     "User" o{--}o "Comment" : "comment"
     "Article" o|--|| "User" : "user"
-    "Article" o{--}o "Tag" : "tagId"
-    "Article" o{--}o "Bookmark" : "bookmarkId"
+    "Article" o|--|| "Tag" : "tag"
+    "Article" o|--|| "Bookmark" : "bookmark"
     "Article" o{--}o "Comment" : "comment"
     "Notification" o|--|| "User" : "users"
     "Tag" o|--|| "User" : "users"

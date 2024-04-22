@@ -1,36 +1,28 @@
-import { useState } from "react";
-import { GetServerSideProps } from "next";
-import { userMock } from "@/mock/user.mock";
-import { NotificationQuery } from "@/utils/query/NotificationQuery";
-import { UserDataQuery } from "@/utils/query/UserQuery";
-import { Spinner } from "@chakra-ui/react";
-import { Article, Notification, User } from "@prisma/client";
-import { getServerSession } from "next-auth";
-import { signIn, useSession } from "next-auth/react";
+import { Spinner } from '@chakra-ui/react';
+import { Article, Notification, User } from '@prisma/client';
+import { GetServerSideProps } from 'next';
+import { getServerSession } from 'next-auth';
+import { useSession } from 'next-auth/react';
 
-import { Home } from "@/components/template/Home";
-import { authOptions } from "./api/auth/[...nextauth]";
-import { UserArticleQuery } from "@/utils/query/ArticleQuery";
+import { Home } from '@/components/template/Home';
+
+import { UserArticleQuery } from '@/utils/query/ArticleQuery';
+import { NotificationQuery } from '@/utils/query/NotificationQuery';
+import { UserDataQuery } from '@/utils/query/UserQuery';
+
+import { authOptions } from './api/auth/[...nextauth]';
 
 interface Props {
   user: User;
   notification: Notification[];
   article: Article[];
 }
-function Kizinoniwa({ user, notification,article }: Props) {
-  const { data: session, status } = useSession();
-  console.log("USER", user);
-  console.log("NOTIFICATION", notification);
+function Kizinoniwa({ user, notification, article }: Props) {
+  const {  status } = useSession();
+  console.log('USER', user);
+  console.log('NOTIFICATION', notification);
   return (
-    <div>
-      {status === "loading" ? (
-        <Spinner />
-      ) : (
-        <Home user={user} notification={notification}
-        article={article}
-        />
-      )}
-    </div>
+    <div>{status === 'loading' ? <Spinner /> : <Home article={article} notification={notification} user={user} />}</div>
   );
 }
 
@@ -39,7 +31,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!session) {
     return {
       redirect: {
-        destination: "/api/auth/signin",
+        destination: '/api/auth/signin',
         permanent: false,
       },
     };
@@ -50,13 +42,13 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const notificationData = await NotificationQuery(user.id);
   const notification = JSON.parse(JSON.stringify(notificationData));
   const articleData = await UserArticleQuery(user.id);
-  const article = JSON.parse(JSON.stringify(articleData?.articles));
-  console.log("ARTICLES", article);
+  const article = JSON.parse(JSON.stringify(articleData));
+  console.log('ARTICLES', article);
   return {
     props: {
       user,
       notification,
-      article
+      article,
     },
   };
 };

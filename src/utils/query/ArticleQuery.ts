@@ -1,16 +1,11 @@
-
-import { PrismaClient, User } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 export async function UserArticleQuery(id: string) {
   const prisma = new PrismaClient();
-  const user = prisma.user.findUnique({
+  const article = prisma.article.findMany({
     where: {
-      id: id,
-    },
-    include: {
-      articles: true,
+      userId: id,
     },
   });
-  return user;
+  return article;
 }
-

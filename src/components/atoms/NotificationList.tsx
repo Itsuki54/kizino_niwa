@@ -1,5 +1,4 @@
-import Image from "next/image";
-import { Text } from "@chakra-ui/react";
+import Image from 'next/image';
 
 interface NotificationListProps {
   title: string;
@@ -7,16 +6,12 @@ interface NotificationListProps {
   image: string;
 }
 
-export function NotificationList({
-  title,
-  description,
-  image,
-}: NotificationListProps) {
+export function NotificationList({ title, description, image }: NotificationListProps) {
   return (
-    <div>
-      <Image src={image} alt={title} width={16} height={40} />
-      <Text color="black">{title}</Text>
-      <Text color="black">{description}</Text>
+    <div className="">
+      <Image alt={title} height={40} src={image} width={16} />
+      <h2>{title}</h2>
+      <p>{description}</p>
     </div>
   );
 }

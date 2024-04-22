@@ -1,12 +1,11 @@
-import { HStack } from "@chakra-ui/react";
-import { Notification, User } from "@prisma/client";
+import { HStack } from '@chakra-ui/react';
+import { Notification, User } from '@prisma/client';
 
-import { notificationMock } from "../../mock/notification.mock";
-import { LogoTitle } from "../molecules/LogoTitle";
-import { NotificationButton } from "../molecules/NotificationBell";
-import { ProfileButton } from "../molecules/ProfileButton";
-import { SearchArticle } from "../molecules/SearchArticle";
-import { MakeArticleButton } from "../atoms/MakeArticleButton";
+import { MakeArticleButton } from '../atoms/MakeArticleButton';
+import { LogoTitle } from '../molecules/LogoTitle';
+import { NotificationButton } from '../molecules/NotificationBell';
+import { ProfileButton } from '../molecules/ProfileButton';
+import { SearchArticle } from '../molecules/SearchArticle';
 
 interface HeaderProps {
   user: User;
@@ -16,17 +15,13 @@ interface HeaderProps {
 export function Header({ user, notification }: HeaderProps) {
   console.log(notification);
   return (
-    <HStack padding="8px" width="100%" justifyContent="space-between">
+    <HStack justifyContent="space-between" padding="8px" width="100%">
       <LogoTitle />
       <SearchArticle />
       <HStack>
         <NotificationButton notifications={notification} />
-        <ProfileButton
-          imageUrl={user.image!}
-          name={user.name}
-          userId={user.id}
-        />
-        <MakeArticleButton id= {user.id}/>
+        <ProfileButton imageUrl={user.image!} name={user.name} userId={user.id} />
+        <MakeArticleButton id={user.id} />
       </HStack>
     </HStack>
   );

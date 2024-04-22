@@ -1,16 +1,9 @@
-import Image from "next/image";
-import {
-  Button,
-  IconButton,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-} from "@chakra-ui/react";
-import { Notifications } from "@mui/icons-material";
-import { Notification } from "@prisma/client";
+import { IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
+import { Notifications } from '@mui/icons-material';
+import { Notification } from '@prisma/client';
+import React from 'react';
 
-import { NotificationList } from "../atoms/NotificationList";
+import { NotificationList } from '../atoms/NotificationList';
 
 interface NotificationButtonProps {
   notifications: Notification[];
@@ -21,22 +14,22 @@ export function NotificationButton({ notifications }: NotificationButtonProps) {
   return (
     <Menu>
       <MenuButton
-        width="32px"
-        height="32px"
+        _active={{ backgroundColor: 'transparent' }}
+        _hover={{ backgroundColor: 'transparent' }}
         as={IconButton}
+        backgroundColor={'transparent'}
+        height="32px"
         icon={<Notifications />}
         outline="none"
-        backgroundColor={"transparent"}
-        _hover={{ backgroundColor: "transparent" }}
-        _active={{ backgroundColor: "transparent" }}
+        width="32px"
       />
       <MenuList>
         {notifications.map((item, index) => (
           <MenuItem key={index}>
             <NotificationList
-              image={item.image ? item.image : "https://bit.ly/dan-abramov"}
-              title={item.title}
               description={item.description}
+              image={item.image ? item.image : 'https://bit.ly/dan-abramov'}
+              title={item.title}
             />
           </MenuItem>
         ))}

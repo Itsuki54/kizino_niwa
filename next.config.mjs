@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["lh3.googleusercontent.com", "bit.ly"],
+    domains: ['lh3.googleusercontent.com', 'bit.ly'],
   },
 };
 

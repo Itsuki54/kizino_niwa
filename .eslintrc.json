@@ -1,45 +1,47 @@
 {
-  "env": {
-    "node": true,
-    "es6": true
-  },
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
+    "next/core-web-vitals",
+    "plugin:tailwindcss/recommended",
     "prettier"
   ],
-  "plugins": ["import", "unused-imports"], // eslint-plugin- 接頭辞は省略
-  "rules": {
-    "@typescript-eslint/no-unused-vars": "off",
-    "unused-imports/no-unused-imports": "warn",
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+  "project": "./tsconfig.json"
+  },
+  "plugins": ["unused-imports", "strict-dependencies"],
+    "rules": {
+    "unused-imports/no-unused-imports": "error",
+    "react/jsx-sort-props": "error",
     "import/order": [
-      "warn",
+      "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index",
-          "object",
-          "type"
-        ],
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
         "newlines-between": "always",
         "pathGroupsExcludedImportTypes": ["builtin"],
-        "alphabetize": { "order": "asc", "caseInsensitive": true },
         "pathGroups": [
           {
-            "pattern": "src/types/**",
-            "group": "internal",
-            "position": "before"
-          },
-          {
-            "pattern": "src/repositories/**",
+            "pattern": "@/components/**",
             "group": "internal",
             "position": "before"
           }
-        ]
+        ],
+        "alphabetize": {
+          "order": "asc"
+        }
+      }
+    ],
+    "strict-dependencies/strict-dependencies": [
+      "error",
+      [
+        {
+          "module": "next/link",
+          "allowReferenceFrom": ["components/Link.tsx"],
+          "allowSameModule": false
+        }
+      ],
+      {
+        "resolveRelativeImport": true
       }
     ]
   }

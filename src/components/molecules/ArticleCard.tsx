@@ -1,4 +1,3 @@
-import { Article } from "@prisma/client";
 
 interface ArticleCardProps {
   title: string;

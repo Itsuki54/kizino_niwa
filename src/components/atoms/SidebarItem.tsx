@@ -1,6 +1,5 @@
-import React from "react";
-import { useRouter } from "next/router";
-import { Box, Text } from "@chakra-ui/react";
+import { useRouter } from 'next/router';
+import React from 'react';
 
 interface SideBarItemProps {
   title: string;
@@ -11,24 +10,18 @@ interface SideBarItemProps {
 export function SidebarItem({ title, icon, route }: SideBarItemProps) {
   const router = useRouter();
   const GotoPage = () => {
-    router.push(route);
+    void router.push(route);
   };
   return (
-    <Box
-      display="flex"
-      alignItems="center"
-      padding="8px"
-      borderRadius="8px"
-      _hover={{ backgroundColor: "gray.100" }}
-      cursor="pointer"
+    <div
       onClick={() => {
         GotoPage();
       }}
     >
       {icon}
-      <Text fontSize="16px" marginLeft="8px">
+      <text fontSize="16px">
         {title}
-      </Text>
-    </Box>
+      </text>
+    </div>
   );
 }

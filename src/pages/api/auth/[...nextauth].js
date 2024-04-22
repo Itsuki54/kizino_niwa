@@ -1,20 +1,18 @@
-import { Google } from "@mui/icons-material";
-import { PrismaClient } from "@prisma/client";
-import NextAuth from "next-auth";
-import GitHubProvider from "next-auth/providers/github";
-import GoogleProvider from "next-auth/providers/google";
+import { PrismaClient } from '@prisma/client';
+import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
 
 const prisma = new PrismaClient();
 
 export const authOptions = {
   providers: [
     GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID || "",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
+      clientId: process.env.GOOGLE_CLIENT_ID || '',
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET || '',
     }),
   ],
   callbacks: {
-    async signIn(user, account, profile) {
+    async signIn(user) {
       const { email } = user.user;
       await prisma.user.upsert({
         where: { email },
@@ -27,9 +25,9 @@ export const authOptions = {
         },
       });
 
-      return await true;
+      return true;
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       session.accessToken = token.accessToken;
 
       session.user.id = token.id;
