@@ -1,8 +1,6 @@
 import { InputField } from "@atoms/InputField";
 import { TextField } from "@atoms/TextField";
 
-
-
 interface ArticleContentsProps {
   setTitle: Function;
   title: string;

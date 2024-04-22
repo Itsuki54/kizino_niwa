@@ -1,15 +1,13 @@
-import { Notification, User } from "@prisma/client";
+import { User,Notification } from "@prisma/client";
 import { useState } from "react";
 
-
-import { createArticleMutation } from "@/utils/mutation/ArticleMutation";
-
+import { PrimaryButton } from "../atoms/PrimaryButton";
 import { ArticleContents } from "../organisms/ArticleContents";
 import { Header } from "../organisms/Header";
 interface MakeArticleProps {
   userId : string;
   user:User;
-  notification : Notification[];
+  notification:Notification[]
 }
 
 export default function MakeArticle({userId,user,notification}:MakeArticleProps) {
@@ -17,16 +15,27 @@ export default function MakeArticle({userId,user,notification}:MakeArticleProps)
   const [content, setContent] = useState('');
   const [tags, setTags] = useState('');
 
-  function create() {
-    void createArticleMutation({ title, content,image:"", published:true, userId });
+  async function create() {
+    await fetch ('/api/mutation/ArticleMutation', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        title: title,
+        content: content,
+        image: '',
+        userId: userId,
+      }),
+    });
   }
 
   return (
     <div className="flex flex-col	backdrop-grayscale-0">
       <Header notification={notification}  user={user}/>
-      <div className=" flex flex-col bg-gray-50">
+      <div className=" bg-gray-50 flex flex-col">
       <ArticleContents content={content} setContent={setContent}setTags={setTags} setTitle={setTitle} tags={tags} title={title} />
-      <button onClick={create}>Create</button>
+      <PrimaryButton onClick={create} title="Create" width="100px"/>
       </div>
     </div>)
 }

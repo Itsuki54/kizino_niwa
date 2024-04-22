@@ -28,7 +28,7 @@
       "@images/*": ["./public/images/*"],
       "@types/*": ["./src/types/*"],
       "@query/*": ["./src/utils/query/*"],
-      "@mutation/*": ["./src/utils/mutation/*"],
+      "@mutation/*": ["src/pages/api/mutation/*"],
       "@atoms/*":["./src/components/atoms/*"]
     }
   },

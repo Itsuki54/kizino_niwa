@@ -8,10 +8,12 @@ interface ButtonProps {
 export function PrimaryButton({title,height,width,onClick}:ButtonProps){
   return (
     <button
-      className="rounded-md bg-blue-500 p-2 text-white"
+      className="bg-primary-400 text-white rounded-md p-2"
       onClick={()=>onClick()}
       style={{height:height,width:width}}
       title={title}
-    />
+    >
+      {title}
+    </button>
   )
 }

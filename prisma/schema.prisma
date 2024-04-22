@@ -13,13 +13,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-generator erd {
-  provider                  = "prisma-erd-generator"
-  theme                     = "forest"
-  output                    = "ERD.md"
-  includeRelationFromFields = true
-}
-
 // テーブル: User
 model User {
   id           String         @id @default(cuid())
@@ -28,12 +21,8 @@ model User {
   image        String?
   admin        Boolean
   createdAt    DateTime       @default(now())
-  tag          Tag[]
-  bookmark     Bookmark[]
-  group        Group[]
   articles     Article[]
-  notification Notification[]
-  comment      Comment[]
+  notifications Notification[]
 }
 
 // テーブル: Article
@@ -41,21 +30,13 @@ model Article {
   id         String    @id @default(cuid())
   title      String
   content    String
-  image      String?
-  published  Boolean
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
   like       Int       @default(0)
   userId     String
   user       User      @relation(fields: [userId], references: [id])
-  tagId      String
-  tag        Tag       @relation(fields: [tagId], references: [id])
-  bookmarkId String
-  bookmark   Bookmark  @relation(fields: [bookmarkId], references: [id])
-  comment    Comment[]
 }
 
-// テーブル: Notification
 model Notification {
   id          String   @id @default(cuid())
   title       String
@@ -65,42 +46,4 @@ model Notification {
   createdAt   DateTime @default(now())
   userId      String
   users       User     @relation(fields: [userId], references: [id])
-}
-
-// テーブル: Tag
-model Tag {
-  id       String    @id @default(cuid())
-  name     String
-  userId   String
-  users    User      @relation(fields: [userId], references: [id])
-  articles Article[]
-}
-
-// テーブル: Bookmark
-model Bookmark {
-  id       String    @id @default(cuid())
-  name     String
-  users    User[]
-  articles Article[]
-}
-
-// テーブル: Group
-model Group {
-  id          String   @id @default(cuid())
-  name        String
-  image       String?
-  description String
-  createdAt   DateTime @default(now())
-  users       User[]
-}
-
-// テーブル: Comment
-model Comment {
-  id        String   @id @default(cuid())
-  content   String
-  createdAt DateTime @default(now())
-  userId    String
-  users     User     @relation(fields: [userId], references: [id])
-  articleId String
-  articles  Article  @relation(fields: [articleId], references: [id])
 }
