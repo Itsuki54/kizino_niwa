@@ -19,9 +19,7 @@ export function SidebarItem({ title, icon, route }: SideBarItemProps) {
       }}
     >
       {icon}
-      <text fontSize="16px">
-        {title}
-      </text>
+      <text fontSize="16px">{title}</text>
     </div>
   );
 }

@@ -1,10 +1,9 @@
-import { ChakraProvider, HStack } from '@chakra-ui/react';
 import { Article, Notification, User } from '@prisma/client';
 
-import { Header } from '@/components/organisms/Header';
 import { Sidebar } from '@/components/organisms/Sidebar';
 
-import { HomeLayout } from '../organisms/HomeLayout';
+import { ArticleCard } from '../molecules/ArticleCard';
+import { Header } from '../organisms/Header';
 
 interface HomeProps {
   user: User;
@@ -14,11 +13,31 @@ interface HomeProps {
 
 export function Home({ user, notification, article }: HomeProps) {
   return (
-    <ChakraProvider>
-      <HStack align="flex-start" gap="0px">
+    <div className="flex backdrop-grayscale-0 w-full overflow-hidden">
+      <div className="overflow-hidden">
         <Sidebar />
-        <HomeLayout articles={article} header={<Header notification={notification} user={user} />} />
-      </HStack>
-    </ChakraProvider>
+      </div>
+      <div className="flex backdrop-grayscale-0 w-full">
+        <div className="flex flex-col w-full">
+          <div>
+            <Header notification={notification} user={user} />
+          </div>
+          <div className="bg-gray-50">
+            <div className="flex-col overflow-y-scroll">
+              {article.map((article) => (
+                <ArticleCard
+                  articleId={article.id}
+                  content={article.content}
+                  key={article.id}
+                  like={article.like}
+                  title={article.title}
+                  userName={article.userName}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

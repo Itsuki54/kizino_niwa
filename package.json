@@ -13,7 +13,8 @@
     "lint:fix": "next lint --fix",
     "prettier": "prettier --write .",
     "markuplint": "markuplint \"./**/*.tsx\"",
-    "secretlint": "secretlint --maskSecrets --secretlintignore .gitignore '**/*'"
+    "secretlint": "secretlint --maskSecrets --secretlintignore .gitignore '**/*'",
+    "start:dev" : "pnpm run dev && lint:fix&& prettier&& markuplint&& secretlint"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^1.6.0",

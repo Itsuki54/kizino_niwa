@@ -1,11 +1,10 @@
 import { Spinner } from '@chakra-ui/react';
-import { Article, User,Notification } from '@prisma/client';
+import { Article, User, Notification } from '@prisma/client';
 import { GetServerSideProps } from 'next';
 import { getServerSession } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
 import { Home } from '@/components/template/Home';
-
 
 import { UserArticleQuery } from '@/utils/query/ArticleQuery';
 import { NotificationQuery } from '@/utils/query/NotificationQuery';
@@ -20,12 +19,10 @@ interface Props {
 }
 
 function Kizinoniwa({ user, notification, article }: Props) {
-  const {  status } = useSession();
+  const { status } = useSession();
   console.log('USER', user);
   console.log('NOTIFICATION', notification);
-  return (
-    <div>{status === 'loading' ? <Spinner /> : <Home article={article} notification={notification} user={user} />}</div>
-  );
+  return <>{status === 'loading' ? <Spinner /> : <Home article={article} notification={notification} user={user} />}</>;
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

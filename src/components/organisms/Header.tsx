@@ -1,4 +1,3 @@
-import { HStack } from '@chakra-ui/react';
 import { Notification, User } from '@prisma/client';
 
 import { MakeArticleButton } from '../atoms/MakeArticleButton';
@@ -15,14 +14,18 @@ interface HeaderProps {
 export function Header({ user, notification }: HeaderProps) {
   console.log(notification);
   return (
-    <HStack justifyContent="space-between" padding="8px" width="100%">
-      <LogoTitle />
-      <SearchArticle />
-      <HStack>
+    <div className="flex justify-center w-full gap-1 m-4 bg-white bg-fixed">
+      <div className="flex w-1/4 justify-start ">
+        <LogoTitle />
+      </div>
+      <div className="flex w-1/2 justify-center ">
+        <SearchArticle />
+      </div>
+      <div className="flex w-1/4 justify-end gap-2 flex-row mr-8">
         <NotificationButton notifications={notification} />
         <ProfileButton imageUrl={user.image!} name={user.name} userId={user.id} />
         <MakeArticleButton id={user.id} />
-      </HStack>
-    </HStack>
+      </div>
+    </div>
   );
 }

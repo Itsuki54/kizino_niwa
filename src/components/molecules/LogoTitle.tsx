@@ -7,7 +7,7 @@ export function LogoTitle() {
     void router.push('/');
   };
   return (
-    <div>
+    <div className="flex items-center">
       <Image
         alt="logo"
         height={40}
@@ -18,9 +18,7 @@ export function LogoTitle() {
         style={{ borderRadius: '50%' }}
         width={40}
       />
-      <p>
-        キジノニワ
-      </p>
+      <div className="text-2xl font-bold items-center">キジノニワ</div>
     </div>
   );
 }

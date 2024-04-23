@@ -28,8 +28,8 @@
       "@images/*": ["./public/images/*"],
       "@types/*": ["./src/types/*"],
       "@query/*": ["./src/utils/query/*"],
-      "@mutation/*": ["src/pages/api/mutation/*"],
-      "@atoms/*":["./src/components/atoms/*"]
+      "@mutation/*": ["./src/pages/api/mutation/*"],
+      "@atoms/*": ["./src/components/atoms/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/pages/api/auth/[...nextauth].js"],

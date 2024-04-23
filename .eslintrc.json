@@ -1,14 +1,10 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "next/core-web-vitals",
-    "prettier"
-  ],
-    "parserOptions": {
-  "project": "./tsconfig.json"
+  "extends": ["eslint:recommended", "next/core-web-vitals", "prettier"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
   },
   "plugins": ["unused-imports", "strict-dependencies"],
-    "rules": {
+  "rules": {
     "unused-imports/no-unused-imports": "error",
     "react/jsx-sort-props": "error",
     "import/order": [
