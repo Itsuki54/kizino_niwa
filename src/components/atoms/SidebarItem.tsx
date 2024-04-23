@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router';
 import React from 'react';
 
-interface SideBarItemProps {
+export interface SideBarItemProps {
   title: string;
   icon: React.ReactNode;
   route: string;
 }
 
-export function SidebarItem({ title, icon, route }: SideBarItemProps) {
+export function SideBarItem({ title, icon, route }: SideBarItemProps) {
   const router = useRouter();
   const GotoPage = () => {
     void router.push(route);

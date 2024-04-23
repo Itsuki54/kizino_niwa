@@ -1,49 +1,27 @@
-import { Accordion, Box, VStack } from '@chakra-ui/react';
-import FeedIcon from '@mui/icons-material/Feed';
-import GroupIcon from '@mui/icons-material/Group';
-import HomeIcon from '@mui/icons-material/Home';
-import MenuIcon from '@mui/icons-material/Menu';
-import React, { useState } from 'react';
+import React from "react";
 
-import { SidebarItem } from '@/components/atoms/SidebarItem';
+import { SideBarContent } from "../molecules/SideBarContent";
 
-export function Sidebar() {
-  const [isOpen, setIsOpen] = useState(false);
+export function SideBar() {
+
   return (
-    <Accordion height="100vh" width={isOpen ? '200px' : '64px'}>
-      {isOpen ? (
-        <VStack padding="8px">
-          <Box alignItems="flex-end">
-            <MenuIcon
-              onClick={() => setIsOpen(!isOpen)}
-              style={{
-                cursor: 'pointer',
-                fontSize: '32px',
-              }}
-            />
-          </Box>
-          <VStack align="flex-start">
-            <SidebarItem icon={<HomeIcon />} route="/" title="ホーム" />
-            <SidebarItem icon={<FeedIcon />} route="/articles" title="記事一覧" />
-            <SidebarItem icon={<GroupIcon />} route="/groups" title="グループ" />
-          </VStack>
-        </VStack>
-      ) : (
-        <VStack padding="8px">
-          <MenuIcon
-            onClick={() => setIsOpen(!isOpen)}
-            style={{
-              cursor: 'pointer',
-              fontSize: '32px',
-            }}
-          />
-          <VStack padding="8px">
-            <HomeIcon />
-            <FeedIcon />
-            <GroupIcon />
-          </VStack>
-        </VStack>
-      )}
-    </Accordion>
+    <aside className="bg-gray-800 text-white w-40 min-h-screen p-4">
+      <nav>
+        <ul className="space-y-2">
+          <SideBarContent sideBarItems={[
+            { title: "Dashboard", icon: <i className="fas fa-tachometer-alt"></i>, route: "/dashboard" },
+            { title: "Profile", icon: <i className="fas fa-user"></i>, route: "/profile" },
+            { title: "Settings", icon: <i className="fas fa-cog"></i>, route: "/settings" },
+          ]} title="Home" />
+          <SideBarContent sideBarItems={[
+            { title: "Dashboard", icon: <i className="fas fa-tachometer-alt"></i>, route: "/dashboard" },
+            { title: "Profile", icon: <i className="fas fa-user"></i>, route: "/profile" },
+            { title: "Settings", icon: <i className="fas fa-cog"></i>, route: "/settings" },
+          ]} title="Home" />
+        </ul>
+      </nav>
+    </aside>
   );
-}
+};
+
+export default SideBar;
