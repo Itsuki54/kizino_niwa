@@ -22,7 +22,9 @@ function Kizinoniwa({ user, notification, article }: Props) {
   const { status } = useSession();
   console.log('USER', user);
   console.log('NOTIFICATION', notification);
-  return <>{status === 'loading' ? <Spinner /> : <Home article={article} notification={notification} user={user} />}</>;
+  return (
+    <div>{status === 'loading' ? <Spinner /> : <Home article={article} notification={notification} user={user} />}</div>
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {

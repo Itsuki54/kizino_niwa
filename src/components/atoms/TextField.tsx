@@ -9,7 +9,8 @@ interface TextProps {
 export function TextField({ placeholder, value, onChange, height, width }: TextProps) {
   return (
     <textarea
-      className="border-gray-300 m-1 block rounded-md border p-2  text-start"
+      className="m-1 rounded-md p-2 border border-primary-300
+       flex  text-start"
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
       style={{ height: height, width: width }}

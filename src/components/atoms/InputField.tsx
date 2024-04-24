@@ -4,16 +4,18 @@ interface InputProps {
   value: string;
   onChange: Function;
   height?: string;
-  width?: string;
 }
 
-export function InputField({ type, placeholder, value, onChange, height, width }: InputProps) {
+export function InputField({ type, placeholder, value, onChange,height }: InputProps) {
   return (
     <input
-      className="border-gray-300  m-1 rounded-md p-2 border	"
+      className=" m-1 rounded-md p-2 border border-primary-300"
       onChange={(e) => onChange(e.target.value)}
       placeholder={placeholder}
-      style={{ height: height, width: width }}
+      style={{
+        height: height ? height : '50px',
+        width: '100',
+      }}
       type={type}
       value={value}
     />
