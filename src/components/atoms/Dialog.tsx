@@ -21,7 +21,6 @@ export function Dialog({
   confirmText,
   cancelText,
 }: DialogProps) {
-
   function handleConfirm() {
     setIsConfirm(true);
     setIsOpen(false);
@@ -35,9 +34,7 @@ export function Dialog({
   return (
     <div>
       {isOpen && (
-        <div
-          className="fixed inset-0 z-[999] grid  place-items-center  backdrop-blur-sm transition-opacity duration-300 bg-white"
-        >
+        <div className="fixed inset-0 z-[999] grid  place-items-center  backdrop-blur-sm transition-opacity duration-300 bg-white">
           <div
             className="relative m-4 w-3/5 min-w-[30%] max-w-[30%] rounded-lg bg-white  leading-relaxed antialiased shadow-2xl"
             data-dialog="dialog"

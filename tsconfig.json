@@ -29,7 +29,10 @@
       "@types/*": ["./src/types/*"],
       "@query/*": ["./src/utils/query/*"],
       "@mutation/*": ["./src/pages/api/mutation/*"],
-      "@atoms/*": ["./src/components/atoms/*"]
+      "@atoms/*": ["./src/components/atoms/*"],
+      "@molecules/*": ["./src/components/molecules/*"],
+      "@organisms/*": ["./src/components/organisms/*"],
+      "@templates/*": ["./src/components/templates/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/pages/api/auth/[...nextauth].js"],
