@@ -1,38 +1,63 @@
-import { LexicalComposer } from '@lexical/react/LexicalComposer';
-import { ContentEditable } from '@lexical/react/LexicalContentEditable';
-import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin';
-import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin';
-import { ComponentProps, FC } from 'react';
+import CharacterCount from '@tiptap/extension-character-count';
+import Focus from '@tiptap/extension-focus';
+import Highlight from '@tiptap/extension-highlight';
+import Strike from '@tiptap/extension-strike';
+import Table from '@tiptap/extension-table';
+import TableCell from '@tiptap/extension-table-cell';
+import TableHeader from '@tiptap/extension-table-header';
+import TableRow from '@tiptap/extension-table-row';
+import TaskItem from '@tiptap/extension-task-item';
+import TaskList from '@tiptap/extension-task-list';
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import { useEffect } from 'react';
+import { useForm } from 'react-hook-form';
 
-import { ToolbarPlugin } from '@/plugins/ToobarPlugin';
-import { nodes } from '@/utils/nodes';
+import { MenuBar } from '../molecules/MenuBar';
 
-import { AutoFocusPlugin } from '../../plugins/AutoFocusPlugin';
+export function Editor() {
+  const { setValue, getValues } = useForm();
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      Highlight,
+      TaskList,
+      TaskItem,
+      TableRow,
+      Strike,
+      TableHeader,
+      TableCell,
 
-const initialConfig: ComponentProps<typeof LexicalComposer>['initialConfig'] = {
-  namespace: 'MyEditor',
-  onError: (error) => console.error(error),
-  nodes: nodes,
-};
+      Table.configure({
+        resizable: true,
+      }),
+      Focus.configure({
+        className: 'outline-none',
+        mode: 'all',
+      }),
+      CharacterCount.configure({
+        limit: 10000,
+      }),
+    ],
+    editorProps: {
+      attributes: {
+        class: 'px-6 py-5 prose lg:prose-lg max-w-full focus:outline-none font-content',
+      },
+    },
+    onUpdate({ editor }) {
+      setValue('body', editor.getHTML());
+    },
+  });
 
-export const Editor: FC = () => {
+  useEffect(() => {
+    console.log(getValues('body'));
+  }, [getValues]);
   return (
-    <LexicalComposer initialConfig={initialConfig}>
-      <ToolbarPlugin />
-
-      <div className="relative p-6 min-h-[240px]">
-        <RichTextPlugin
-          ErrorBoundary={() => <div>error</div>}
-          contentEditable={<ContentEditable className="outline-none" />}
-          placeholder={
-            <div className="absolute text-gray-500 top-6 left-6 pointer-events-none user-select-none">
-              いまなにしてる？
-            </div>
-          }
-        />
+    <div className=" flex-wrap p-4 rounded-t-md ">
+      <div className="border rounded-md outline-none ">
+        {editor && <MenuBar editor={editor} />}
+        <EditorContent editor={editor} />
       </div>
-      <AutoFocusPlugin />
-      <HistoryPlugin />
-    </LexicalComposer>
+    </div>
   );
-};
+}

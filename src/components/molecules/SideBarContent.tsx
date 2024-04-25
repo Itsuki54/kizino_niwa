@@ -16,10 +16,8 @@ export function SideBarContent({ title, sideBarItems }: SideBarContentProps) {
 
   return (
     <li className="opcion-con-desplegable">
-      <div className="flex items-center justify-between p-2 hover:bg-gray-700" onClick={toggleDropdown}>
-        <div className="flex items-center">
-          <span>{title}</span>
-        </div>
+      <div className="flex items-center p-2 " onClick={toggleDropdown}>
+        <span>{title}</span>
       </div>
       <ul className={`desplegable ml-4 ${showDropdown ? '' : 'hidden'}`}>
         {sideBarItems.map((sideBarItem) => (

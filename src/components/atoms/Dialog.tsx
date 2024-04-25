@@ -32,7 +32,7 @@ export function Dialog({
   }
 
   return (
-    <div>
+    <>
       {isOpen && (
         <div className="fixed inset-0 z-[999] grid  place-items-center  backdrop-blur-sm transition-opacity duration-300 bg-white">
           <div
@@ -62,6 +62,6 @@ export function Dialog({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

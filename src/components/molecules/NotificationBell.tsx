@@ -1,5 +1,3 @@
-import { IconButton, Menu, MenuButton, MenuItem, MenuList } from '@chakra-ui/react';
-import { Notifications } from '@mui/icons-material';
 import { Notification } from '@prisma/client';
 import React from 'react';
 
@@ -12,28 +10,15 @@ interface NotificationButtonProps {
 
 export function NotificationButton({ notifications }: NotificationButtonProps) {
   return (
-    <Menu>
-      <MenuButton
-        _active={{ backgroundColor: 'transparent' }}
-        _hover={{ backgroundColor: 'transparent' }}
-        as={IconButton}
-        backgroundColor={'transparent'}
-        height="32px"
-        icon={<Notifications />}
-        outline="none"
-        width="32px"
-      />
-      <MenuList>
-        {notifications.map((item, index) => (
-          <MenuItem key={index}>
-            <NotificationList
-              description={item.description}
-              image={item.image ? item.image : 'https://bit.ly/dan-abramov'}
-              title={item.title}
-            />
-          </MenuItem>
-        ))}
-      </MenuList>
-    </Menu>
+    <button className="menu-item">
+      {notifications.map((notification) => (
+        <NotificationList
+          description={notification.description}
+          image={notification.image!}
+          key={notification.id}
+          title={notification.title}
+        />
+      ))}
+    </button>
   );
 }

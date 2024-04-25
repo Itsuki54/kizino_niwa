@@ -1,11 +1,8 @@
-import SearchIcon from '@mui/icons-material/Search';
-
 import { InputField } from '../atoms/InputField';
 
 export function SearchArticle() {
   return (
-    <div className="flex flex-row ">
-      <SearchIcon />
+    <div className="flex flex-row bg-secondary-200 justify-center items-center">
       <InputField
         height="32px"
         onChange={() => console.log('search')}

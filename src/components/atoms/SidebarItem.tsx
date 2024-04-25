@@ -14,6 +14,7 @@ export function SideBarItem({ title, icon, route }: SideBarItemProps) {
   };
   return (
     <div
+      className="flex items-center cursor-pointer bg-primary-100 border-l-4 border-transparent hover:border-primary-500 p-2 w-full h-12 m-1"
       onClick={() => {
         GotoPage();
       }}

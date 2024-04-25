@@ -8,10 +8,10 @@ interface NotificationListProps {
 
 export function NotificationList({ title, description, image }: NotificationListProps) {
   return (
-    <div className="">
+    <>
       <Image alt={title} height={40} src={image} width={16} />
       <h2>{title}</h2>
       <p>{description}</p>
-    </div>
+    </>
   );
 }

@@ -9,18 +9,14 @@ interface HomeLayoutProps {
 
 export function HomeLayout({ header, rightBar, leftBar, main }: HomeLayoutProps) {
   return (
-    <div className="flex h-screen">
-      <div className="flex-1 flex flex-col overflow-hidden">
+    <div className="flex h-screen ">
+      <div className="flex-1 flex flex-col overflow-hidden  ">
         {header}
-        <div className="flex h-full">
-          {leftBar}
+        <div className="flex h-full ">
+          <div className=" bg-gray-50 w-1/5">{leftBar}</div>
           <main className="flex flex-col w-full bg-white overflow-x-hidden overflow-y-auto mb-14 ">{main}</main>
-          <nav className="flex w-72 h-full bg-yellow-400">
-            <div className="w-full flex mx-auto px-6 py-8">
-              <div className="w-full h-full flex items-center justify-center text-gray-900 text-xl ">
-                <div className="flex"> {rightBar}</div>
-              </div>
-            </div>
+          <nav className="flex  h-full bg-gray-50 w-1/5">
+            <div className="w-full flex mx-auto ">{rightBar}</div>
           </nav>
         </div>
       </div>

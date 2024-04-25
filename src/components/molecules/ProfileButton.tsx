@@ -15,5 +15,9 @@ export function ProfileButton({ imageUrl, name, userId }: ProfileButtonProps) {
       query: { name: name },
     });
   };
-  return <Image alt={name} height="32" onClick={GotoPage} src={imageUrl} style={{ borderRadius: '50%' }} width="32" />;
+  return (
+    <div className="flex flex-row items-center gap-1">
+      <Image alt={name} height={32} onClick={GotoPage} src={imageUrl} style={{ borderRadius: '50%' }} width={32} />
+    </div>
+  );
 }

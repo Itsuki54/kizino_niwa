@@ -18,7 +18,7 @@ export function ArticleCard({ title, userName, articleId, content, like }: Artic
   };
   return (
     <div className="flex-col flex bg-primary-100 border m-2 rounded-md" onClick={handleClick}>
-      <div className="text-xl  ">{title}</div>
+      <div className="text-xl">{title}</div>
       <div>{like}</div>
       <div>{userName}</div>
     </div>

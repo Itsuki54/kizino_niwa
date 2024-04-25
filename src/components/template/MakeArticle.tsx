@@ -66,7 +66,7 @@ export default function MakeArticle({ userId, user, notification }: MakeArticleP
         header={<Header notification={notification} user={user} />}
         leftBar={<SideBar />}
         main={
-          <div className=" bg-gray-50 flex flex-col items-center">
+          <div className=" flex flex-col items-center">
             <ArticleContents
               content={content}
               setContent={setContent}

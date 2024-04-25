@@ -7,17 +7,13 @@ export function LogoTitle() {
     void router.push('/');
   };
   return (
-    <div className="flex items-center">
-      <Image
-        alt="logo"
-        height={40}
-        onClick={() => {
-          GotoPage();
-        }}
-        src="/images/logo.png"
-        style={{ borderRadius: '50%' }}
-        width={40}
-      />
+    <div
+      className="flex items-center bg-primary-50 p-1"
+      onClick={() => {
+        GotoPage();
+      }}
+    >
+      <Image alt="logo" height={40} src="/images/logo.png" style={{ borderRadius: '50%' }} width={40} />
       <div className="text-2xl font-bold items-center">キジノニワ</div>
     </div>
   );

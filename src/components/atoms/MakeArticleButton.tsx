@@ -13,10 +13,10 @@ export function MakeArticleButton({ id }: MakeArticleButtonProps) {
     });
   }
   return (
-    <div>
+    <>
       <button onClick={() => handleClick()}>
         <Image alt="pen" height="32" src="/icon/pen.svg" width="32" />
       </button>
-    </div>
+    </>
   );
 }
