@@ -23,6 +23,7 @@ export function Home({ user, notification, article }: HomeProps) {
           key={article.id}
           like={article.like}
           title={article.title}
+          user={user}
           userName={article.userName}
         />
       ))}

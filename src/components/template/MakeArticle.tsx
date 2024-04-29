@@ -22,7 +22,7 @@ export default function MakeArticle({ userId, user, notification }: MakeArticleP
   const [isOpen, setIsOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const [isCancel, setIsCancel] = useState(false);
-
+  const [fin, setFin] = useState(false);
   useEffect(() => {
     if (title && content && tags && title.length > 0 && content.length > 0 && tags.length > 0) {
       setDisabled(false);
@@ -54,6 +54,7 @@ export default function MakeArticle({ userId, user, notification }: MakeArticleP
   useEffect(() => {
     if (isConfirm) {
       create();
+      setFin(true);
     }
     if (isCancel) {
       setIsCancel(false);
@@ -68,14 +69,14 @@ export default function MakeArticle({ userId, user, notification }: MakeArticleP
         main={
           <div className=" flex flex-col items-center">
             <ArticleContents
-              content={content}
+              finished={fin}
               setContent={setContent}
               setTags={setTags}
               setTitle={setTitle}
               tags={tags}
               title={title}
             />
-            <PrimaryButton disabled={disabled} onClick={() => setIsOpen(true)} title="Create" width="100px" />
+            <PrimaryButton disabled={disabled} onClick={() => setIsOpen(true)} title="投稿する" width="100px" />
           </div>
         }
         rightBar={<div>広告とか貼れそう</div>}

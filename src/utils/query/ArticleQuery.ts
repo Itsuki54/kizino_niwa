@@ -9,3 +9,13 @@ export async function UserArticleQuery(id: string) {
   });
   return article;
 }
+
+export async function ArticleQuery(id: string) {
+  const prisma = new PrismaClient();
+  const article = prisma.article.findMany({
+    where: {
+      id: id,
+    },
+  });
+  return article;
+}

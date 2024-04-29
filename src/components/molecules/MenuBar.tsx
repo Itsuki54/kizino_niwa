@@ -8,8 +8,6 @@ import {
   BsTypeH2,
   BsListUl,
   BsListOl,
-  BsBlockquoteLeft,
-  BsCodeSquare,
   BsArrowCounterclockwise,
   BsTypeH3,
 } from 'react-icons/bs';
@@ -67,13 +65,7 @@ export const MenuBar = ({ editor }: { editor: any }) => {
       >
         <BsArrowCounterclockwise className="p-1" size={30} />
       </a>
-      <a
-        className={
-          editor.isActive('paragraph') ? 'bg-gray-200 rounded-md' : 'hover:bg-gray-200 duration-200 rounded-md'
-        }
-        href="#"
-        onClick={() => editor.chain().focus().setParagraph().run()}
-      >
+      <a className={'rounded-md'} href="#" onClick={() => editor.chain().focus().setParagraph().run()}>
         <BsParagraph size={30} style={{ margin: '4px' }} />
       </a>
       <a
@@ -127,28 +119,10 @@ export const MenuBar = ({ editor }: { editor: any }) => {
       >
         <BsListOl className="p-0.5" size={30} />
       </a>
-      <a
-        className={
-          editor.isActive('codeBlock') ? 'bg-gray-200 rounded-md' : 'hover:bg-gray-200 duration-200 rounded-md'
-        }
-        href="#"
-        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-      >
-        <BsCodeSquare size={30} style={{ margin: '4px' }} />
-      </a>
-      <a
-        className={
-          editor.isActive('blockquote') ? 'bg-gray-200 rounded-md' : 'hover:bg-gray-200 duration-200 rounded-md'
-        }
-        href="#"
-        onClick={() => editor.chain().focus().toggleBlockquote().run()}
-      >
-        <BsBlockquoteLeft className="p-0.5" size={30} />
-      </a>
-      <a className={'bg-gray-200 rounded-md'} href="#" onClick={() => editor.chain().focus().undo().run()}>
+      <a className={'rounded-md'} href="#" onClick={() => editor.chain().focus().undo().run()}>
         <GrUndo size={30} style={{ margin: '4px' }} />
       </a>
-      <a className={'bg-gray-200 rounded-md'} href="#" onClick={() => editor.chain().focus().redo().run()}>
+      <a className={' rounded-md'} href="#" onClick={() => editor.chain().focus().redo().run()}>
         <GrRedo size={30} style={{ margin: '4px' }} />
       </a>
     </div>

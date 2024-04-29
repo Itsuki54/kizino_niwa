@@ -1,3 +1,4 @@
+import { User } from '@prisma/client';
 import { useRouter } from 'next/router';
 
 interface ArticleCardProps {
@@ -6,14 +7,18 @@ interface ArticleCardProps {
   articleId: string;
   content: string;
   like: number;
+  user: User;
 }
 
-export function ArticleCard({ title, userName, articleId, content, like }: ArticleCardProps) {
+export function ArticleCard({ title, userName, articleId, like, user }: ArticleCardProps) {
   const router = useRouter();
   const handleClick = () => {
     router.push({
       pathname: `/article/${articleId}`,
-      query: { title: title, userName: userName, content: content, like: like },
+      query: {
+        articleId: articleId,
+        userId: user.id,
+      },
     });
   };
   return (

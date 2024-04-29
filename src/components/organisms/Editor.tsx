@@ -15,7 +15,12 @@ import { useForm } from 'react-hook-form';
 
 import { MenuBar } from '../molecules/MenuBar';
 
-export function Editor() {
+interface EditorProps {
+  setContent: Function;
+  finished: boolean;
+}
+
+export function Editor({ setContent, finished }: EditorProps) {
   const { setValue, getValues } = useForm();
   const editor = useEditor({
     extensions: [
@@ -27,7 +32,6 @@ export function Editor() {
       Strike,
       TableHeader,
       TableCell,
-
       Table.configure({
         resizable: true,
       }),
@@ -46,12 +50,16 @@ export function Editor() {
     },
     onUpdate({ editor }) {
       setValue('body', editor.getHTML());
+      setContent(getValues('body'));
     },
   });
 
   useEffect(() => {
-    console.log(getValues('body'));
-  }, [getValues]);
+    if (finished) {
+      editor!.commands.clearContent();
+      setContent('');
+    }
+  }, [finished]);
   return (
     <div className=" flex-wrap p-4 rounded-t-md ">
       <div className="border rounded-md outline-none ">
