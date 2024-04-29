@@ -19,8 +19,6 @@ interface Props {
 
 function Kizinoniwa({ user, notification, article }: Props) {
   const { status } = useSession();
-  console.log('USER', user);
-  console.log('NOTIFICATION', notification);
   return <>{status === 'loading' ? null : <Home article={article} notification={notification} user={user} />}</>;
 }
 
@@ -48,7 +46,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       const article = JSON.parse(JSON.stringify(articleData));
       const notificationData = await NotificationQuery(user.id);
       const notification = JSON.parse(JSON.stringify(notificationData));
-      console.log('ARTICLES', article);
       return {
         props: {
           user,

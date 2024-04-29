@@ -36,7 +36,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const user = JSON.parse(JSON.stringify(userData));
   const notificationData = await NotificationQuery(user.id);
   const notification = JSON.parse(JSON.stringify(notificationData));
-  console.log(notification);
   return {
     props: {
       user,

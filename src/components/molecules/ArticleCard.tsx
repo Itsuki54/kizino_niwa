@@ -1,6 +1,6 @@
 import { User } from '@prisma/client';
 import { useRouter } from 'next/router';
-
+import { BsHeart } from 'react-icons/bs';
 interface ArticleCardProps {
   title: string;
   userName: string;
@@ -22,10 +22,17 @@ export function ArticleCard({ title, userName, articleId, like, user }: ArticleC
     });
   };
   return (
-    <div className="flex-col flex bg-primary-100 border m-2 rounded-md" onClick={handleClick}>
-      <div className="text-xl">{title}</div>
-      <div>{like}</div>
-      <div>{userName}</div>
+    <div className="flex-col flex bg-primary-100 border m-2 rounded-md p-2" onClick={handleClick}>
+      <div className="flex justify-between items-center">
+        <div className="text-xl">{title}</div>
+        <div className="flex-col">
+          <div className="flex items-center gap-1">
+            <BsHeart />
+            {like}
+          </div>
+          <div className="text-xs">{userName}</div>
+        </div>
+      </div>
     </div>
   );
 }

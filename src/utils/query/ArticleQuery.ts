@@ -12,7 +12,7 @@ export async function UserArticleQuery(id: string) {
 
 export async function ArticleQuery(id: string) {
   const prisma = new PrismaClient();
-  const article = prisma.article.findMany({
+  const article = prisma.article.findUnique({
     where: {
       id: id,
     },

@@ -8,7 +8,7 @@ export function LogoTitle() {
   };
   return (
     <div
-      className="flex items-center bg-primary-50 p-1"
+      className="flex items-center p-1"
       onClick={() => {
         GotoPage();
       }}

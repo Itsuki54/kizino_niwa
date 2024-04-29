@@ -16,11 +16,12 @@ interface props {
   article: Article;
 }
 
-export const ArticleIdPage = ({ user, notification, article }: props) => {
+export default function articleIdPage({ user, notification, article }: props) {
   return <ArticlePage article={article} notification={notification} user={user} />;
-};
+}
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { articleId } = ctx.query;
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
   if (!session) {
     return {
@@ -35,9 +36,8 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const user = JSON.parse(JSON.stringify(userData));
   const notificationData = await NotificationQuery(user.id);
   const notification = JSON.parse(JSON.stringify(notificationData));
-  const articleData = await ArticleQuery(user.id);
+  const articleData = await ArticleQuery(articleId as string);
   const article = JSON.parse(JSON.stringify(articleData));
-  console.log(notification);
   return {
     props: {
       user,
