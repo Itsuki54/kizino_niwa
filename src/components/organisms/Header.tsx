@@ -24,7 +24,7 @@ export function Header({ user, notification }: HeaderProps) {
           </div>
           <div className="flex w-1/4 justify-end flex-row mr-4 gap-3">
             <NotificationButton notifications={notification} />
-            <ProfileButton imageUrl={user.image!} name={user.name} userId={user.id} />
+            <ProfileButton imageUrl={user.image} name={user.name} userId={user.id} />
             <MakeArticleButton id={user.id} />
           </div>
         </div>

@@ -14,10 +14,11 @@ interface props {
   user: User;
   notification: Notification[];
   article: Article;
+  createdUser: User;
 }
 
-export default function articleIdPage({ user, notification, article }: props) {
-  return <ArticlePage article={article} notification={notification} user={user} />;
+export default function articleIdPage({ user, notification, article, createdUser }: props) {
+  return <ArticlePage article={article} createdUser={createdUser} notification={notification} user={user} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -30,19 +31,34 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         permanent: false,
       },
     };
-  }
-
+  } else {
+    const userData = await UserDataQuery(session.user.uid);
+    const user = JSON.parse(JSON.stringify(userData));
+    if (!user) {
+      return {
+        redirect: {
+          destination: '/api/auth/signin',
+          permanent: false,
+        },
+      };
+    } else {
   const userData = await UserDataQuery(session.user.uid);
   const user = JSON.parse(JSON.stringify(userData));
   const notificationData = await NotificationQuery(user.id);
   const notification = JSON.parse(JSON.stringify(notificationData));
   const articleData = await ArticleQuery(articleId as string);
   const article = JSON.parse(JSON.stringify(articleData));
+  const createdUserData = await UserDataQuery(article.userId);
+  const createdUser = JSON.parse(JSON.stringify(createdUserData));
   return {
     props: {
       user,
       notification,
       article,
+      createdUser,
     },
   };
-};
+    }
+
+  }
+}

@@ -12,7 +12,6 @@ export function ProfileButton({ imageUrl, name, userId }: ProfileButtonProps) {
   const GotoPage = () => {
     void router.push({
       pathname: `/${userId}`,
-      query: { name: name },
     });
   };
   return (

@@ -9,14 +9,15 @@ interface HomeProps {
   user: User;
   notification: Notification[];
   article: Article[];
+  allArticle: Article[];
 }
 
-export function Home({ user, notification, article }: HomeProps) {
+export function Home({ user, notification, article ,allArticle}: HomeProps) {
   return (
     <HomeLayout
       header={<Header notification={notification} user={user} />}
       leftBar={<SideBar />}
-      main={article.map((article) => (
+      main={allArticle.map((article) => (
         <ArticleCard
           articleId={article.id}
           content={article.content}

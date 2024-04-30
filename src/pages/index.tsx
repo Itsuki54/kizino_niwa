@@ -5,7 +5,7 @@ import { useSession } from 'next-auth/react';
 
 import { Home } from '@/components/template/Home';
 
-import { UserArticleQuery } from '@/utils/query/ArticleQuery';
+import { AllArticleQuery, UserArticleQuery } from '@/utils/query/ArticleQuery';
 import { NotificationQuery } from '@/utils/query/NotificationQuery';
 import { UserDataQuery } from '@/utils/query/UserQuery';
 
@@ -15,11 +15,12 @@ interface Props {
   user: User;
   notification: Notification[];
   article: Article[];
+  allArticle: Article[];
 }
 
-function Kizinoniwa({ user, notification, article }: Props) {
+function Kizinoniwa({ user, notification, article ,allArticle}: Props) {
   const { status } = useSession();
-  return <>{status === 'loading' ? null : <Home article={article} notification={notification} user={user} />}</>;
+  return <>{status === 'loading' ? null : <Home allArticle={allArticle} article={article} notification={notification} user={user} />}</>;
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -46,11 +47,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       const article = JSON.parse(JSON.stringify(articleData));
       const notificationData = await NotificationQuery(user.id);
       const notification = JSON.parse(JSON.stringify(notificationData));
+      const allArticleData = await AllArticleQuery();
+      const allArticle = JSON.parse(JSON.stringify(allArticleData));
       return {
         props: {
           user,
           article,
           notification,
+          allArticle,
         },
       };
     }

@@ -19,3 +19,9 @@ export async function ArticleQuery(id: string) {
   });
   return article;
 }
+
+export async function AllArticleQuery() {
+  const prisma = new PrismaClient();
+  const article = prisma.article.findMany();
+  return article;
+}
