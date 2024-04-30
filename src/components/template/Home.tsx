@@ -12,7 +12,7 @@ interface HomeProps {
   allArticle: Article[];
 }
 
-export function Home({ user, notification, article ,allArticle}: HomeProps) {
+export function Home({ user, notification ,allArticle}: HomeProps) {
   return (
     <HomeLayout
       header={<Header notification={notification} user={user} />}

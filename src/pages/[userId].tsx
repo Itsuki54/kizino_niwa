@@ -1,7 +1,6 @@
-import { Article } from '@prisma/client';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { User, getServerSession } from 'next-auth';
+import { getServerSession } from 'next-auth';
 
 import { UserArticleQuery } from '@/utils/query/ArticleQuery';
 import { NotificationQuery } from '@/utils/query/NotificationQuery';
@@ -10,13 +9,7 @@ import { UserDataQuery } from '@/utils/query/UserQuery';
 
 import { authOptions } from './api/auth/[...nextauth]';
 
-interface props {
-  user: User;
-  article: Article[];
-  notification: Notification[];
-}
 export default function UserProfilePage(
-  { user, article, notification }: props
 ) {
   const router = useRouter();
   const { userId} = router.query;

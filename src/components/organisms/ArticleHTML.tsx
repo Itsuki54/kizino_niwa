@@ -10,7 +10,7 @@ interface ArticleHTMLProps {
   createdUser: User;
 }
 
-export function ArticleHTML({ article, user, createdUser }: ArticleHTMLProps) {
+export function ArticleHTML({ article, createdUser }: ArticleHTMLProps) {
   return (
     <div className="p-4">
       <div className="flex justify-between items-center">
