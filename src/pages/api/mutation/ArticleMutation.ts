@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { PrismaClient } from "@prisma/client";
+import { NextApiRequest, NextApiResponse } from "next";
 
 interface createProps {
   title: string;
@@ -10,7 +10,12 @@ interface createProps {
   userName: string;
 }
 
-export async function createArticleMutation({ title, content, userId, userName }: createProps) {
+export async function createArticleMutation({
+  title,
+  content,
+  userId,
+  userName,
+}: createProps) {
   const prisma = new PrismaClient();
   const newArticle = await prisma.article.create({
     data: {
@@ -24,8 +29,18 @@ export async function createArticleMutation({ title, content, userId, userName }
   return newArticle;
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { title, content, image, published, userId, userName } = req.body;
-  const newArticle = createArticleMutation({ title, content, image, published, userId, userName });
+  const newArticle = createArticleMutation({
+    title,
+    content,
+    image,
+    published,
+    userId,
+    userName,
+  });
   res.status(200).json(newArticle);
 }

@@ -1,5 +1,5 @@
-import { PrismaClient } from '@prisma/client';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { PrismaClient } from "@prisma/client";
+import { NextApiRequest, NextApiResponse } from "next";
 
 interface createProps {
   title: string;
@@ -9,7 +9,13 @@ interface createProps {
   userId: string;
 }
 
-export async function createNotificationMutation({ title, description, image, read, userId }: createProps) {
+export async function createNotificationMutation({
+  title,
+  description,
+  image,
+  read,
+  userId,
+}: createProps) {
   const prisma = new PrismaClient();
   const newNotification = await prisma.notification.create({
     data: {
@@ -23,8 +29,17 @@ export async function createNotificationMutation({ title, description, image, re
   return newNotification;
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
   const { title, description, image, read, userId } = req.body;
-  const newNotification = await createNotificationMutation({ title, description, image, read, userId });
+  const newNotification = await createNotificationMutation({
+    title,
+    description,
+    image,
+    read,
+    userId,
+  });
   res.status(200).json(newNotification);
 }

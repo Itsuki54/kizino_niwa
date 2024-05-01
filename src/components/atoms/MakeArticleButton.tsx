@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import { useRouter } from 'next/router';
+import Image from "next/image";
+import { useRouter } from "next/router";
 export interface MakeArticleButtonProps {
   id: string;
 }
@@ -8,7 +8,7 @@ export function MakeArticleButton({ id }: MakeArticleButtonProps) {
   const router = useRouter();
   function handleClick() {
     void router.push({
-      pathname: '/article/new',
+      pathname: "/article/new",
       query: { userId: id },
     });
   }

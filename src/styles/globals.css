@@ -1,10 +1,10 @@
-@import '~tailwindcss/base';
-@import '~tailwindcss/components';
-@import '~tailwindcss/utilities';
+@import "~tailwindcss/base";
+@import "~tailwindcss/components";
+@import "~tailwindcss/utilities";
 /* src/styles/globals.css */
 @tailwind base;
 
-@import './prose-mirror.css';
+@import "./prose-mirror.css";
 
 @layer base {
   :root {

@@ -1,18 +1,16 @@
-import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
-import { getServerSession } from 'next-auth';
+import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+import { getServerSession } from "next-auth";
 
-import { UserArticleQuery } from '@/utils/query/ArticleQuery';
-import { NotificationQuery } from '@/utils/query/NotificationQuery';
-import { UserDataQuery } from '@/utils/query/UserQuery';
+import { UserArticleQuery } from "@/utils/query/ArticleQuery";
+import { NotificationQuery } from "@/utils/query/NotificationQuery";
+import { UserDataQuery } from "@/utils/query/UserQuery";
 
+import { authOptions } from "./api/auth/[...nextauth]";
 
-import { authOptions } from './api/auth/[...nextauth]';
-
-export default function UserProfilePage(
-) {
+export default function UserProfilePage() {
   const router = useRouter();
-  const { userId} = router.query;
+  const { userId } = router.query;
 
   return (
     <div>
@@ -22,25 +20,23 @@ export default function UserProfilePage(
   );
 }
 
-
-
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
   if (!session) {
     return {
       redirect: {
-        destination: '/api/auth/signin',
+        destination: "/api/auth/signin",
         permanent: false,
       },
     };
   } else {
-    const uid = ctx.query.userId ;
-    const userData = await UserDataQuery(uid  as string);
+    const uid = ctx.query.userId;
+    const userData = await UserDataQuery(uid as string);
     const user = JSON.parse(JSON.stringify(userData));
     if (!user) {
       return {
         redirect: {
-          destination: '/api/auth/signin',
+          destination: "/api/auth/signin",
           permanent: false,
         },
       };

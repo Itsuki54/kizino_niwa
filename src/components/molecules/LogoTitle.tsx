@@ -1,10 +1,10 @@
-import Image from 'next/image';
-import { useRouter } from 'next/router';
+import Image from "next/image";
+import { useRouter } from "next/router";
 
 export function LogoTitle() {
   const router = useRouter();
   const GotoPage = () => {
-    void router.push('/');
+    void router.push("/");
   };
   return (
     <div
@@ -13,7 +13,13 @@ export function LogoTitle() {
         GotoPage();
       }}
     >
-      <Image alt="logo" height={40} src="/images/logo.png" style={{ borderRadius: '50%' }} width={40} />
+      <Image
+        alt="logo"
+        height={40}
+        src="/images/logo.png"
+        style={{ borderRadius: "50%" }}
+        width={40}
+      />
       <div className="text-2xl font-bold items-center">キジノニワ</div>
     </div>
   );

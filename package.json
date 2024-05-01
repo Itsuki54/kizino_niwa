@@ -1,11 +1,11 @@
 {
-  "name": "kizino_niwa",
+  "name": "kizinoniwa.com",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 5000",
     "prepare": "husky && husky install",
     "commit": "git add . && cz && git push",
     "erd": "prisma generate",

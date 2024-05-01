@@ -6,7 +6,13 @@ interface TextProps {
   width?: string;
 }
 
-export function TextField({ placeholder, value, onChange, height, width }: TextProps) {
+export function TextField({
+  placeholder,
+  value,
+  onChange,
+  height,
+  width,
+}: TextProps) {
   return (
     <textarea
       className="m-1 rounded-md p-2 border border-primary-300

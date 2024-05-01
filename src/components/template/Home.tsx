@@ -1,9 +1,9 @@
-import { Article, Notification, User } from '@prisma/client';
+import { Article, Notification, User } from "@prisma/client";
 
-import { ArticleCard } from '../molecules/ArticleCard';
-import { Header } from '../organisms/Header';
-import { HomeLayout } from '../organisms/HomeLayout';
-import { SideBar } from '../organisms/SideBar';
+import { ArticleCard } from "../molecules/ArticleCard";
+import { Header } from "../organisms/Header";
+import { HomeLayout } from "../organisms/HomeLayout";
+import { SideBar } from "../organisms/SideBar";
 
 interface HomeProps {
   user: User;
@@ -12,7 +12,7 @@ interface HomeProps {
   allArticle: Article[];
 }
 
-export function Home({ user, notification ,allArticle}: HomeProps) {
+export function Home({ user, notification, allArticle }: HomeProps) {
   return (
     <HomeLayout
       header={<Header notification={notification} user={user} />}
@@ -28,7 +28,9 @@ export function Home({ user, notification ,allArticle}: HomeProps) {
           userName={article.userName}
         />
       ))}
-      rightBar={<div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>}
+      rightBar={
+        <div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>
+      }
     />
   );
 }

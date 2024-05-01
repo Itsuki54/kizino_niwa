@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { SideBarItemProps, SideBarItem } from '../atoms/SideBarItem';
+import { SideBarItemProps, SideBarItem } from "../atoms/SideBarItem";
 
 interface SideBarContentProps {
   title: string;
@@ -19,7 +19,7 @@ export function SideBarContent({ title, sideBarItems }: SideBarContentProps) {
       <div className="flex items-center p-2 " onClick={toggleDropdown}>
         <span>{title}</span>
       </div>
-      <ul className={`desplegable ml-4 ${showDropdown ? '' : 'hidden'}`}>
+      <ul className={`desplegable ml-4 ${showDropdown ? "" : "hidden"}`}>
         {sideBarItems.map((sideBarItem) => (
           <SideBarItem
             icon={sideBarItem.icon}

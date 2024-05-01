@@ -52,7 +52,7 @@
 }
 
 .ProseMirror code {
-  font-family: 'Fira Code', monospace;
+  font-family: "Fira Code", monospace;
   font-size: 1rem; /* 文字サイズを1remに変更 */
   background-color: #f0f0f0; /* 背景色を灰色に変更 */
   color: #333; /* 文字色を濃い灰色に変更 */

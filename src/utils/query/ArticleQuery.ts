@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 export async function UserArticleQuery(id: string) {
   const prisma = new PrismaClient();

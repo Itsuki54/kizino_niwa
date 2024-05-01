@@ -1,5 +1,5 @@
-import { Editor } from '@tiptap/react';
-import { FC, useCallback } from 'react';
+import { Editor } from "@tiptap/react";
+import { FC, useCallback } from "react";
 
 type HeadingButtonProps = {
   editor: Editor | null;

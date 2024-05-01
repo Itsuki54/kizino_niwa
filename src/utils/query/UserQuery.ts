@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 export async function UserDataQuery(id: string) {
   const prisma = new PrismaClient();

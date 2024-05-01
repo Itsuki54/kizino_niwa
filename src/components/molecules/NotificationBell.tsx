@@ -1,7 +1,7 @@
-import { Notification } from '@prisma/client';
-import React from 'react';
+import { Notification } from "@prisma/client";
+import React from "react";
 
-import { NotificationList } from '../atoms/NotificationList';
+import { NotificationList } from "../atoms/NotificationList";
 
 interface NotificationButtonProps {
   notifications: Notification[];

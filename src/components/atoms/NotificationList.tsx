@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 interface NotificationListProps {
   title: string;
@@ -6,7 +6,11 @@ interface NotificationListProps {
   image: string;
 }
 
-export function NotificationList({ title, description, image }: NotificationListProps) {
+export function NotificationList({
+  title,
+  description,
+  image,
+}: NotificationListProps) {
   return (
     <>
       <Image alt={title} height={40} src={image} width={16} />

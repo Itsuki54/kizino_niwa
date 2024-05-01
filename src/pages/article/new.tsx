@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Notification, User } from '@prisma/client';
-import { GetServerSideProps } from 'next';
-import { useRouter } from 'next/router';
-import { getServerSession } from 'next-auth';
+import { Notification, User } from "@prisma/client";
+import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+import { getServerSession } from "next-auth";
 
-import MakeArticle from '@/components/template/MakeArticle';
+import MakeArticle from "@/components/template/MakeArticle";
 
-import { NotificationQuery } from '@/utils/query/NotificationQuery';
-import { UserDataQuery } from '@/utils/query/UserQuery';
+import { NotificationQuery } from "@/utils/query/NotificationQuery";
+import { UserDataQuery } from "@/utils/query/UserQuery";
 
-import { authOptions } from '../api/auth/[...nextauth]';
+import { authOptions } from "../api/auth/[...nextauth]";
 
 interface props {
   user: User;
@@ -18,7 +18,13 @@ interface props {
 
 export default function newArticle({ user, notification }: props) {
   const { userId } = useRouter().query;
-  return <MakeArticle notification={notification} user={user} userId={userId as string} />;
+  return (
+    <MakeArticle
+      notification={notification}
+      user={user}
+      userId={userId as string}
+    />
+  );
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -26,7 +32,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!session) {
     return {
       redirect: {
-        destination: '/api/auth/signin',
+        destination: "/api/auth/signin",
         permanent: false,
       },
     };
