@@ -15,11 +15,14 @@ export function HomeLayout({
 }: HomeLayoutProps) {
   return (
     <div className="flex h-screen ">
-      <div className="flex-1 flex flex-col overflow-hidden  ">
+      <div className="flex-1 flex flex-col overflow-hidden top-0 sticky ">
         {header}
         <div className="flex h-full ">
           <div className=" bg-gray-50 w-1/5">{leftBar}</div>
-          <main className="flex flex-col w-full bg-white overflow-x-hidden overflow-y-auto mb-14 ">
+          <main
+            className="flex flex-col w-full bg-white
+ overflow-x-hidden overflow-y-auto mb-14 "
+          >
             {main}
           </main>
           <nav className="flex  h-full bg-gray-50 w-1/5">

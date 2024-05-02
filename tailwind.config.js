@@ -15,7 +15,21 @@ module.exports = {
   },
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      animation: {
+        "fade-out": "fade-out 5s ease both",
+      },
+      keyframes: {
+        "fade-out": {
+          from: {
+            opacity: "1",
+          },
+          to: {
+            opacity: "0",
+          },
+        },
+      },
+    },
     colors: {
       primary: {
         50: "#fff9eb",

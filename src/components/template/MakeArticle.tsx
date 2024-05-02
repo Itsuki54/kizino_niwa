@@ -7,6 +7,8 @@ import { ArticleContents } from "../organisms/ArticleContents";
 import { Header } from "../organisms/Header";
 import { HomeLayout } from "../organisms/HomeLayout";
 import SideBar from "../organisms/SideBar";
+import { ToastProvider } from "@/context/ToastContext";
+import ToastContent from "../molecules/ToastContent";
 
 interface MakeArticleProps {
   userId: string;
@@ -107,6 +109,9 @@ export default function MakeArticle({
         setIsOpen={setIsOpen}
         title="投稿確認"
       />
+      <ToastProvider>
+        <ToastContent />
+      </ToastProvider>
     </>
   );
 }

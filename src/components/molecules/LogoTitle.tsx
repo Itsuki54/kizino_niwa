@@ -16,11 +16,9 @@ export function LogoTitle() {
       <Image
         alt="logo"
         height={40}
-        src="/images/logo.png"
-        style={{ borderRadius: "50%" }}
-        width={40}
+        src="/svgs/logo.svg"
+        width={100}
       />
-      <div className="text-2xl font-bold items-center">キジノニワ</div>
     </div>
   );
 }
