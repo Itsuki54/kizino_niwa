@@ -55,6 +55,7 @@ export default function MakeArticle({
         content: content,
         userId: userId,
         userName: user.name,
+        userImage: user.image,
       }),
     });
     setTitle("");

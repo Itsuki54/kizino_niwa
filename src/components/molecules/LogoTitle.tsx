@@ -13,12 +13,7 @@ export function LogoTitle() {
         GotoPage();
       }}
     >
-      <Image
-        alt="logo"
-        height={40}
-        src="/svgs/logo.svg"
-        width={100}
-      />
+      <Image alt="logo" height={10} src="/svgs/logo.svg" width={100} />
     </div>
   );
 }

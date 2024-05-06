@@ -8,6 +8,7 @@ interface createProps {
   published: boolean;
   userId: string;
   userName: string;
+  userImage : string;
 }
 
 export async function createArticleMutation({
@@ -15,6 +16,7 @@ export async function createArticleMutation({
   content,
   userId,
   userName,
+  userImage
 }: createProps) {
   const prisma = new PrismaClient();
   const newArticle = await prisma.article.create({
@@ -24,6 +26,7 @@ export async function createArticleMutation({
       userId: userId,
       like: 0,
       userName: userName,
+      userImage: userImage,
     },
   });
   return newArticle;
@@ -33,7 +36,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { title, content, image, published, userId, userName } = req.body;
+  const { title, content, image, published, userId, userName,userImage } = req.body;
   const newArticle = createArticleMutation({
     title,
     content,
@@ -41,6 +44,7 @@ export default async function handler(
     published,
     userId,
     userName,
+    userImage
   });
   res.status(200).json(newArticle);
 }

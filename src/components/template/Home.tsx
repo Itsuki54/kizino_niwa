@@ -18,15 +18,7 @@ export function Home({ user, notification, allArticle }: HomeProps) {
       header={<Header notification={notification} user={user} />}
       leftBar={<SideBar />}
       main={allArticle.map((article) => (
-        <ArticleCard
-          articleId={article.id}
-          content={article.content}
-          key={article.id}
-          like={article.like}
-          title={article.title}
-          user={user}
-          userName={article.userName}
-        />
+        <ArticleCard article={article} user={user} />
       ))}
       rightBar={
         <div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>

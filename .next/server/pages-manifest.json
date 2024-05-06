@@ -3,7 +3,8 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/[userId]": "pages/[userId].js",
   "/article/new": "pages/article/new.js",
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
+  "/[userId]": "pages/[userId].js",
   "/api/mutation/ArticleMutation": "pages/api/mutation/ArticleMutation.js"
 }

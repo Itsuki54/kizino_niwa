@@ -21,6 +21,7 @@ CREATE TABLE `Article` (
     `like` INTEGER NOT NULL DEFAULT 0,
     `userId` VARCHAR(191) NOT NULL,
     `userName` VARCHAR(191) NOT NULL,
+    `userImage` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

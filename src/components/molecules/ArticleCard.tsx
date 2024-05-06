@@ -1,56 +1,59 @@
-import { User } from "@prisma/client";
+import { Article, User } from "@prisma/client";
 import { useRouter } from "next/router";
 import { BsHeart } from "react-icons/bs";
 import Image from "next/image";
 interface ArticleCardProps {
-  title: string;
-  userName: string;
-  articleId: string;
-  content: string;
-  like: number;
+  article: Article;
   user: User;
 }
 
-export function ArticleCard({
-  title,
-  userName,
-  articleId,
-  like,
-  user,
-}: ArticleCardProps) {
+export function ArticleCard({ article, user }: ArticleCardProps) {
+  const date = new Date(article.createdAt);
   const router = useRouter();
-  const handleClick = () => {
-    router.push({
-      pathname: `/article/${articleId}`,
-      query: {
-        articleId: articleId,
-        userId: user.id,
-      },
-    });
-  };
   return (
-    <button
-      className=" flex border m-2 bg-white rounded-md p-2
-      hover:bg-gray-50 hover:shadow-md transition duration-300 ease-in-out items-center
-      "
-      onClick={handleClick}
-    >
-      <Image
-        src={user.image}
-        alt={user.name}
-        width={40}
-        height={40}
-        className="rounded-full"
-      />
-      <div className="ml-4">
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <p className="text-sm text-gray-500">{userName}</p>
-
-        <div className="flex items-center mt-2">
-          <BsHeart className="text-red-500" />
-          <p className="ml-2">{like}</p>
+    <div className="px-10 my-4 py-6 bg-white rounded-lg shadow-md items-center m-4">
+      <div className="flex justify-between items-center">
+        <span className="font-light text-gray-600">
+          {date.toLocaleDateString()}
+        </span>
+        <a
+          className="px-2 py-1 bg-gray-600 text-gray-100 font-bold rounded hover:bg-gray-500"
+          href="#"
+        >
+          <div className="flex items-center">
+            <BsHeart />
+            {article.like}
+          </div>
+        </a>
+      </div>
+      <div className="mt-2">
+        <a
+          className="text-2xl text-gray-700 font-bold hover:text-gray-600"
+          href={`/article/${[article.id]}`}
+        >
+          {article.title}{" "}
+        </a>
+      </div>
+      <div className="flex justify-between items-center mt-4">
+        <a
+          className="text-blue-600 hover:underline"
+          href={`/article/${[article.id]}`}
+        >
+          Read more
+        </a>
+        <div>
+          <a className="flex items-center" href="#">
+            <Image
+              alt="pen"
+              height="32"
+              src={user.image}
+              width="32"
+              style={{ borderRadius: 50, margin: 4 }}
+            />
+            <h1 className="text-gray-700 font-bold">{article.userName}</h1>
+          </a>
         </div>
       </div>
-    </button>
+    </div>
   );
 }
