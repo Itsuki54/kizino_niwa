@@ -2,34 +2,34 @@ import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
 interface createProps {
-  articleId: string;
   userId: string;
+  tagId : string;
 }
 
-export async function createLikeMutation({
-  articleId,
+export async function createFavoriteMutation({
   userId,
+  tagId,
 }: createProps) {
   const prisma = new PrismaClient();
 
-  const newLike = await prisma.like.create({
+  const newFavorite = await prisma.favorite.create({
     data: {
-      articleId: articleId,
       userId: userId,
+      tagId: tagId,
     },
   });
 
-  return newLike;
+  return newFavorite;
 }
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { articleId, userId } = req.body;
-  const newLike = await createLikeMutation({
-    articleId,
+  const { userId, tagId } = req.body;
+  const newFavorite = await createFavoriteMutation({
     userId,
+    tagId,
   });
-  res.status(200).json(newLike);
+  res.status(200).json(newFavorite);
 }

@@ -1,35 +1,41 @@
+
+
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
 interface createProps {
-  articleId: string;
+  name: string;
+  url: string;
   userId: string;
 }
 
-export async function createLikeMutation({
-  articleId,
+export async function createLinkMutation({
+  name,
+  url,
   userId,
 }: createProps) {
   const prisma = new PrismaClient();
 
-  const newLike = await prisma.like.create({
+  const newLink = await prisma.link.create({
     data: {
-      articleId: articleId,
+      name: name,
+      url: url,
       userId: userId,
     },
   });
 
-  return newLike;
+  return newLink;
 }
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { articleId, userId } = req.body;
-  const newLike = await createLikeMutation({
-    articleId,
+  const { name, url, userId } = req.body;
+  const newLink = await createLinkMutation({
+    name,
+    url,
     userId,
   });
-  res.status(200).json(newLike);
+  res.status(200).json(newLink);
 }
