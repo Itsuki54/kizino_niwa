@@ -21,31 +21,86 @@ model User {
   image         String
   admin         Boolean
   createdAt     DateTime       @default(now())
+  groupId       String?
   articles      Article[]
   notifications Notification[]
+  likes         Like[]
+  stocks        Stock[]
+  link          Link[]
+  favorite      Favorite[]
+  Group         Group?         @relation(fields: [groupId], references: [id])
 }
 
 // テーブル: Article
 model Article {
-  id        String   @id @default(cuid())
+  id        String     @id @default(cuid())
   title     String
-  content   String   @db.LongText
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  like      Int      @default(0)
+  content   String     @db.LongText
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  like      Int        @default(0)
   userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  userName  String
-  userImage String
+  user      User       @relation(fields: [userId], references: [id])
+  likes     Like[]
+  stocks    Stock[]
+  tags      Tag[]
+  Favorite  Favorite[]
 }
 
 model Notification {
   id          String   @id @default(cuid())
   title       String
   description String
-  image       String?
+  icon        String
   read        Boolean
   createdAt   DateTime @default(now())
   userId      String
-  users       User     @relation(fields: [userId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+model Like {
+  id        String  @id @default(cuid())
+  userId    String
+  articleId String
+  user      User    @relation(fields: [userId], references: [id])
+  article   Article @relation(fields: [articleId], references: [id])
+}
+
+model Stock {
+  id        String  @id @default(cuid())
+  name      String
+  userId    String
+  articleId String
+  user      User    @relation(fields: [userId], references: [id])
+  article   Article @relation(fields: [articleId], references: [id])
+}
+
+model Link {
+  id     String @id @default(cuid())
+  name   String
+  url    String
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+}
+
+model Favorite {
+  id        String  @id @default(cuid())
+  userId    String
+  articleId String
+  user      User    @relation(fields: [userId], references: [id])
+  article   Article @relation(fields: [articleId], references: [id])
+}
+
+model Tag {
+  id        String  @id @default(cuid())
+  name      String
+  articleId String
+  Article   Article @relation(fields: [articleId], references: [id])
+}
+
+model Group {
+  id        String   @id @default(cuid())
+  name      String
+  users     User[]
+  createdAt DateTime @default(now())
 }
