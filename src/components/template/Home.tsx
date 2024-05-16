@@ -8,7 +8,6 @@ import { SideBar } from "../organisms/SideBar";
 interface HomeProps {
   user: User;
   notification: Notification[];
-  article: Article[];
   allArticle: Article[];
 }
 

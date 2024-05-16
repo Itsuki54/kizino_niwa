@@ -14,7 +14,7 @@ export function NotificationButton({ notifications }: NotificationButtonProps) {
       {notifications.map((notification) => (
         <NotificationList
           description={notification.description}
-          image={notification.image!}
+          image={notification.icon}
           key={notification.id}
           title={notification.title}
         />

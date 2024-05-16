@@ -27,23 +27,22 @@ model User {
   likes         Like[]
   stocks        Stock[]
   link          Link[]
-  favorite      Favorite[]
   Group         Group?         @relation(fields: [groupId], references: [id])
 }
 
 // テーブル: Article
 model Article {
-  id        String   @id @default(cuid())
-  title     String
-  content   String   @db.LongText
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  like      Int      @default(0)
-  userId    String
-  user      User     @relation(fields: [userId], references: [id])
-  likes     Like[]
-  stocks    Stock[]
-  tags      Tag[]
+  id         String       @id @default(cuid())
+  title      String
+  content    String       @db.LongText
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  like       Int          @default(0)
+  userId     String
+  user       User         @relation(fields: [userId], references: [id])
+  likes      Like[]
+  stocks     Stock[]
+  TagArticle TagArticle[]
 }
 
 model Notification {
@@ -82,20 +81,18 @@ model Link {
   user   User   @relation(fields: [userId], references: [id])
 }
 
-model Favorite {
-  id     String @id @default(cuid())
-  userId String
-  tagId  String
-  user   User   @relation(fields: [userId], references: [id])
-  tag    Tag    @relation(fields: [tagId], references: [id])
+model TagArticle {
+  id        String  @id @default(cuid())
+  tagId     String
+  articleId String
+  tag       Tag     @relation(fields: [tagId], references: [id])
+  article   Article @relation(fields: [articleId], references: [id])
 }
 
 model Tag {
-  id        String     @id @default(cuid())
-  name      String
-  articleId String
-  Article   Article    @relation(fields: [articleId], references: [id])
-  Favorite  Favorite[]
+  id         String       @id @default(cuid())
+  name       String
+  TagArticle TagArticle[]
 }
 
 model Group {

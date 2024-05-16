@@ -1,32 +1,21 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-import { Notification, Tag, User } from "@prisma/client";
-import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
-import { getServerSession } from "next-auth";
-
-import MakeArticle from "@/components/template/MakeArticle";
-
-import { NotificationQuery } from "@/utils/query/Notification.query";
 import { UserDataQuery } from "@/utils/query/User.query";
-import { AllTagQuery } from "@/utils/query/Tag.query";
-import { authOptions } from "../api/auth/[...nextauth]";
+import { User, Link, Notification } from "@prisma/client";
+import { GetServerSideProps } from "next";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]";
+import { UserToLinkQuery } from "@/utils/query/Article.query";
+import { HomeLayout } from "@/components/organisms/HomeLayout";
+import { Setting } from "@/components/template/Setting";
+import { NotificationQuery } from "@/utils/query/Notification.query";
 
-interface props {
+export interface SettingProps {
   user: User;
+  link: Link[];
   notification: Notification[];
-  tagList: Tag[];
 }
 
-export default function newArticle({ user, notification, tagList }: props) {
-  const { userId } = useRouter().query;
-  return (
-    <MakeArticle
-      notification={notification}
-      user={user}
-      userId={userId as string}
-      tagList={tagList}
-    />
-  );
+export default function setting({ user, link, notification }: SettingProps) {
+  return <Setting user={user} link={link} notification={notification} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
@@ -42,14 +31,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   const userData = await UserDataQuery(session.user.uid);
   const user = JSON.parse(JSON.stringify(userData));
+  const linkData = await UserToLinkQuery(user.id);
+  const link = JSON.parse(JSON.stringify(linkData));
   const notificationData = await NotificationQuery(user.id);
   const notification = JSON.parse(JSON.stringify(notificationData));
-  const tagList = await AllTagQuery();
   return {
     props: {
       user,
+      link,
       notification,
-      tagList,
     },
   };
 };

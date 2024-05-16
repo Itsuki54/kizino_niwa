@@ -6,10 +6,7 @@ interface createProps {
   userId: string;
 }
 
-export async function createLikeMutation({
-  articleId,
-  userId,
-}: createProps) {
+export async function createLikeMutation({ articleId, userId }: createProps) {
   const prisma = new PrismaClient();
 
   const newLike = await prisma.like.create({

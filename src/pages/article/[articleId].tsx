@@ -4,9 +4,9 @@ import { getServerSession } from "next-auth";
 
 import { ArticlePage } from "@/components/template/Article";
 
-import { ArticleQuery } from "@/utils/query/ArticleQuery";
-import { NotificationQuery } from "@/utils/query/NotificationQuery";
-import { UserDataQuery } from "@/utils/query/UserQuery";
+import { ArticleQuery } from "@/utils/query/Article.query";
+import { NotificationQuery } from "@/utils/query/Notification.query";
+import { UserDataQuery } from "@/utils/query/User.query";
 
 import { authOptions } from "../api/auth/[...nextauth]";
 

@@ -50,7 +50,7 @@ export function ArticleCard({ article, user }: ArticleCardProps) {
               width="32"
               style={{ borderRadius: 50, margin: 4 }}
             />
-            <h1 className="text-gray-700 font-bold">{article.userName}</h1>
+            <h1 className="text-gray-700 font-bold">user</h1>
           </a>
         </div>
       </div>

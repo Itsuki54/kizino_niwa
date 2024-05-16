@@ -4,6 +4,7 @@ interface InputProps {
   value: string;
   onChange: Function;
   height?: string;
+  widrh?: string;
 }
 
 export function InputField({
@@ -12,6 +13,7 @@ export function InputField({
   value,
   onChange,
   height,
+  widrh,
 }: InputProps) {
   return (
     <input
@@ -20,7 +22,7 @@ export function InputField({
       placeholder={placeholder}
       style={{
         height: height ? height : "50px",
-        width: "300px",
+        width: widrh ? widrh : "100%",
       }}
       type={type}
       value={value}

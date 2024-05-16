@@ -1,6 +1,8 @@
 import { InputField } from "@atoms/InputField";
 
 import { Editor } from "./Editor";
+import { Tag } from "@prisma/client";
+import { TagSelect } from "../molecules/TagSelect";
 
 interface ArticleContentsProps {
   setTitle: Function;
@@ -9,6 +11,7 @@ interface ArticleContentsProps {
   setTags: Function;
   tags: string;
   finished: boolean;
+  tagList: Tag[];
 }
 
 export function ArticleContents({
@@ -18,6 +21,7 @@ export function ArticleContents({
   setTags,
   tags,
   finished,
+  tagList,
 }: ArticleContentsProps) {
   return (
     <div className="flex justify-center w-4/5">
@@ -32,12 +36,7 @@ export function ArticleContents({
               type="text"
               value={title}
             />
-            <InputField
-              onChange={setTags}
-              placeholder="Tag"
-              type="text"
-              value={tags}
-            />
+            <TagSelect tagList={tagList} setTags={setTags} />
           </div>
         </div>
         <Editor finished={finished} setContent={setContent} />

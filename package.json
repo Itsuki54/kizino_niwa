@@ -20,6 +20,7 @@
     "@auth/prisma-adapter": "^1.6.0",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@faker-js/faker": "^8.4.1",
     "@lexical/react": "^0.14.5",
     "@markuplint/jsx-parser": "^4.6.0",
     "@markuplint/react-spec": "^4.4.0",
@@ -41,6 +42,7 @@
     "framer-motion": "^11.0.24",
     "html-react-parser": "^5.1.10",
     "lexical": "^0.14.5",
+    "meilisearch": "^0.39.0",
     "next": "14.1.4",
     "next-auth": "^4.24.7",
     "react": "^18",
@@ -52,7 +54,8 @@
     "ress": "^5.0.2",
     "sass": "^1.75.0",
     "scss": "^0.2.4",
-    "secretlint": "^8.2.3"
+    "secretlint": "^8.2.3",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
@@ -103,5 +106,8 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  }
 }

@@ -1,5 +1,3 @@
-
-
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -9,11 +7,7 @@ interface createProps {
   userId: string;
 }
 
-export async function createLinkMutation({
-  name,
-  url,
-  userId,
-}: createProps) {
+export async function createLinkMutation({ name, url, userId }: createProps) {
   const prisma = new PrismaClient();
 
   const newLink = await prisma.link.create({
