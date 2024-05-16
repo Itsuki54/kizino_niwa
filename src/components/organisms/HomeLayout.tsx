@@ -21,9 +21,7 @@ export function HomeLayout({
           {header}
           <div className="flex h-full ">
             <div className=" bg-gray-50 w-1/5">{leftBar}</div>
-            <main className=" flex-col w-full bg-white mb-14 ">
-              {main}
-            </main>
+            <main className=" flex-col w-full bg-white mb-14 ">{main}</main>
             <nav className="  h-full bg-gray-50 w-1/5">
               <div className="w-full  mx-auto ">{rightBar}</div>
             </nav>

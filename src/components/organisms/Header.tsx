@@ -13,8 +13,8 @@ interface HeaderProps {
 
 export function Header({ user, notification }: HeaderProps) {
   return (
-    <header className="flex justify-between items-center bg-white shadow sticky top-0">
-      <div className="sticky top-0 flex-1">
+    <header className="flex justify-between items-center bg-white shadow sticky top-0 ">
+      <div className="sticky top-0 flex-1 bg-white">
         <div className="flex justify-center w-full gap-1 m-2  bg-fixed">
           <div className="flex w-1/4 justify-start ">
             <LogoTitle />

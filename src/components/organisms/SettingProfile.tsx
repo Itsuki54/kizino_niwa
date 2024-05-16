@@ -18,23 +18,20 @@ export function SettingProfile({
   const [email, setEmail] = useState(user.email);
   const [isDisabled, setIsDisabled] = useState(true);
   async function save() {
-    await fetch("/api/mutation/UserMutation", {
+    console.log( name, email,user.image)
+    await fetch("/api/mutation/user/UpdateUser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        query: `
-          mutation {
-            updateUser(id: ${user.id}, name: "${name}", email: "${email}") {
-              id
-              name
-              email
-            }
-          }
-        `,
+        id: user.id,
+        name: name,
+        email: email,
+        image: user.image,
       }),
     });
+    setIsDisabled(true);
   }
   return (
     <div className="h-full m-2">

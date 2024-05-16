@@ -10,3 +10,14 @@ export async function UserDataQuery(id: string) {
 
   return user;
 }
+
+export async function UserToLinkQuery(id: string) {
+  const prisma = new PrismaClient();
+  const link = prisma.link.findMany({
+    where: {
+      userId: id,
+    },
+  });
+
+  return link;
+}
