@@ -1,12 +1,12 @@
 import { User, Notification, Tag } from "@prisma/client";
 import { useEffect, useState } from "react";
 
-import { Dialog } from "../atoms/Dialog";
-import { PrimaryButton } from "../atoms/PrimaryButton";
-import { ArticleContents } from "../organisms/ArticleContents";
-import { Header } from "../organisms/Header";
-import { HomeLayout } from "../organisms/HomeLayout";
-import SideBar from "../organisms/SideBar";
+import { Dialog } from "../atoms/common/Dialog";
+import { PrimaryButton } from "../atoms/common/PrimaryButton";
+import { ArticleContents } from "../organisms/makeArticle/MakeArticleContents";
+import { Header } from "../organisms/layout/Header";
+import { HomeLayout } from "../organisms/layout/HomeLayout";
+import SideBar from "../organisms/layout/SideBar";
 
 interface MakeArticleProps {
   userId: string;

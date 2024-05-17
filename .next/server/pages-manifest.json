@@ -2,10 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/article/new": "pages/article/new.js",
+  "/": "pages/index.js",
   "/setting": "pages/setting.js",
-  "/api/mutation/user/UpdateUser": "pages/api/mutation/user/UpdateUser.js",
-  "/[userId]": "pages/[userId].js",
-  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
-  "/": "pages/index.js"
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js"
 }

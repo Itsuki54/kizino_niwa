@@ -1,7 +1,13 @@
 import { User, Link, Notification } from "@prisma/client";
 import Image from "next/image";
-import { useState } from "react";
-import { set } from "react-hook-form";
+import {
+  ChangeEvent,
+  FormEvent,
+  useRef,
+  useState,
+} from "react";
+import { UserEmailName } from "../molecules/setting/UserEmailName";
+import { UserImage } from "../molecules/setting/UserImage";
 
 export interface SettingProfileProps {
   user: User;
@@ -17,8 +23,11 @@ export function SettingProfile({
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [isDisabled, setIsDisabled] = useState(true);
+  const [images, setImages] = useState<File[]>([]);
+  const inputFileRef = useRef<HTMLInputElement>(null);
+  const [imageURL, setImageURL] = useState(user.image);
+
   async function save() {
-    console.log( name, email,user.image)
     await fetch("/api/mutation/user/UpdateUser", {
       method: "POST",
       headers: {
@@ -28,79 +37,50 @@ export function SettingProfile({
         id: user.id,
         name: name,
         email: email,
-        image: user.image,
+        image: imageURL,
       }),
     });
     setIsDisabled(true);
   }
+
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    for await (const [i, v] of Object.entries(images)) {
+      formData.append("files", v);
+    }
+    formData.append("name", name || "");
+
+    const post = await fetch("api/upload", {
+      method: "POST",
+      body: formData,
+    });
+    const res = await post.json();
+    setImageURL(res.path.toString().replace("./public", ""));
+  };
+
+  const handleOnAddImage = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return;
+    const files = Array.from(e.target.files);
+    setImages(files);
+    console.log("files:", files);
+  };
+
   return (
     <div className="h-full m-2">
       <h1 className="text-3xl font-bold m-4">プロフィール設定</h1>
       <div className="border-b-2 block md:flex">
-        <div className="w-full md:w-2/5 p-4 sm:p-6 lg:p-8 bg-white shadow-md">
-          <div className="flex justify-between">
-            <a
-              onClick={() => console.log("edit")}
-              className="-mt-2 text-md font-bold text-white px-5 py-2 "
-            >
-              Edit
-            </a>
-          </div>
-          <div className="w-full p-8 mx-2 flex justify-center">
-            <Image
-              src={user.image}
-              alt="user"
-              width={120}
-              height={120}
-              className="rounded-full"
-            />
-          </div>
-        </div>
-        <div className="w-full md:w-3/5 p-8 bg-white lg:ml-4 shadow-md">
-          <div className="flex-end">
-            <a
-              onClick={() => setIsDisabled(!isDisabled)}
-              className="-mt-2 text-md font-bold text-white  px-5 py-2 "
-            >
-              Edit
-            </a>
-          </div>
-          <div className="rounded  shadow p-6">
-            <label className="font-semibold block pb-1">Name</label>
-            <div className="flex">
-              <input
-                disabled={isDisabled}
-                id="username"
-                className="border-1  rounded-r px-4 py-2 w-full"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-            <div className="pb-2">
-              <label htmlFor="about" className="font-semibold  block pb-1">
-                Email
-              </label>
-              <input
-                disabled={isDisabled}
-                id="email"
-                className="border-1 px-4 py-2 w-full"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-          </div>
-          {!isDisabled && (
-            <button
-              className=" text-md font-bold justify-end animate-pulse mt-3"
-              onClick={async () => await save()}
-            >
-              Save
-            </button>
-          )}
-        </div>
+        <UserImage {...{ images, imageURL, handleOnAddImage, inputFileRef, onSubmit }} />
+        <UserEmailName {...{ user, name, email, isDisabled, setIsDisabled, setName, setEmail }} />
       </div>
+      <button
+        type="submit"
+        onClick={async () => await save()}
+        className="bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4"
+      >
+        保存
+      </button>
     </div>
   );
 }

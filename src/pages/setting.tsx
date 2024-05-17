@@ -4,7 +4,7 @@ import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";
 import { UserToLinkQuery } from "@/utils/query/User.query";
-import { HomeLayout } from "@/components/organisms/HomeLayout";
+import { HomeLayout } from "@/components/organisms/layout/HomeLayout";
 import { Setting } from "@/components/template/Setting";
 import { NotificationQuery } from "@/utils/query/Notification.query";
 
