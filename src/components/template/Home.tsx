@@ -1,14 +1,13 @@
 import { Article, Notification, User } from "@prisma/client";
 
-import { ArticleCard } from "../molecules/ArticleCard";
-import { Header } from "../organisms/Header";
-import { HomeLayout } from "../organisms/HomeLayout";
-import { SideBar } from "../organisms/SideBar";
+import { ArticleCard } from "../molecules/layout/ArticleCard";
+import { Header } from "../organisms/layout/Header";
+import { HomeLayout } from "../organisms/layout/HomeLayout";
+import { SideBar } from "../organisms/layout/SideBar";
 
 interface HomeProps {
   user: User;
   notification: Notification[];
-  article: Article[];
   allArticle: Article[];
 }
 

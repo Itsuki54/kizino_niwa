@@ -17,11 +17,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/index.js"
     ],
-    "/[userId]": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/[userId].js"
-    ],
     "/_app": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -32,15 +27,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/article/[articleId]": [
+    "/setting": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/article/[articleId].js"
-    ],
-    "/article/new": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/article/new.js"
+      "static/chunks/pages/setting.js"
     ]
   },
   "ampFirstPages": []

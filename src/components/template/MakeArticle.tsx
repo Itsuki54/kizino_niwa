@@ -1,25 +1,25 @@
-import { User, Notification } from "@prisma/client";
+import { User, Notification, Tag } from "@prisma/client";
 import { useEffect, useState } from "react";
 
-import { Dialog } from "../atoms/Dialog";
-import { PrimaryButton } from "../atoms/PrimaryButton";
-import { ArticleContents } from "../organisms/ArticleContents";
-import { Header } from "../organisms/Header";
-import { HomeLayout } from "../organisms/HomeLayout";
-import SideBar from "../organisms/SideBar";
-import { ToastProvider } from "@/context/ToastContext";
-import ToastContent from "../molecules/ToastContent";
+import { Dialog } from "../atoms/common/Dialog";
+import { PrimaryButton } from "../atoms/common/PrimaryButton";
+import { ArticleContents } from "../organisms/makeArticle/MakeArticleContents";
+import { Header } from "../organisms/layout/Header";
+import { HomeLayout } from "../organisms/layout/HomeLayout";
+import SideBar from "../organisms/layout/SideBar";
 
 interface MakeArticleProps {
   userId: string;
   user: User;
   notification: Notification[];
+  tagList: Tag[];
 }
 
 export default function MakeArticle({
   userId,
   user,
   notification,
+  tagList,
 }: MakeArticleProps) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -45,7 +45,7 @@ export default function MakeArticle({
   }, [title, content, tags]);
 
   async function create() {
-    await fetch("/api/mutation/ArticleMutation", {
+    await fetch("/api/mutation/Article.mutation", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,8 +54,7 @@ export default function MakeArticle({
         title: title,
         content: content,
         userId: userId,
-        userName: user.name,
-        userImage: user.image,
+        tagIds: [],
       }),
     });
     setTitle("");
@@ -81,13 +80,14 @@ export default function MakeArticle({
         header={<Header notification={notification} user={user} />}
         leftBar={<SideBar />}
         main={
-          <div className=" flex flex-col items-center">
+          <div className=" flex flex-col items-center m-3 h-screen">
             <ArticleContents
               finished={fin}
               setContent={setContent}
               setTags={setTags}
               setTitle={setTitle}
               tags={tags}
+              tagList={tagList}
               title={title}
             />
             <PrimaryButton
@@ -110,9 +110,6 @@ export default function MakeArticle({
         setIsOpen={setIsOpen}
         title="投稿確認"
       />
-      <ToastProvider>
-        <ToastContent />
-      </ToastProvider>
     </>
   );
 }

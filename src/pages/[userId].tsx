@@ -2,9 +2,9 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { getServerSession } from "next-auth";
 
-import { UserArticleQuery } from "@/utils/query/ArticleQuery";
-import { NotificationQuery } from "@/utils/query/NotificationQuery";
-import { UserDataQuery } from "@/utils/query/UserQuery";
+import { UserToArticleQuery } from "@/utils/query/Article.query";
+import { NotificationQuery } from "@/utils/query/Notification.query";
+import { UserDataQuery } from "@/utils/query/User.query";
 
 import { authOptions } from "./api/auth/[...nextauth]";
 
@@ -41,7 +41,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         },
       };
     } else {
-      const articleData = await UserArticleQuery(user.id);
+      const articleData = await UserToArticleQuery(user.id);
       const article = JSON.parse(JSON.stringify(articleData));
       const notificationData = await NotificationQuery(user.id);
       const notification = JSON.parse(JSON.stringify(notificationData));

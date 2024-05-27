@@ -1,0 +1,18 @@
+version: "3"
+services:
+  db:
+    image: mysql:8.0
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_USER: "docker"
+      MYSQL_PASSWORD: "docker"
+      MYSQL_DATABASE: "test_db"
+      TZ: "Asia/Tokyo"
+    volumes:
+      - db-store:/var/lib/mysql
+      - ./docker/mysql/sql:/docker-entrypoint-initdb.d
+
+volumes:
+  db-store:

@@ -5,30 +5,27 @@ import { useSession } from "next-auth/react";
 
 import { Home } from "@/components/template/Home";
 
-import { AllArticleQuery, UserArticleQuery } from "@/utils/query/ArticleQuery";
-import { NotificationQuery } from "@/utils/query/NotificationQuery";
-import { UserDataQuery } from "@/utils/query/UserQuery";
+import {
+  AllArticleQuery,
+  UserToArticleQuery,
+} from "@/utils/query/Article.query";
+import { NotificationQuery } from "@/utils/query/Notification.query";
+import { UserDataQuery } from "@/utils/query/User.query";
 
 import { authOptions } from "./api/auth/[...nextauth]";
 
 interface Props {
   user: User;
   notification: Notification[];
-  article: Article[];
   allArticle: Article[];
 }
 
-function Kizinoniwa({ user, notification, article, allArticle }: Props) {
+function Kizinoniwa({ user, notification, allArticle }: Props) {
   const { status } = useSession();
   return (
     <>
       {status === "loading" ? null : (
-        <Home
-          allArticle={allArticle}
-          article={article}
-          notification={notification}
-          user={user}
-        />
+        <Home allArticle={allArticle} notification={notification} user={user} />
       )}
     </>
   );
@@ -54,16 +51,14 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         },
       };
     } else {
-      const articleData = await UserArticleQuery(user.id);
-      const article = JSON.parse(JSON.stringify(articleData));
       const notificationData = await NotificationQuery(user.id);
       const notification = JSON.parse(JSON.stringify(notificationData));
       const allArticleData = await AllArticleQuery();
       const allArticle = JSON.parse(JSON.stringify(allArticleData));
+      console.log(allArticle);
       return {
         props: {
           user,
-          article,
           notification,
           allArticle,
         },
