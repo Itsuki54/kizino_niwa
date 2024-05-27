@@ -1,37 +1,47 @@
 import { useState, useRef } from "react";
 import { User } from "@prisma/client";
+import { PrimaryButton } from "@/components/atoms/common/PrimaryButton";
 
 interface props {
   user: User;
   name: string;
   email: string;
-  isDisabled: boolean;
-  setIsDisabled: (value: boolean) => void;
   setName: (value: string) => void;
   setEmail: (value: string) => void;
 }
 
-export function UserEmailName({
-  user,
-  name,
-  email,
-  isDisabled,
-  setIsDisabled,
-  setName,
-  setEmail,
-}: props) {
+export function UserEmailName({ user, name, email, setName, setEmail }: props) {
+  const [isDisabled, setIsDisabled] = useState(true);
+  const [orginName, setOrginName] = useState(name);
+  const [orginEmail, setOrginEmail] = useState(email);
+
+  function cancel() {
+    setName(orginName);
+    setEmail(orginEmail);
+    setIsDisabled(true);
+  }
+
   return (
-    <div className="w-full md:w-3/5 p-8 bg-white lg:ml-4 shadow-md">
-      <div className="flex-end">
-        <a
-          onClick={() => setIsDisabled(!isDisabled)}
-          className="-mt-2 text-md font-bold text-white  px-5 py-2 "
-        >
-          Edit
-        </a>
+    <div className="w-full md:w-3/5 p-4 lg:ml-4 shadow-md ">
+      <div className="flex justify-between items-center">
+        <h2 className="text-xl font-bold">
+          {isDisabled ? "ユーザー情報" : "ユーザー情報編集"}
+        </h2>
+        <div className="flex justify-end mb-4 gap-4">
+          <PrimaryButton
+            title="キャンセル"
+            onClick={() => cancel()}
+            disabled={isDisabled}
+          />
+          <PrimaryButton
+            title="編集"
+            onClick={() => setIsDisabled(!isDisabled)}
+            disabled={!isDisabled}
+          />
+        </div>
       </div>
       <div className="rounded  shadow p-6">
-        <label className="font-semibold block pb-1">Name</label>
+        <label className="font-semibold block pb-1">名前</label>
         <div className="flex">
           <input
             disabled={isDisabled}
@@ -44,7 +54,7 @@ export function UserEmailName({
         </div>
         <div className="pb-2">
           <label htmlFor="about" className="font-semibold  block pb-1">
-            Email
+            メールアドレス
           </label>
           <input
             disabled={isDisabled}
@@ -56,14 +66,6 @@ export function UserEmailName({
           />
         </div>
       </div>
-      {!isDisabled && (
-        <button
-          className=" text-md font-bold justify-end animate-pulse mt-3"
-          onClick={() => setIsDisabled(!isDisabled)}
-        >
-          Save
-        </button>
-      )}
     </div>
   );
 }
