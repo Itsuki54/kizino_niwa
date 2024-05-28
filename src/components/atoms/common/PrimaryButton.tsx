@@ -15,13 +15,14 @@ export function PrimaryButton({
 }: ButtonProps) {
   return (
     <button
-      className={` middle none center rounded-lg m-3 py-3 px-6 font-sans text-xs font-bold uppercase shadow-md  transition-all hover:shadow-lg active:opacity-[0.85] p-2 hover:bg-primary-500 ${disabled ? "bg-primary-500 text-gray-500 cursor-not-allowed" : "bg-primary-400"} disabled:opacity-50 disabled:shadow-none`}
+      className={`font-bold py-2 px-4 rounded
+      ${disabled ? " bg-gray-200 text-gray-900 cursor-not-allowed shadow-sm	" : "bg-black text-white hover:bg-gray-600  shadow-sm "}`}
       disabled={disabled}
       onClick={!disabled ? () => onClick() : undefined}
       style={{ height: height, width: width }}
       title={title}
     >
-      <p>{title}</p>
+      {title}
     </button>
   );
 }
