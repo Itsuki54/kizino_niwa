@@ -2,7 +2,7 @@ import { Article, Notification, User } from "@prisma/client";
 
 import { ArticleCard } from "../molecules/layout/ArticleCard";
 import { Header } from "../organisms/layout/Header";
-import { HomeLayout } from "../organisms/layout/HomeLayout";
+import { HomeLayout } from "../../layout/HomeLayout";
 import { SideBar } from "../organisms/layout/SideBar";
 
 interface HomeProps {

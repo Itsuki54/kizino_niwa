@@ -37,6 +37,7 @@ export function SettingProfile({
   const [scale, setScale] = useState(1);
 
   async function save() {
+    console.log("save", name, email, imageURL);
     await fetch("/api/mutation/user/UpdateUser", {
       method: "POST",
       headers: {
@@ -49,10 +50,11 @@ export function SettingProfile({
         image: imageURL,
       }),
     });
-    setIsDisabled(true);
+    setIsDisabled(false);
   }
 
   const onSubmit = async () => {
+    console.log("onSubmit", name, email, imageURL);
     const formData = new FormData();
     for (const image of images) {
       formData.append("files", image);
@@ -67,12 +69,15 @@ export function SettingProfile({
   };
 
   useEffect(() => {
+    console.log("useEffect", imageURL);
+    if (!imageURL) return;
     (async () => {
       await save();
     })();
   }, [imageURL]);
 
   const handleClickChangeIcon = useCallback(() => {
+    console.log("handleClickChangeIcon", iconInputRef.current);
     if (!iconInputRef.current) return;
     iconInputRef.current.click();
   }, []);
@@ -80,6 +85,7 @@ export function SettingProfile({
   // アイコンプレビュー変更ハンドラ
   const handleChangePreviewIcon = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
+      console.log("handleChangePreviewIcon", e.target.files?.length);
       if (!e.target.files?.length) return;
       setPreviewIcon(e!.target!.files[0]!);
       e.currentTarget.value = "";
@@ -93,11 +99,13 @@ export function SettingProfile({
   }, []);
 
   useEffect(() => {
+    console.log("useEffectIcon", icon);
     setImages([icon!]);
   }, [icon]);
 
   // ファイル保存ハンドラ
   const handleClickFileSave = useCallback(async () => {
+    console.log("handleClickFileSave", previewIcon);
     if (!editorRef.current) return;
     const canvas = editorRef.current.getImageScaledToCanvas();
     const picaResizer = pica();
@@ -111,21 +119,22 @@ export function SettingProfile({
         handleChangeIcon(nextFile);
       }
     });
+    setPreviewIcon(null);
   }, [previewIcon, handleChangeIcon]);
 
-  // スケール変更ハンドラ
+  // スケール変更
   const handleChangeScale = useCallback((value: number) => {
     setScale(value);
   }, []);
 
   useEffect(() => {
-    console.log(name, email, imageURL);
-    if (name.length > 0 && email.length > 0 && imageURL.length > 0) {
+    console.log(name, email, images);
+    if (name.length > 0 && email.length > 0 && images.length > 0) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [name, email, imageURL]);
+  }, [name, email, images]);
 
   return (
     <div className="h-full m-2">

@@ -1,5 +1,5 @@
 import { User, Link, Notification } from "@prisma/client";
-import { HomeLayout } from "../organisms/layout/HomeLayout";
+import { HomeLayout } from "../../layout/HomeLayout";
 import { Header } from "../organisms/layout/Header";
 import SideBar from "../organisms/layout/SideBar";
 import { SettingProfile } from "../organisms/SettingProfile";

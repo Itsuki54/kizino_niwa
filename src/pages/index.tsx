@@ -22,6 +22,7 @@ interface Props {
 
 function Kizinoniwa({ user, notification, allArticle }: Props) {
   const { status } = useSession();
+
   return (
     <>
       {status === "loading" ? null : (
@@ -35,20 +36,22 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
   if (!session) {
     return {
-      redirect: {
-        destination: "/api/auth/signin",
-        permanent: false,
-      },
+      props: {},
+      // redirect: {
+      //   destination: "/api/auth/signin",
+      //   permanent: false,
+      // },
     };
   } else {
     const userData = await UserDataQuery(session.user.uid);
     const user = JSON.parse(JSON.stringify(userData));
     if (!user) {
       return {
-        redirect: {
-          destination: "/api/auth/signin",
-          permanent: false,
-        },
+        props: {},
+        // redirect: {
+        //   destination: "/api/auth/signin",
+        //   permanent: false,
+        // },
       };
     } else {
       const notificationData = await NotificationQuery(user.id);
