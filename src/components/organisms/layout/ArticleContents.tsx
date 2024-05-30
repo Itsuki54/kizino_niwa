@@ -6,7 +6,6 @@ import { ProfileButton } from "../../molecules/header/ProfileButton";
 
 interface ArticleHTMLProps {
   article: Article;
-  user: User;
   createdUser: User;
 }
 

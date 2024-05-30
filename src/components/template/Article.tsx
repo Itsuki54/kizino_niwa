@@ -23,7 +23,7 @@ export function ArticlePage({
       header={<Header notification={notification} user={user} />}
       leftBar={<SideBar />}
       main={
-        <ArticleHTML article={article} createdUser={createdUser} user={user} />
+        <ArticleHTML article={article} createdUser={createdUser} />
       }
       rightBar={
         <div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>
