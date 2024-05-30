@@ -32,10 +32,10 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/setting": [
+    "/article/[articleId]": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/setting.js"
+      "static/chunks/pages/article/[articleId].js"
     ]
   },
   "ampFirstPages": []

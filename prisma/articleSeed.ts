@@ -1,110 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
-
-const prisma = new PrismaClient();
-
-async function main() {
-  const tags = [
-    "JavaScript",
-    "TypeScript",
-    "React",
-    "Vue",
-    "Angular",
-    "Node.js",
-    "Express",
-    "Nest.js",
-    "Deno",
-    "Svelte",
-    "Next.js",
-    "Nuxt.js",
-    "Gatsby",
-    "GraphQL",
-    "Apollo",
-    "Hasura",
-    "Prisma",
-    "Sequelize",
-    "TypeORM",
-    "Jest",
-    "Mocha",
-    "Cypress",
-    "Playwright",
-    "Puppeteer",
-    "Docker",
-    "Kubernetes",
-    "AWS",
-    "GCP",
-    "Azure",
-    "Firebase",
-    "Netlify",
-    "Vercel",
-    "Heroku",
-    "GitHub",
-    "GitLab",
-    "Bitbucket",
-    "CircleCI",
-    "TravisCI",
-    "Jenkins",
-    "Slack",
-    "Discord",
-    "Zoom",
-    "Google Meet",
-    "Microsoft Teams",
-    "WebRTC",
-    "WebSockets",
-    "REST",
-    "gRPC",
-    "OAuth",
-    "JWT",
-    "SAML",
-    "OpenID",
-    "CI/CD",
-    "TDD",
-    "BDD",
-    "DDD",
-    "MVC",
-    "MVVM",
-    "CQRS",
-    "Event Sourcing",
-    "Microservices",
-    "Serverless",
-    "Monolith",
-    "PWA",
-    "SPA",
-    "SSR",
-    "CSR",
-    "SEO",
-    "SNS",
-    "SEO",
-    "CMS",
-    "Headless CMS",
-    "Jamstack",
-    "Server-side Rendering",
-    "Client-side Rendering",
-    "Static Site Generation",
-    "Incremental Static Regeneration",
-    "SSG",
-    "ISR",
-    "GraphQL API",
-    "REST API",
-    "WebSocket API",
-    "gRPC API",
-    "OAuth2",
-    "OpenID Connect",
-    "JWT",
-    "SAML",
-    "CI/CD",
-    "TDD",
-    "BDD",
-    "DDD",
-    "MVC",
-    "MVVM",
-    "CQRS",
-    "Event Sourcing",
-    "Microservices",
-    "Serverless",
-    "Monolith",
-    "PWA",
-    "SPA  ",
-  ];
+async function articleSeed() {
   const articles = [
     // 英語の記事
     {
@@ -115,7 +9,7 @@ Prisma supports various databases including PostgreSQL, MySQL, SQLite, and SQL S
 
 One of the key features of Prisma is its ability to provide type safety for your database queries, reducing runtime errors and improving the developer experience. Prisma's ecosystem also includes Prisma Studio, a GUI for interacting with your database, and Prisma Migrate, a tool for managing schema changes.`,
       like: 10,
-      userId: "sample-user-id",
+      userId: "user1",
     },
     {
       title: "Understanding JavaScript Closures",
@@ -125,7 +19,7 @@ Closures are often used for data encapsulation and creating function factories. 
 
 Another common use of closures is in functional programming techniques, such as currying and partial application, where functions are transformed to produce more specialized functions. Closures also play a crucial role in asynchronous programming, allowing asynchronous callbacks to access the scope in which they were created.`,
       like: 15,
-      userId: "sample-user-id",
+      userId: "user2",
     },
     {
       title: "A Guide to React Hooks",
@@ -135,7 +29,7 @@ The most commonly used hooks are useState, useEffect, and useContext. useState l
 
 Hooks also help in organizing and simplifying code that uses complex state logic. For example, the useReducer hook can manage more complex state interactions and state transitions, often used as an alternative to useState when dealing with more complex state logic. Hooks can also enhance performance by allowing you to optimize updates and avoid unnecessary renders with the useMemo and useCallback hooks.`,
       like: 20,
-      userId: "sample-user-id",
+      userId: "user3",
     },
     {
       title: "Getting Started with TypeScript",
@@ -147,7 +41,7 @@ TypeScript also supports modern JavaScript features such as async/await, destruc
 
 Furthermore, TypeScript integrates seamlessly with popular libraries and frameworks such as React, Angular, and Node.js. It enhances IDE support with features like autocompletion, refactoring tools, and intelligent code navigation, making the developer experience more productive and enjoyable.`,
       like: 5,
-      userId: "sample-user-id",
+      userId: "user1",
     },
     {
       title: "Building RESTful APIs with Node.js",
@@ -159,7 +53,7 @@ Building a RESTful API involves setting up endpoints to handle various HTTP meth
 
 Additionally, you can incorporate middleware for authentication, logging, and request validation, making your API more secure and reliable. Using tools like Postman for testing and MongoDB or PostgreSQL for data storage, you can build a complete, functional RESTful API that can be deployed and scaled.`,
       like: 8,
-      userId: "sample-user-id",
+      userId: "user4",
     },
     {
       title: "Introduction to GraphQL",
@@ -171,7 +65,7 @@ With GraphQL, you can build powerful and flexible APIs that provide a single sou
 
 GraphQL also supports real-time updates through subscriptions, allowing clients to receive updates when data changes. This makes GraphQL a great choice for applications that require real-time features, such as chat applications or live dashboards.`,
       like: 12,
-      userId: "sample-user-id",
+      userId: "user2",
     },
     {
       title: "Exploring Next.js",
@@ -183,7 +77,7 @@ Next.js simplifies the process of creating SEO-friendly and fast websites. It of
 
 Next.js also provides excellent developer experience with features like fast refresh, a file-based routing system, and a rich plugin ecosystem. Whether you are building a simple static site or a complex application, Next.js provides the tools and flexibility you need.`,
       like: 7,
-      userId: "sample-user-id",
+      userId: "user5",
     },
     {
       title: "A Deep Dive into Docker",
@@ -195,7 +89,7 @@ Using Docker, you can create multi-container applications with tools like Docker
 
 Docker also enhances development workflows by providing development environments that are consistent with production. This reduces the "works on my machine" problem and simplifies the CI/CD process, enabling faster and more reliable deployments.`,
       like: 11,
-      userId: "sample-user-id",
+      userId: "user3",
     },
     {
       title: "Introduction to Kubernetes",
@@ -207,7 +101,7 @@ Kubernetes supports various container runtimes, including Docker, containerd, an
 
 With Kubernetes, you can deploy applications consistently across different environments, ensuring high availability and scalability. It integrates well with cloud providers like AWS, GCP, and Azure, making it a key component of modern cloud-native applications.`,
       like: 14,
-      userId: "sample-user-id",
+      userId: "user4",
     },
     {
       title: "Understanding Asynchronous JavaScript",
@@ -221,7 +115,7 @@ Async/await, introduced in ES2017, is built on promises and allows writing async
 
 Using these tools, developers can write more efficient, readable, and maintainable asynchronous code, improving the performance and responsiveness of their applications.`,
       like: 9,
-      userId: "sample-user-id",
+      userId: "user5",
     },
     // 日本語の記事
     {
@@ -232,7 +126,7 @@ Prismaは、PostgreSQL、MySQL、SQLite、SQL Serverなどのさまざまなデ�
 
 Prismaの主な機能の1つは、データベースクエリの型安全性を提供し、ランタイムエラーを減らし、開発者のエクスペリエンスを向上させることです。Prismaのエコシステムには、データベースとの対話のためのGUIであるPrisma Studioや、スキーマ変更を管理するためのツールであるPrisma Migrateも含まれています。`,
       like: 10,
-      userId: "sample-user-id",
+      userId: "user1",
     },
     {
       title: "JavaScriptクロージャの理解",
@@ -242,7 +136,7 @@ Prismaの主な機能の1つは、データベースクエリの型安全性を�
 
 クロージャのもう一つの一般的な使用方法は、カリー化や部分適用などの関数型プログラミング技法です。これにより、関数を変換してより専門化された関数を生成できます。クロージャは非同期プログラミングにおいても重要な役割を果たし、非同期コールバックが作成されたスコープにアクセスできるようにします。`,
       like: 15,
-      userId: "sample-user-id",
+      userId: "user2",
     },
     {
       title: "Reactフックガイド",
@@ -252,7 +146,7 @@ Prismaの主な機能の1つは、データベースクエリの型安全性を�
 
 Hooksはまた、複雑な状態ロジックを使用するコードを整理し、単純化するのに役立ちます。例えば、useReducerフックは、複雑な状態の相互作用や状態遷移を管理することができ、より複雑な状態ロジックを扱う際にはuseStateの代替としてよく使用されます。Hooksはまた、useMemoやuseCallbackフックを使用して更新を最適化し、不必要なレンダリングを回避することでパフォーマンスを向上させることができます。`,
       like: 20,
-      userId: "sample-user-id",
+      userId: "user3",
     },
     {
       title: "TypeScriptの始め方",
@@ -264,7 +158,7 @@ TypeScriptは、async/await、分割代入、モジュールなどのモダン�
 
 さらに、TypeScriptはReact、Angular、Node.jsなどの人気ライブラリやフレームワークとシームレスに統合され、オートコンプリート、リファクタリングツール、インテリジェントコードナビゲーションなどの機能を備えたIDEサポートを強化し、開発者のエクスペリエンスを向上させます。`,
       like: 5,
-      userId: "sample-user-id",
+      userId: "user1",
     },
     {
       title: "Node.jsでのRESTful API構築",
@@ -276,7 +170,7 @@ RESTful APIを構築するには、さまざまなHTTPメソッド（GET、POST�
 
 また、認証、ロギング、リクエスト検証のためのミドルウェアを組み込むことで、APIをより安全で信頼性の高いものにすることもできます。Postmanなどのツールを使用してテストを行い、データストレージにはMongoDBやPostgreSQLを使用して、完全で機能的なRESTful APIを構築し、デプロイとスケーリングを行うことができます。`,
       like: 8,
-      userId: "sample-user-id",
+      userId: "user4",
     },
     {
       title: "GraphQL入門",
@@ -288,7 +182,7 @@ GraphQLを使用すると、データの単一の信頼できるソースを提�
 
 GraphQLはまた、サブスクリプションを通じてリアルタイムの更新をサポートしており、データが変更されたときにクライアントに更新を受け取ることができます。これにより、チャットアプリケーションやライブダッシュボードなど、リアルタイム機能を必要とするアプリケーションに最適です。`,
       like: 12,
-      userId: "sample-user-id",
+      userId: "user2",
     },
     {
       title: "Next.jsの探求",
@@ -300,7 +194,7 @@ Next.jsは、SEOに優れた高速なウェブサイトの作成を簡素化し�
 
 Next.jsは、ファイルベースのルーティングシステム、高速リフレッシュ、豊富なプラグインエコシステムなどの機能を備え、優れた開発体験を提供します。シンプルな静的サイトから複雑なアプリケーションまで、Next.jsは必要なツールと柔軟性を提供します。`,
       like: 7,
-      userId: "sample-user-id",
+      userId: "user5",
     },
     {
       title: "Dockerの詳細",
@@ -312,7 +206,7 @@ Dockerを使用して、Docker Composeなどのツールでマルチコンテナ
 
 Dockerは、開発環境を一貫性のあるものにすることで、開発ワークフローを強化し、本番環境と同じ環境を提供します。これにより、「私のマシンでは動く」問題が減少し、CI/CDプロセスが簡素化され、より迅速で信頼性の高いデプロイが可能になります。`,
       like: 11,
-      userId: "sample-user-id",
+      userId: "user3",
     },
     {
       title: "Kubernetes入門",
@@ -324,7 +218,7 @@ Kubernetesは、Docker、containerd、CRI-Oなどのさまざまなコンテナ�
 
 Kubernetesを使用すると、異なる環境間でアプリケーションを一貫してデプロイし、高可用性とスケーラビリティを確保できます。AWS、GCP、Azureなどのクラウドプロバイダーとよく統合され、モダンなクラウドネイティブアプリケーションの重要なコンポーネントとなっています。`,
       like: 14,
-      userId: "sample-user-id",
+      userId: "user4",
     },
     {
       title: "非同期JavaScriptの理解",
@@ -338,29 +232,10 @@ ES2017で導入されたasync/awaitは、プロミスに基づいており、同
 
 これらのツールを使用することで、開発者はより効率的で読みやすく、保守しやすい非同期コードを書き、アプリケーションのパフォーマンスと応答性を向上させることができます。`,
       like: 9,
-      userId: "sample-user-id",
+      userId: "user5",
     },
   ];
-  const user = {
-    id: "sample-user-id",
-    name: "sample-user-name",
-    email: "sample-user-email",
-    image: "/sample-icon.jpg",
-    admin: false,
-    createdAt: new Date(),
-  };
 
-  await prisma.user.create({
-    data: user,
-  });
-
-  for (const tag of tags) {
-    await prisma.tag.create({
-      data: {
-        name: tag,
-      },
-    });
-  }
   for (const a of articles) {
     await prisma.article.create({
       data: {
@@ -373,10 +248,4 @@ ES2017で導入されたasync/awaitは、プロミスに基づいており、同
   }
 }
 
-main()
-  .catch((e) => {
-    console.log(e);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+export default articleSeed;

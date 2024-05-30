@@ -2,7 +2,8 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/api/auth/[...nextauth]": "pages/api/auth/[...nextauth].js",
   "/": "pages/index.js",
-  "/[userId]": "pages/[userId].js",
-  "/setting": "pages/setting.js"
+  "/article/[articleId]": "pages/article/[articleId].js",
+  "/[userId]": "pages/[userId].js"
 }

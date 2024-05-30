@@ -14,6 +14,8 @@ import { UserDataQuery } from "@/utils/query/User.query";
 
 import { authOptions } from "./api/auth/[...nextauth]";
 
+import { userMock, NotificationMock } from "@/mock/user";
+
 interface Props {
   user: User;
   notification: Notification[];
@@ -33,11 +35,19 @@ function Kizinoniwa({ user, notification, allArticle }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
+  let allArticle: Article[] = [];
+  try {
+    const allArticleData = await AllArticleQuery();
+    allArticle = JSON.parse(JSON.stringify(allArticleData));
+  } catch (error) {
+    console.error(error);
+  }
   if (!session) {
     return {
-      redirect: {
-        destination: "/api/auth/signin",
-        permanent: false,
+      props: {
+        user: JSON.parse(JSON.stringify(userMock)),
+        notification: JSON.parse(JSON.stringify(NotificationMock)),
+        allArticle: allArticle,
       },
     };
   } else {
@@ -45,16 +55,15 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const user = JSON.parse(JSON.stringify(userData));
     if (!user) {
       return {
-        redirect: {
-          destination: "/api/auth/signin",
-          permanent: false,
+        props: {
+          user: userMock,
+          notification: NotificationMock,
+          allArticle: allArticle,
         },
       };
     } else {
       const notificationData = await NotificationQuery(user.id);
       const notification = JSON.parse(JSON.stringify(notificationData));
-      const allArticleData = await AllArticleQuery();
-      const allArticle = JSON.parse(JSON.stringify(allArticleData));
       console.log(allArticle);
       return {
         props: {
