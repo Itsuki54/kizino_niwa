@@ -2,7 +2,7 @@ import { Article, User, Notification } from "@prisma/client";
 
 import { ArticleHTML } from "../organisms/layout/ArticleContents";
 import { Header } from "../organisms/layout/Header";
-import { HomeLayout } from "../organisms/layout/HomeLayout";
+import { HomeLayout } from "../../layout/HomeLayout";
 import SideBar from "../organisms/layout/SideBar";
 
 interface ArticleProps {
@@ -23,7 +23,7 @@ export function ArticlePage({
       header={<Header notification={notification} user={user} />}
       leftBar={<SideBar />}
       main={
-        <ArticleHTML article={article} createdUser={createdUser} user={user} />
+        <ArticleHTML article={article} createdUser={createdUser} />
       }
       rightBar={
         <div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>

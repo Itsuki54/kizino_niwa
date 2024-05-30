@@ -24,6 +24,7 @@ interface Props {
 
 function Kizinoniwa({ user, notification, allArticle }: Props) {
   const { status } = useSession();
+
   return (
     <>
       {status === "loading" ? null : (
