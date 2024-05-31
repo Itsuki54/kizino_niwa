@@ -36,10 +36,10 @@ export default function articleIdPage({
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { articleId } = ctx.query;
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
-      const articleData = await ArticleQuery(articleId as string);
-      const article = JSON.parse(JSON.stringify(articleData));
-      const createdUserData = await UserDataQuery(article.userId);
-      const createdUser = JSON.parse(JSON.stringify(createdUserData));
+  const articleData = await ArticleQuery(articleId as string);
+  const article = JSON.parse(JSON.stringify(articleData));
+  const createdUserData = await UserDataQuery(article.userId);
+  const createdUser = JSON.parse(JSON.stringify(createdUserData));
   if (!session) {
     return {
       redirect: {
