@@ -9,6 +9,7 @@ import { NotificationQuery } from "@/utils/query/Notification.query";
 import { UserDataQuery } from "@/utils/query/User.query";
 
 import { authOptions } from "../api/auth/[...nextauth]";
+import { NotificationMock, userMock } from "@/mock/user";
 
 interface props {
   user: User;
@@ -42,9 +43,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const createdUser = JSON.parse(JSON.stringify(createdUserData));
   if (!session) {
     return {
-      redirect: {
-        destination: "/api/auth/signin",
-        permanent: false,
+      props: {
+        user: JSON.parse(JSON.stringify(userMock)),
+        notification: JSON.parse(JSON.stringify(NotificationMock)),
+        article,
+        createdUser,
       },
     };
   } else {
@@ -52,9 +55,11 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     const user = JSON.parse(JSON.stringify(userData));
     if (!user) {
       return {
-        redirect: {
-          destination: "/api/auth/signin",
-          permanent: false,
+        props: {
+          user: JSON.parse(JSON.stringify(userMock)),
+          notification: JSON.parse(JSON.stringify(NotificationMock)),
+          article,
+          createdUser,
         },
       };
     } else {
