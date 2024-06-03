@@ -12,10 +12,12 @@ export function NotificationList({
   image,
 }: NotificationListProps) {
   return (
-    <>
+    <div className="flex">
       <Image alt={title} height={40} src={image} width={16} />
-      <h2>{title}</h2>
-      <p>{description}</p>
-    </>
+      <div className=" flex-col">
+        <h2>{title}</h2>
+        <p>{description}</p>
+      </div>
+    </div>
   );
 }

@@ -2,7 +2,7 @@ import { Notification, User } from "@prisma/client";
 
 import { MakeArticleButton } from "../../atoms/editor/MakeArticleButton";
 import { LogoTitle } from "../../molecules/header/LogoTitle";
-import { NotificationButton } from "../../molecules/header/NotificationBell";
+import { NotificationButton } from "../../molecules/header/NotificationButton";
 import { ProfileButton } from "../../molecules/header/ProfileButton";
 import { SearchArticle } from "../../molecules/header/SearchArticle";
 
