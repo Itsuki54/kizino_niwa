@@ -10,6 +10,9 @@ importers:
       "@auth/prisma-adapter":
         specifier: ^1.6.0
         version: 1.6.0(@prisma/client@5.12.1(prisma@5.12.1))
+      "@emailjs/browser":
+        specifier: ^4.3.3
+        version: 4.3.3
       "@emotion/react":
         specifier: ^11.11.4
         version: 11.11.4(@types/react@18.2.74)(react@18.2.0)
@@ -19,6 +22,9 @@ importers:
       "@faker-js/faker":
         specifier: ^8.4.1
         version: 8.4.1
+      "@hookform/resolvers":
+        specifier: ^3.4.2
+        version: 3.4.2(react-hook-form@7.51.5(react@18.2.0))
       "@lexical/react":
         specifier: ^0.14.5
         version: 0.14.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(yjs@13.6.14)
@@ -31,6 +37,9 @@ importers:
       "@prisma/client":
         specifier: ^5.12.1
         version: 5.12.1(prisma@5.12.1)
+      "@radix-ui/react-label":
+        specifier: ^2.0.2
+        version: 2.0.2(@types/react-dom@18.2.24)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       "@radix-ui/react-select":
         specifier: ^2.0.0
         version: 2.0.0(@types/react-dom@18.2.24)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -131,8 +140,11 @@ importers:
         specifier: ^18
         version: 18.2.0(react@18.2.0)
       react-hook-form:
-        specifier: ^7.51.3
-        version: 7.51.3(react@18.2.0)
+        specifier: ^7.51.5
+        version: 7.51.5(react@18.2.0)
+      react-hot-toast:
+        specifier: ^2.4.1
+        version: 2.4.1(csstype@3.1.3)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react-icons:
         specifier: ^5.1.0
         version: 5.1.0(react@18.2.0)
@@ -172,6 +184,9 @@ importers:
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.12.4)(typescript@5.4.5)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       "@commitlint/cli":
         specifier: ^19.2.1
@@ -673,6 +688,13 @@ packages:
       }
     engines: { node: ">=12" }
 
+  "@emailjs/browser@4.3.3":
+    resolution:
+      {
+        integrity: sha512-ltpt2S/WVREIBXptxYAVYBvXb2O6yTUYiRUWF8OLikMxlmiGsIgKpgHppikNd4Df0uAav7jCsQKcOJ3TJFUx5g==,
+      }
+    engines: { node: ">=14.0.0" }
+
   "@emotion/babel-plugin@11.11.0":
     resolution:
       {
@@ -829,6 +851,14 @@ packages:
       {
         integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==,
       }
+
+  "@hookform/resolvers@3.4.2":
+    resolution:
+      {
+        integrity: sha512-1m9uAVIO8wVf7VCDAGsuGA0t6Z3m6jVGAN50HkV9vYLl0yixKK/Z1lr01vaRvYCkIKGoy1noVRxMzQYb4y/j1Q==,
+      }
+    peerDependencies:
+      react-hook-form: ^7.0.0
 
   "@humanwhocodes/config-array@0.11.14":
     resolution:
@@ -1487,6 +1517,22 @@ packages:
       react: ^16.8 || ^17.0 || ^18.0
     peerDependenciesMeta:
       "@types/react":
+        optional: true
+
+  "@radix-ui/react-label@2.0.2":
+    resolution:
+      {
+        integrity: sha512-N5ehvlM7qoTLx7nWPodsPYPgMzA5WM8zZChQg8nyFJKnDO5WHdba1vv5/H6IO5LtJMfD2Q3wh1qHFGNtK0w3bQ==,
+      }
+    peerDependencies:
+      "@types/react": "*"
+      "@types/react-dom": "*"
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      "@types/react":
+        optional: true
+      "@types/react-dom":
         optional: true
 
   "@radix-ui/react-popper@1.1.3":
@@ -4291,6 +4337,14 @@ packages:
         integrity: sha512-l+8esYHTKOx2G/Aao4lEQ0bnHWg4fWtJbVoZZT9Knxi01pB8C80BR85nONLFwkkQoFRCmXY+BUcGZN3yZ2QsRA==,
       }
 
+  goober@2.1.14:
+    resolution:
+      {
+        integrity: sha512-4UpC0NdGyAFqLNPnhCT2iHpza2q+RAY3GV85a/mRPdzyPQMsj0KmMMuetdIkzWRbJ+Hgau1EZztq8ImmiMGhsg==,
+      }
+    peerDependencies:
+      csstype: ^3.0.10
+
   gopd@1.0.1:
     resolution:
       {
@@ -6376,14 +6430,24 @@ packages:
     peerDependencies:
       react: ">=16.13.1"
 
-  react-hook-form@7.51.3:
+  react-hook-form@7.51.5:
     resolution:
       {
-        integrity: sha512-cvJ/wbHdhYx8aviSWh28w9ImjmVsb5Y05n1+FW786vEZQJV5STNM0pW6ujS+oiBecb0ARBxJFyAnXj9+GHXACQ==,
+        integrity: sha512-J2ILT5gWx1XUIJRETiA7M19iXHlG74+6O3KApzvqB/w8S5NQR7AbU8HVZrMALdmDgWpRPYiZJl0zx8Z4L2mP6Q==,
       }
     engines: { node: ">=12.22.0" }
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
+
+  react-hot-toast@2.4.1:
+    resolution:
+      {
+        integrity: sha512-j8z+cQbWIM5LY37pR6uZR6D4LfseplqnuAO4co4u8917hBUvXlEqyP1ZzqVLcqoyUesZZv/ImreoCeHVDpE5pQ==,
+      }
+    engines: { node: ">=10" }
+    peerDependencies:
+      react: ">=16"
+      react-dom: ">=16"
 
   react-icons@5.1.0:
     resolution:
@@ -7633,6 +7697,12 @@ packages:
       }
     engines: { node: ">=14.13.1" }
 
+  zod@3.23.8:
+    resolution:
+      {
+        integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==,
+      }
+
 snapshots:
   "@aashutoshrathi/word-wrap@1.2.6": {}
 
@@ -7964,6 +8034,8 @@ snapshots:
     dependencies:
       "@jridgewell/trace-mapping": 0.3.9
 
+  "@emailjs/browser@4.3.3": {}
+
   "@emotion/babel-plugin@11.11.0":
     dependencies:
       "@babel/helper-module-imports": 7.24.3
@@ -8082,6 +8154,10 @@ snapshots:
       react-dom: 18.2.0(react@18.2.0)
 
   "@floating-ui/utils@0.2.2": {}
+
+  "@hookform/resolvers@3.4.2(react-hook-form@7.51.5(react@18.2.0))":
+    dependencies:
+      react-hook-form: 7.51.5(react@18.2.0)
 
   "@humanwhocodes/config-array@0.11.14":
     dependencies:
@@ -8652,6 +8728,16 @@ snapshots:
       react: 18.2.0
     optionalDependencies:
       "@types/react": 18.2.74
+
+  "@radix-ui/react-label@2.0.2(@types/react-dom@18.2.24)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)":
+    dependencies:
+      "@babel/runtime": 7.24.4
+      "@radix-ui/react-primitive": 1.0.3(@types/react-dom@18.2.24)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    optionalDependencies:
+      "@types/react": 18.2.74
+      "@types/react-dom": 18.2.24
 
   "@radix-ui/react-popper@1.1.3(@types/react-dom@18.2.24)(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)":
     dependencies:
@@ -10698,6 +10784,10 @@ snapshots:
 
   glur@1.1.2: {}
 
+  goober@2.1.14(csstype@3.1.3):
+    dependencies:
+      csstype: 3.1.3
+
   gopd@1.0.1:
     dependencies:
       get-intrinsic: 1.2.4
@@ -11876,9 +11966,17 @@ snapshots:
       "@babel/runtime": 7.24.4
       react: 18.2.0
 
-  react-hook-form@7.51.3(react@18.2.0):
+  react-hook-form@7.51.5(react@18.2.0):
     dependencies:
       react: 18.2.0
+
+  react-hot-toast@2.4.1(csstype@3.1.3)(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      goober: 2.1.14(csstype@3.1.3)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    transitivePeerDependencies:
+      - csstype
 
   react-icons@5.1.0(react@18.2.0):
     dependencies:
@@ -12656,3 +12754,5 @@ snapshots:
   zeed-dom@0.10.11:
     dependencies:
       css-what: 6.1.0
+
+  zod@3.23.8: {}
