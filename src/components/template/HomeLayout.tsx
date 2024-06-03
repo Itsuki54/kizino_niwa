@@ -1,6 +1,5 @@
 import React from "react";
-import { Footer } from "../components/organisms/layout/Footer";
-import { Button } from "@/components/ui/button";
+import { Footer } from "../organisms/layout/Footer";
 
 interface HomeLayoutProps {
   header: React.ReactNode;
@@ -17,7 +16,7 @@ export function HomeLayout({
 }: HomeLayoutProps) {
   return (
     <div className="flex-col h-screen ">
-      <div className="flex-1  flex-col top-0 sticky ">
+      <div className="  flex-col top-0 sticky ">
         {header}
         <div className="flex h-full ">
           <div className=" bg-gray-50 w-1/5">{leftBar}</div>

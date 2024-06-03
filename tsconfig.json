@@ -41,7 +41,10 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/pages/api/auth/[...nextauth].js"
+    "src/pages/api/auth/[...nextauth].js",
+    "postcss.config.ts",
+    "tailwind.config.js",
+    "next.config.mts"
   ],
   "exclude": ["node_modules"]
 }

@@ -3,13 +3,27 @@ import { useRouter } from "next/router";
 import { BsHeart } from "react-icons/bs";
 import Image from "next/image";
 interface ArticleCardProps {
-  article: Article;
-  user: User;
+  id: Article["id"];
+  title: Article["title"];
+  content: Article["content"];
+  userId: Article["userId"];
+  createdAt: Article["createdAt"];
+  updatedAt: Article["updatedAt"];
+  like: number;
+  createdUser: User;
 }
 
-export function ArticleCard({ article, user }: ArticleCardProps) {
-  const date = new Date(article.createdAt);
-  const router = useRouter();
+export function ArticleCard({
+  id,
+  title,
+  content,
+  userId,
+  createdAt,
+  updatedAt,
+  like,
+  createdUser,
+}: ArticleCardProps) {
+  const date = new Date(createdAt);
   return (
     <div className="px-10 my-4 py-6 bg-white rounded-lg shadow-md items-center m-4">
       <div className="flex justify-between items-center">
@@ -22,23 +36,20 @@ export function ArticleCard({ article, user }: ArticleCardProps) {
         >
           <div className="flex items-center">
             <BsHeart />
-            {article.like}
+            {like}
           </div>
         </a>
       </div>
       <div className="mt-2">
         <a
           className="text-2xl text-gray-700 font-bold hover:text-gray-600"
-          href={`/article/${[article.id]}`}
+          href={`/article/${[id]}`}
         >
-          {article.title}{" "}
+          {title}{" "}
         </a>
       </div>
       <div className="flex justify-between items-center mt-4">
-        <a
-          className="text-blue-600 hover:underline"
-          href={`/article/${[article.id]}`}
-        >
+        <a className="text-blue-600 hover:underline" href={`/article/${[id]}`}>
           Read more
         </a>
         <div>
@@ -46,11 +57,11 @@ export function ArticleCard({ article, user }: ArticleCardProps) {
             <Image
               alt="pen"
               height="32"
-              src={user.image}
+              src={createdUser.image}
               width="32"
               style={{ borderRadius: 50, margin: 4 }}
             />
-            <h1 className="text-gray-700 font-bold">user</h1>
+            <h1 className="text-gray-700 font-bold">{createdUser.name}</h1>
           </a>
         </div>
       </div>

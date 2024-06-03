@@ -1,25 +1,23 @@
-import { Article, User, Notification } from "@prisma/client";
+import { Notification, User } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 
 import { Home } from "@/components/template/Home";
 
-import {
-  AllArticleQuery,
-  UserToArticleQuery,
-} from "@/utils/query/Article.query";
+import { ArticleWithUserType } from "@/types/article";
+import { AllArticleWithUser } from "@/utils/query/Article.query";
 import { NotificationQuery } from "@/utils/query/Notification.query";
 import { UserDataQuery } from "@/utils/query/User.query";
 
 import { authOptions } from "./api/auth/[...nextauth]";
 
-import { userMock, NotificationMock } from "@/mock/user";
+import { NotificationMock, userMock } from "@/mock/user";
 
 interface Props {
   user: User;
   notification: Notification[];
-  allArticle: Article[];
+  allArticle: ArticleWithUserType[];
 }
 
 function Kizinoniwa({ user, notification, allArticle }: Props) {
@@ -36,9 +34,9 @@ function Kizinoniwa({ user, notification, allArticle }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
-  let allArticle: Article[] = [];
+  let allArticle: ArticleWithUserType[] = [];
   try {
-    const allArticleData = await AllArticleQuery();
+    const allArticleData = await AllArticleWithUser();
     allArticle = JSON.parse(JSON.stringify(allArticleData));
   } catch (error) {
     console.error(error);
