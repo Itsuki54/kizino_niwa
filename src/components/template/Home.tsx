@@ -7,7 +7,7 @@ import { SideBar } from "../organisms/layout/SideBar";
 import { ArticleWithUserType } from "@/types/article";
 
 interface HomeProps {
-  user: User;
+  user: User | null;
   notification: Notification[];
   allArticle: ArticleWithUserType[];
 }

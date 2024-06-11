@@ -14,8 +14,7 @@ export async function createUserMutation({
   email,
   image,
 }: createProps) {
-  const prisma = new PrismaClient();
-  const newUser = await prisma.user.create({
+  const newUser = await db.user.create({
     data: {
       id: id,
       name: name,

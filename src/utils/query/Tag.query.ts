@@ -1,7 +1,7 @@
+import { db } from "@/lib/prisma";
 import { PrismaClient } from "@prisma/client";
 
 export async function AllTagQuery() {
-  const prisma = new PrismaClient();
-  const tag = prisma.tag.findMany();
+  const tag = db.tag.findMany();
   return tag;
 }

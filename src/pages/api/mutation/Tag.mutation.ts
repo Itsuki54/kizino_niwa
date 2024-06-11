@@ -7,9 +7,7 @@ export interface createProps {
 }
 
 export async function createTagMutation({ name, articleId }: createProps) {
-  const prisma = new PrismaClient();
-
-  const newTag = await prisma.tag.create({
+  const newTag = await db.tag.create({
     data: {
       name: name,
     },

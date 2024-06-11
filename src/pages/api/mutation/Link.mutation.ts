@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { db } from "@/lib/prisma";
 
 interface createProps {
   name: string;
@@ -8,9 +9,7 @@ interface createProps {
 }
 
 export async function createLinkMutation({ name, url, userId }: createProps) {
-  const prisma = new PrismaClient();
-
-  const newLink = await prisma.link.create({
+  const newLink = await db.link.create({
     data: {
       name: name,
       url: url,

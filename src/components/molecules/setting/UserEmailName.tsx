@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { User } from "@prisma/client";
 import { PrimaryButton } from "@/components/atoms/common/PrimaryButton";
 

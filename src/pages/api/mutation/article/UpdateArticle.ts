@@ -14,8 +14,7 @@ export async function createArticleMutation({
   userId,
   tagIds,
 }: createProps) {
-  const prisma = new PrismaClient();
-  const newArticle = await prisma.article.create({
+  const newArticle = await db.article.create({
     data: {
       title: title,
       content: content,

@@ -1,8 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 import { ArticleWithUserType } from "@/types/article";
+
+import { db } from "@/lib/prisma";
 export async function UserToArticleQuery(id: string) {
-  const prisma = new PrismaClient();
-  const article = prisma.article.findMany({
+  const article = db.article.findMany({
     where: {
       userId: id,
     },
@@ -11,8 +12,7 @@ export async function UserToArticleQuery(id: string) {
 }
 
 export async function ArticleQuery(id: string) {
-  const prisma = new PrismaClient();
-  const article = prisma.article.findUnique({
+  const article = db.article.findUnique({
     where: {
       id: id,
     },
@@ -21,14 +21,12 @@ export async function ArticleQuery(id: string) {
 }
 
 export async function AllArticleQuery() {
-  const prisma = new PrismaClient();
-  const article = prisma.article.findMany();
+  const article = db.article.findMany();
   return article;
 }
 
 export async function TagToArticle(id: string) {
-  const prisma = new PrismaClient();
-  const tag = prisma.tag.findUnique({
+  const tag = db.tag.findUnique({
     where: {
       id: id,
     },
@@ -37,8 +35,7 @@ export async function TagToArticle(id: string) {
 }
 
 export async function ArticleWithUser(articleId: string) {
-  const prisma = new PrismaClient();
-  const articleWithUser = await prisma.article.findUnique({
+  const articleWithUser = await db.article.findUnique({
     where: {
       id: articleId,
     },
@@ -52,8 +49,7 @@ export async function ArticleWithUser(articleId: string) {
 }
 
 export async function AllArticleWithUser(): Promise<ArticleWithUserType[]> {
-  const prisma = new PrismaClient();
-  const allArticleWithUser = await prisma.article.findMany({
+  const allArticleWithUser = await db.article.findMany({
     include: {
       user: true,
       stocks: true,

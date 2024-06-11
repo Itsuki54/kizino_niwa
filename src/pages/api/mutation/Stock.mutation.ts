@@ -12,9 +12,7 @@ export async function createStockMutation({
   articleId,
   name,
 }: createProps) {
-  const prisma = new PrismaClient();
-
-  const newStock = await prisma.stock.create({
+  const newStock = await db.stock.create({
     data: {
       userId: userId,
       articleId: articleId,

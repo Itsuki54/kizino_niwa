@@ -5,9 +5,10 @@ import { LogoTitle } from "../../molecules/header/LogoTitle";
 import { NotificationButton } from "../../molecules/header/NotificationButton";
 import { ProfileButton } from "../../molecules/header/ProfileButton";
 import { SearchArticle } from "../../molecules/header/SearchArticle";
+import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
-  user: User;
+  user: User | null;
   notification: Notification[];
 }
 
@@ -23,13 +24,19 @@ export function Header({ user, notification }: HeaderProps) {
             <SearchArticle />
           </div>
           <div className="flex w-1/4 justify-end flex-row mr-4 gap-3">
-            <NotificationButton notifications={notification} />
-            <ProfileButton
-              imageUrl={user.image}
-              name={user.name}
-              userId={user.id}
-            />
-            <MakeArticleButton id={user.id} />
+            {user ? (
+              <>
+                <NotificationButton notifications={notification} />
+                <ProfileButton
+                  imageUrl={user.image}
+                  name={user.name}
+                  userId={user.id}
+                />
+                <MakeArticleButton id={user.id} />
+              </>
+            ) : (
+              <Button ref="/api/auth/signin">Sign in</Button>
+            )}
           </div>
         </div>
       </div>

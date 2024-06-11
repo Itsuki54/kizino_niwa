@@ -13,16 +13,19 @@ import { UserDataQuery } from "@/utils/query/User.query";
 import { authOptions } from "./api/auth/[...nextauth]";
 
 import { NotificationMock, userMock } from "@/mock/user";
+import { useEffect } from "react";
 
 interface Props {
-  user: User;
+  user: User | null;
   notification: Notification[];
   allArticle: ArticleWithUserType[];
 }
 
 function Kizinoniwa({ user, notification, allArticle }: Props) {
   const { status } = useSession();
-
+  useEffect(() => {
+    console.log(status, user);
+  }, []);
   return (
     <>
       {status === "loading" ? null : (
@@ -44,7 +47,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!session) {
     return {
       props: {
-        user: JSON.parse(JSON.stringify(userMock)),
         notification: JSON.parse(JSON.stringify(NotificationMock)),
         allArticle: allArticle,
       },
@@ -55,7 +57,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     if (!user) {
       return {
         props: {
-          user: userMock,
           notification: NotificationMock,
           allArticle: allArticle,
         },

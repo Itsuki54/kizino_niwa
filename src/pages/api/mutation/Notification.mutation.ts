@@ -16,8 +16,7 @@ export async function createNotificationMutation({
   read,
   userId,
 }: createProps) {
-  const prisma = new PrismaClient();
-  const newNotification = await prisma.notification.create({
+  const newNotification = await db.notification.create({
     data: {
       title: title,
       description: description,

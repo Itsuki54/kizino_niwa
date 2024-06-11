@@ -1,6 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
-
-const prisma = new PrismaClient();
+import { db } from "@/lib/prisma";
 
 async function main() {
   const tags = [
@@ -350,19 +349,19 @@ ES2017で導入されたasync/awaitは、プロミスに基づいており、同
     createdAt: new Date(),
   };
 
-  await prisma.user.create({
+  await db.user.create({
     data: user,
   });
 
   for (const tag of tags) {
-    await prisma.tag.create({
+    await db.tag.create({
       data: {
         name: tag,
       },
     });
   }
   for (const a of articles) {
-    await prisma.article.create({
+    await db.article.create({
       data: {
         title: a.title,
         content: `<p>${a.content}</p>`,
@@ -378,5 +377,5 @@ main()
     console.log(e);
   })
   .finally(async () => {
-    await prisma.$disconnect();
+    await db.$disconnect();
   });

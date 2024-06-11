@@ -14,8 +14,7 @@ export async function updateUserMutation({
   email,
   image,
 }: updateProps) {
-  const prisma = new PrismaClient();
-  const updateUser = await prisma.user.update({
+  const updateUser = await db.user.update({
     where: {
       id: id,
     },

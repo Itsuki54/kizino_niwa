@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+import { db } from "@/lib/prisma";
 
 interface createProps {
   articleId: string;
@@ -7,9 +8,7 @@ interface createProps {
 }
 
 export async function createLikeMutation({ articleId, userId }: createProps) {
-  const prisma = new PrismaClient();
-
-  const newLike = await prisma.like.create({
+  const newLike = await db.like.create({
     data: {
       articleId: articleId,
       userId: userId,

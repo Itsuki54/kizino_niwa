@@ -1,8 +1,8 @@
+import { db } from "@/lib/prisma";
 import { PrismaClient } from "@prisma/client";
 
 export async function UserDataQuery(id: string) {
-  const prisma = new PrismaClient();
-  const user = prisma.user.findUnique({
+  const user = db.user.findUnique({
     where: {
       id: id,
     },
@@ -12,8 +12,7 @@ export async function UserDataQuery(id: string) {
 }
 
 export async function UserToLinkQuery(id: string) {
-  const prisma = new PrismaClient();
-  const link = prisma.link.findMany({
+  const link = db.link.findMany({
     where: {
       userId: id,
     },

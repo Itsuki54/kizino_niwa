@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import GitHubProvider from "next-auth/providers/github";
-const prisma = new PrismaClient();
+import { db } from "../../../lib/prisma";
 
 export const authOptions = {
   providers: [
@@ -16,9 +15,9 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async signIn(user) {
+    async signIn(user: any) {
       const { email } = user.user;
-      await prisma.user.upsert({
+      await db.user.upsert({
         where: { email },
         update: {},
         create: {
@@ -31,7 +30,7 @@ export const authOptions = {
 
       return true;
     },
-    async session({ session, token }) {
+    async session({ session, token }: any) {
       session.accessToken = token.accessToken;
 
       session.user.id = token.id;
@@ -40,9 +39,9 @@ export const authOptions = {
       return session;
     },
 
-    async jwt({ token, user }) {
+    async jwt({ token, user }: any) {
       if (user) {
-        const userExist = await prisma.user.findUnique({
+        const userExist = await db.user.findUnique({
           where: {
             email: user.email,
           },
@@ -52,6 +51,9 @@ export const authOptions = {
       }
       return token;
     },
+  },
+  pages: {
+    signIn: "/signIn",
   },
 };
 

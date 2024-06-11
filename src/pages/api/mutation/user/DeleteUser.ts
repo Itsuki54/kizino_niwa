@@ -6,8 +6,7 @@ interface deleteProps {
 }
 
 export async function deleteUserMutation({ id }: deleteProps) {
-  const prisma = new PrismaClient();
-  const deleteUser = await prisma.user.delete({
+  const deleteUser = await db.user.delete({
     where: {
       id: id,
     },

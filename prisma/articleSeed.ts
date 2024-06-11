@@ -237,7 +237,7 @@ ES2017で導入されたasync/awaitは、プロミスに基づいており、同
   ];
 
   for (const a of articles) {
-    await prisma.article.create({
+    await db.article.create({
       data: {
         title: a.title,
         content: `<p>${a.content}</p>`,
