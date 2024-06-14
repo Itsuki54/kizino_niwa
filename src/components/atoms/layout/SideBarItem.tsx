@@ -8,7 +8,6 @@ export interface SideBarItemProps {
 }
 
 export function SideBarItem({ title, icon, route }: SideBarItemProps) {
-  const router = useRouter();
   return (
     <a
       href={route}

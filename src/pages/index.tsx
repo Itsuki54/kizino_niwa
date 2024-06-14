@@ -17,7 +17,7 @@ import { useEffect } from "react";
 
 interface Props {
   user: User | null;
-  notification: Notification[];
+  notification: Notification[] | null;
   allArticle: ArticleWithUserType[];
 }
 
@@ -37,6 +37,7 @@ function Kizinoniwa({ user, notification, allArticle }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
+  console.log(session);
   let allArticle: ArticleWithUserType[] = [];
   try {
     const allArticleData = await AllArticleWithUser();
@@ -47,7 +48,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (!session) {
     return {
       props: {
-        notification: JSON.parse(JSON.stringify(NotificationMock)),
         allArticle: allArticle,
       },
     };
@@ -57,7 +57,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     if (!user) {
       return {
         props: {
-          notification: NotificationMock,
           allArticle: allArticle,
         },
       };

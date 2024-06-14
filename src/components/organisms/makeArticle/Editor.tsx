@@ -13,7 +13,7 @@ import StarterKit from "@tiptap/starter-kit";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-import { MenuBar } from "../../molecules/sidebar/MenuBar";
+import { MenuBar } from "../../molecules/makeArticle/MenuBar";
 
 interface EditorProps {
   setContent: Function;

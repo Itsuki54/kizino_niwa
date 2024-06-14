@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
   user: User | null;
-  notification: Notification[];
+  notification: Notification[] | null;
 }
 
 export function Header({ user, notification }: HeaderProps) {
@@ -26,7 +26,9 @@ export function Header({ user, notification }: HeaderProps) {
           <div className="flex w-1/4 justify-end flex-row mr-4 gap-3">
             {user ? (
               <>
-                <NotificationButton notifications={notification} />
+                {notification ? (
+                  <NotificationButton notifications={notification} />
+                ) : null}
                 <ProfileButton
                   imageUrl={user.image}
                   name={user.name}
@@ -35,7 +37,9 @@ export function Header({ user, notification }: HeaderProps) {
                 <MakeArticleButton id={user.id} />
               </>
             ) : (
-              <Button ref="/api/auth/signin">Sign in</Button>
+              <a href="/signin">
+                <Button>Sign in</Button>
+              </a>
             )}
           </div>
         </div>

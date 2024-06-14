@@ -204,7 +204,7 @@ export function SideBar() {
                     ></path>
                   </svg>
                 }
-                route="/sign-out"
+                route="/signout"
               />
             </li>
           </ul>

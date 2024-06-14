@@ -5,6 +5,7 @@ import type {
 import { getProviders, signIn } from "next-auth/react";
 import { getServerSession } from "next-auth/next";
 import { authOptions } from "./api/auth/[...nextauth]";
+import { UserDataQuery } from "@/utils/query/User.query";
 
 export default function SignIn({
   providers,
@@ -24,15 +25,28 @@ export default function SignIn({
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const session = await getServerSession(context.req, context.res, authOptions);
-
-  // If the user is already logged in, redirect.
-  // Note: Make sure not to redirect to the same page
-  // To avoid an infinite loop!
-  if (session) {
-    return { redirect: { destination: "/" } };
-  }
-
   const providers = await getProviders();
+  if (!session) {
+    return {
+           props: { providers: providers ?? [] },
+
+    };
+  }
+    const userData = await UserDataQuery(session.user.uid);
+  const user = JSON.parse(JSON.stringify(userData));
+  if (!user) {
+    return {
+      props: { providers: providers ?? [] },
+    };
+  }
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: { providers: providers ?? [] },

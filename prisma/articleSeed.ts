@@ -1,3 +1,5 @@
+import { db } from "@/lib/prisma";
+
 async function articleSeed() {
   const articles = [
     // 英語の記事

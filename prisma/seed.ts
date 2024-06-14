@@ -1,6 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
-import { db } from "@/lib/prisma";
-
+const db = new PrismaClient();
 async function main() {
   const tags = [
     "JavaScript",

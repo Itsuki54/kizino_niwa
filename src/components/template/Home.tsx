@@ -8,7 +8,7 @@ import { ArticleWithUserType } from "@/types/article";
 
 interface HomeProps {
   user: User | null;
-  notification: Notification[];
+  notification: Notification[] | null;
   allArticle: ArticleWithUserType[];
 }
 
