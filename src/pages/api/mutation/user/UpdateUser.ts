@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
-
+import { db } from "@/lib/prisma";
 interface updateProps {
   id: string;
   name: string;

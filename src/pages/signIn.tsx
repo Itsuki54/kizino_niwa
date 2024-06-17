@@ -28,11 +28,10 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const providers = await getProviders();
   if (!session) {
     return {
-           props: { providers: providers ?? [] },
-
+      props: { providers: providers ?? [] },
     };
   }
-    const userData = await UserDataQuery(session.user.uid);
+  const userData = await UserDataQuery(session.user.uid);
   const user = JSON.parse(JSON.stringify(userData));
   if (!user) {
     return {

@@ -3,7 +3,7 @@ import { UserDataQuery } from "@/utils/query/User.query";
 import { GetServerSidePropsContext } from "next";
 import { getServerSession } from "next-auth";
 import { getProviders, signOut } from "next-auth/react";
-import{useRouter} from "next/router";
+import { useRouter } from "next/router";
 import { authOptions } from "./api/auth/[...nextauth]";
 export default function SignOut() {
   const router = useRouter();

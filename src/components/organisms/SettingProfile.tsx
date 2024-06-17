@@ -1,17 +1,16 @@
-import { User, Link, Notification } from "@prisma/client";
+import { Link, Notification, User } from "@prisma/client";
+import pica from "pica";
 import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
 import Avatar from "react-avatar";
-import { MdDriveFolderUpload } from "react-icons/md";
 import AvatarEditor from "react-avatar-editor";
-import ReactSlider from "react-slider";
-import pica from "pica";
-import { IoClose } from "react-icons/io5";
-import { UserEmailName } from "../molecules/setting/UserEmailName";
-import { IconEditor } from "../molecules/setting/IconEditor";
+import { MdDriveFolderUpload } from "react-icons/md";
 import { PrimaryButton } from "../atoms/common/PrimaryButton";
+import { IconEditor } from "../molecules/setting/IconEditor";
+import { UserEmailName } from "../molecules/setting/UserEmailName";
 
 import { ModalComponent } from "../atoms/common/Modal";
 
+import { Toaster, toast } from "react-hot-toast";
 export interface SettingProfileProps {
   user: User;
   link: Link[];
@@ -138,6 +137,9 @@ export function SettingProfile({
 
   return (
     <div className="h-full m-2">
+      <div>
+        <Toaster />
+      </div>
       <h1 className="text-3xl font-bold m-4">プロフィール設定</h1>
       <div className="border-b-2 block md:flex">
         <div className="w-full md:w-2/5 p-4 sm:p-6 lg:p-8 bg-white shadow-md">
@@ -148,7 +150,7 @@ export function SettingProfile({
               round
               color="#ddd"
               alt="アイコン"
-              src={icon ? URL.createObjectURL(icon) : imageURL}
+              src={icon ? URL.createObjectURL(icon) : user.image}
             />
             <button type="button" onClick={handleClickChangeIcon}>
               <MdDriveFolderUpload style={{ fontSize: "32px" }} />
@@ -182,8 +184,6 @@ export function SettingProfile({
             user,
             name,
             email,
-            isDisabled,
-            setIsDisabled,
             setName,
             setEmail,
           }}
@@ -192,7 +192,10 @@ export function SettingProfile({
       <div className="flex justify-end mt-4">
         <PrimaryButton
           title="保存"
-          onClick={async () => await onSubmit()}
+          onClick={async () => {
+            await onSubmit();
+            toast("保存しました");
+          }}
           disabled={isDisabled}
         />
       </div>

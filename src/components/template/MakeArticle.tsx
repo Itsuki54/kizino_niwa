@@ -7,6 +7,7 @@ import { ArticleContents } from "../organisms/makeArticle/MakeArticleContents";
 import { Header } from "../organisms/layout/Header";
 import { HomeLayout } from "../../layout/HomeLayout";
 import SideBar from "../organisms/layout/SideBar";
+import { Toaster, toast } from "react-hot-toast";
 
 interface MakeArticleProps {
   userId: string;
@@ -45,7 +46,7 @@ export default function MakeArticle({
   }, [title, content, tags]);
 
   async function create() {
-    await fetch("/api/mutation/Article.mutation", {
+    await fetch("/api/mutation/article/CreateArticle", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -62,6 +63,7 @@ export default function MakeArticle({
     setTags("");
     setDisabled(true);
     setIsConfirm(false);
+    toast("記事を投稿しました！");
   }
 
   useEffect(() => {
@@ -76,6 +78,9 @@ export default function MakeArticle({
 
   return (
     <>
+      <div>
+        <Toaster />
+      </div>
       <HomeLayout
         header={<Header notification={notification} user={user} />}
         leftBar={<SideBar />}

@@ -3,6 +3,7 @@ import { SessionProvider } from "next-auth/react";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { Toaster } from "@/components/ui/toaster";
 
 export default function App({
   Component,
@@ -38,6 +39,7 @@ export default function App({
         <meta name="theme-color" content="#ffffff" />
       </Head>
       <Component {...pageProps} />
+      <Toaster />
     </SessionProvider>
   );
 }

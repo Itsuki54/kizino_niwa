@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { SideBarItemProps, SideBarItem } from "../../atoms/layout/SideBarItem";
+import { SideBarItemProps, SideBarItem } from "../../atoms/sidebar/SideBarItem";
 
 interface SideBarContentProps {
   title: string;

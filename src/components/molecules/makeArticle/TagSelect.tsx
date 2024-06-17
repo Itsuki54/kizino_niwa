@@ -16,10 +16,7 @@ export function TagSelect({ tagList, setTags }: TagSelectProps) {
   }, [selectedTags]);
   return (
     <>
-      <div
-        className="w-full p-1
-       flex flex-col items-center  mx-auto"
-      >
+      <div className="w-full p-1 flex flex-col items-center  mx-auto">
         <div className="w-full">
           <div className="flex flex-col items-center relative">
             <div className=" p-1 flex border border-gray-200 bg-white rounded w-full">
@@ -48,6 +45,7 @@ export function TagSelect({ tagList, setTags }: TagSelectProps) {
                 <button
                   className="cursor-pointer w-6 h-6 outline-none focus:outline-none"
                   onClick={() => {
+                    console.log("isOpen", isOpen);
                     setIsOpen(!isOpen);
                   }}
                 >

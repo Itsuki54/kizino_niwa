@@ -1,3 +1,4 @@
+import { FooterList } from "@/components/molecules/footer/FooterList";
 import Image from "next/image";
 
 export function Footer() {
@@ -6,13 +7,12 @@ export function Footer() {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8 lg:pt-32">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
+      <div className="mx-auto max-w-7xl px-4 pb-8 pt-8 ">
+        <div className="xl:grid xl:grid-cols-3 xl:gap-2">
           <div className="space-y-8">
             <Image src="/svgs/icon.svg" alt="logo" width={40} height={40} />
             <p className="text-sm leading-6 text-gray-600">
-              Making football look better to the world and a more respecful
-              game.
+              キジノニワは、あなたの日常を楽しくするための情報を提供します。
             </p>
             <div className="flex space-x-6">
               <a href="#" className="text-gray-400 hover:text-gray-500">
@@ -88,170 +88,38 @@ export function Footer() {
               </a>
             </div>
           </div>
-          <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Solutions
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Marketing
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Analytics
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Commerce
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Insights
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Support
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Pricing
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Documentation
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Guides
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      API Status
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Company
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      About
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Blog
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Jobs
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Press
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Partners
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="mt-10 md:mt-0">
-                <h3 className="text-sm font-semibold leading-6 text-gray-900">
-                  Legal
-                </h3>
-                <ul role="list" className="mt-6 space-y-4">
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Claim
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Privacy
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                    >
-                      Terms
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <div
+            className="grid grid-cols-3 gap-4
+ xl:col-span-2"
+          >
+            <FooterList
+              title="ヘルプ"
+              footerItems={[
+                { title: "About", route: "/about" },
+                { title: "利用規約", route: "/terms" },
+                { title: "プライバシーポリシー", route: "/privacy" },
+                { title: "ガイドライン", route: "/guideline" },
+                { title: "お問い合わせ", route: "/contact" },
+              ]}
+            />
+            <FooterList
+              title="リンク"
+              footerItems={[
+                { title: "ホーム", route: "/" },
+                { title: "リリースノート", route: "/release-note" },
+                { title: "お知らせ", route: "/news" },
+              ]}
+            />
+            <FooterList
+              title="運営"
+              footerItems={[
+                { title: "管理人", route: "/admin" },
+                { title: "団体", route: "https://icecream-software.com/" },
+              ]}
+            />
           </div>
         </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 lg:mt-24">
+        <div className="mt-8 border-t border-gray-900/10 pt-8 ">
           <p className="text-xs leading-5 text-gray-500">
             &copy; 2020 Your Company, Inc. All rights reserved.
           </p>
