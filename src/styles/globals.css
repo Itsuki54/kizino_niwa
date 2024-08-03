@@ -64,4 +64,60 @@
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
+
+.markdown-body{
+  h1 {
+    font-size: 245rem;
+    font-weight: 600;
+    line-height: 1.5;
+    border-bottom: solid 2px;
+    border-bottom-color: hsl(var(--foreground));
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-size: 1.7rem;
+    font-weight: 600;
+    line-height: 1.5;
+    border-bottom: solid 2px;
+    border-bottom-color: hsl(var(--foreground));
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+  }
+
+  a {
+    color: hsl(var(--primary));
+    text-decoration: underline;
+    font-weight: 500;
+  }
+
+}
+
+  .markdown-body pre {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .markdown-body code {
+    font-family: "Fira Code", monospace;
+    font-size: 1rem;
+    background-color: #444444;
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+  }
 }

@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 
-import { Home } from "@/components/template/Home";
+import { Home } from "@/components/layout/Home";
 
 import { ArticleWithUserType } from "@/types/article";
 import { AllArticleWithUser } from "@/utils/query/Article.query";

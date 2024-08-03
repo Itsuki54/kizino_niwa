@@ -2,7 +2,7 @@ import { User, Notification, Article } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 
-import { ArticlePage } from "@/components/template/Article";
+import { ArticlePage } from "@/components/article";
 
 import { ArticleQuery } from "@/utils/query/Article.query";
 import { NotificationQuery } from "@/utils/query/Notification.query";

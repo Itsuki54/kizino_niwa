@@ -1,5 +1,5 @@
 import React from "react";
-import { Footer } from "../components/organisms/layout/Footer";
+import { Footer } from "../components/footer";
 import { Button } from "@/components/ui/button";
 
 interface HomeLayoutProps {

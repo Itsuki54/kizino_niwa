@@ -26,17 +26,17 @@ model User {
 }
 
 model Article {
-  id         String       @id @default(cuid())
-  title      String
-  content    String       @db.LongText
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
-  like       Int          @default(0)
-  userId     String
-  user       User         @relation(fields: [userId], references: [id])
-  likes      Like[]
-  stocks     Stock[]
-  TagArticle TagArticle[]
+  id        String   @id @default(cuid())
+  title     String
+  content   String   @db.LongText
+  tags      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  like      Int      @default(0)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  likes     Like[]
+  stocks    Stock[]
 
   @@index([userId], map: "Article_userId_fkey")
 }
@@ -85,23 +85,6 @@ model Link {
   user   User   @relation(fields: [userId], references: [id])
 
   @@index([userId], map: "Link_userId_fkey")
-}
-
-model TagArticle {
-  id        String  @id @default(cuid())
-  tagId     String
-  articleId String
-  article   Article @relation(fields: [articleId], references: [id])
-  tag       Tag     @relation(fields: [tagId], references: [id])
-
-  @@index([articleId], map: "TagArticle_articleId_fkey")
-  @@index([tagId], map: "TagArticle_tagId_fkey")
-}
-
-model Tag {
-  id         String       @id @default(cuid())
-  name       String
-  TagArticle TagArticle[]
 }
 
 model Group {
