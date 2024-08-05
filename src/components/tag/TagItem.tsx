@@ -1,6 +1,5 @@
-
 interface TagItemProps {
-  tag: string
+  tag: string;
   onClick: Function;
 }
 

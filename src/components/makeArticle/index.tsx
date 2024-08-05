@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 
 import { Dialog } from "../common/Dialog";
 import { PrimaryButton } from "../common/PrimaryButton";
-import { MakeArticleContents } from "./MakeArticleContents";
 import { Header } from "../header";
 import { HomeLayout } from "../../layout/HomeLayout";
 import SideBar from "../sidebar";
 import { Toaster, toast } from "react-hot-toast";
+import { InputField } from "../common/InputField";
+import { MarkdownEditor } from "./Editor";
+import { TagSelect } from "./TagSelect";
+import { tagsToBinary } from "@/utils/binary";
 
 interface MakeArticleProps {
   userId: string;
@@ -15,14 +18,10 @@ interface MakeArticleProps {
   notification: Notification[];
 }
 
-export function MakeArticle({
-  userId,
-  user,
-  notification,
-}: MakeArticleProps) {
+export function MakeArticle({ userId, user, notification }: MakeArticleProps) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [tags, setTags] = useState("");
+  const [tags, setTags] = useState([]);
   const [disabled, setDisabled] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
@@ -44,6 +43,7 @@ export function MakeArticle({
   }, [title, content, tags]);
 
   async function create() {
+    const binary = tagsToBinary(tags);
     await fetch("/api/mutation/article/CreateArticle", {
       method: "POST",
       headers: {
@@ -53,12 +53,12 @@ export function MakeArticle({
         title: title,
         content: content,
         userId: userId,
-        tagIds: [],
+        tags: binary,
       }),
     });
     setTitle("");
     setContent("");
-    setTags("");
+    setTags([]);
     setDisabled(true);
     setIsConfirm(false);
     toast("記事を投稿しました！");
@@ -81,15 +81,26 @@ export function MakeArticle({
       </div>
       <Header user={user} notification={notification} />
       <div className="flex-col p-4">
-        <MakeArticleContents
-          content={content}
-          finished={fin}
-          setContent={setContent}
-          setTags={setTags}
-          setTitle={setTitle}
-          tags={tags}
-          title={title}
-        />
+        <div className="flex justify-center w-full">
+          <div className="w-full flex-col">
+            <div className="flex-col flex justify-center">
+              <h1 className="text-3xl font-bold m-3">新しい記事の投稿</h1>
+              <p className="text-m m-3">
+                記事のタイトルとタグを入力してください
+              </p>
+              <div className="m-3">
+                <InputField
+                  onChange={setTitle}
+                  placeholder="Title"
+                  type="text"
+                  value={title}
+                />
+                <TagSelect setTags={setTags} />
+              </div>
+            </div>
+            <MarkdownEditor setMarkdown={setContent} markdown={content} />
+          </div>
+        </div>
         <PrimaryButton
           disabled={disabled}
           onClick={() => setIsOpen(true)}

@@ -4,14 +4,14 @@ interface createProps {
   title: string;
   content: string;
   userId: string;
-  tags:string;
+  tags: string;
 }
 
 export async function createArticleMutation({
   title,
   content,
   userId,
-  tags
+  tags,
 }: createProps) {
   const newArticle = await db.article.create({
     data: {
@@ -29,11 +29,12 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { title, content, userId, tags} = req.body;
+  const { title, content, userId, tags } = req.body;
   const newArticle = await createArticleMutation({
     title,
     content,
     userId,
-    tags,});
+    tags,
+  });
   res.status(200).json(newArticle);
 }

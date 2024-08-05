@@ -1,4 +1,3 @@
-
 interface TagSelectedItemProps {
   tag: string;
   onDelete: Function;

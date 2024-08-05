@@ -1,7 +1,8 @@
 import { Article, User } from "@prisma/client";
 import Image from "next/image";
-import { BsHeart } from "react-icons/bs";
 import { LikeBotton } from "../common/LikeBotton";
+import { binaryToTags } from "@/utils/binary";
+
 interface ArticleCardProps {
   id: Article["id"];
   title: Article["title"];
@@ -9,6 +10,7 @@ interface ArticleCardProps {
   userId: Article["userId"];
   createdAt: Article["createdAt"];
   updatedAt: Article["updatedAt"];
+  tags: Article["tags"];
   like: number;
   createdUser: User;
 }
@@ -22,9 +24,11 @@ export function ArticleCard({
   updatedAt,
   like,
   createdUser,
+  tags,
 }: ArticleCardProps) {
   const createDate = new Date(createdAt);
   const updateDate = new Date(updatedAt);
+  const tagList = binaryToTags(tags);
   return (
     <div className="px-10 my-4 py-6 bg-white rounded-lg shadow-md items-center m-4">
       <div className="flex justify-between items-center">

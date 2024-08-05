@@ -7,7 +7,7 @@ interface TagSelectProps {
   setTags: Function;
 }
 
-export function TagSelect({  setTags }: TagSelectProps) {
+export function TagSelect({ setTags }: TagSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   useEffect(() => {

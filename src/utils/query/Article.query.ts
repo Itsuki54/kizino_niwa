@@ -25,14 +25,6 @@ export async function AllArticleQuery() {
   return article;
 }
 
-export async function TagToArticle(id: string) {
-  const tag = db.tag.findUnique({
-    where: {
-      id: id,
-    },
-  });
-  return tag;
-}
 
 export async function ArticleWithUser(articleId: string) {
   const articleWithUser = await db.article.findUnique({
@@ -42,7 +34,6 @@ export async function ArticleWithUser(articleId: string) {
     include: {
       user: true,
       stocks: true,
-      TagArticle: true,
     },
   });
   return articleWithUser;
@@ -53,7 +44,6 @@ export async function AllArticleWithUser(): Promise<ArticleWithUserType[]> {
     include: {
       user: true,
       stocks: true,
-      TagArticle: true,
     },
   });
   return allArticleWithUser;

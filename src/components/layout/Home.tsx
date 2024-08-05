@@ -2,7 +2,7 @@ import { Article, Notification, User } from "@prisma/client";
 
 import { ArticleCard } from "../article/ArticleCard";
 import { Header } from "../header";
-import { HomeLayout } from "../../layout/HomeLayout";
+import { Layout } from "../../layout/HomeLayout";
 import { SideBar } from "../sidebar";
 import { ArticleWithUserType } from "@/types/article";
 
@@ -14,7 +14,7 @@ interface HomeProps {
 
 export function Home({ user, notification, allArticle }: HomeProps) {
   return (
-    <HomeLayout
+    <Layout
       header={<Header notification={notification} user={user} />}
       leftBar={<SideBar />}
       main={allArticle.map((article) => (
@@ -26,6 +26,7 @@ export function Home({ user, notification, allArticle }: HomeProps) {
           createdAt={article.createdAt}
           updatedAt={article.updatedAt}
           like={article.like}
+          tags={article.tags}
           createdUser={article.user}
         />
       ))}

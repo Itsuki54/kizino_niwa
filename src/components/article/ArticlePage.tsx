@@ -8,13 +8,15 @@ import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+import { binaryToTags } from "@/utils/binary";
 
-interface ArticleHTMLProps {
+interface ArticlePageProps {
   article: Article;
   createdUser: User;
 }
 
-export function ArticleHTML({ article, createdUser }: ArticleHTMLProps) {
+export function ArticlePage({ article, createdUser }: ArticlePageProps) {
+  const tags = binaryToTags(article.tags);
   return (
     <div className="p-4">
       <div className="flex justify-between items-center">
@@ -26,6 +28,15 @@ export function ArticleHTML({ article, createdUser }: ArticleHTMLProps) {
         />
       </div>
       <Divider />
+      <div>
+        <div className="flex gap-2">
+          {tags.map((tag, index) => (
+            <div key={index} className="bg-gray-200 rounded p-1">
+              {tag}
+            </div>
+          ))}
+        </div>
+      </div>
       <ReactMarkdown
         remarkPlugins={[remarkMath, remarkGfm]}
         rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeKatex]}
