@@ -1,4 +1,7 @@
-import { ReactNode, useState } from "react";
+import {
+  ReactNode,
+  useState,
+} from "react";
 import { IoClose } from "react-icons/io5";
 import Modal from "react-modal";
 

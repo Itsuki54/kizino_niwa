@@ -1,14 +1,17 @@
-import { Article, User } from "@prisma/client";
+import {
+  Article,
+  User,
+} from "@prisma/client";
 
-import { Divider } from "../common/Divider";
-import { ProfileButton } from "../header/ProfileButton";
+import { binaryToTags } from "@/utils/binary";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import { binaryToTags } from "@/utils/binary";
+import { Divider } from "../common/Divider";
+import { ProfileButton } from "../header/ProfileButton";
 
 interface ArticlePageProps {
   article: Article;

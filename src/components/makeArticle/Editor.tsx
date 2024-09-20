@@ -1,10 +1,14 @@
-import { useState, useRef, useEffect } from "react";
-import remarkGfm from "remark-gfm";
+import {
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import ReactMarkdown from "react-markdown";
-import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
+import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 
 interface MarkdownEditorProps {
   markdown: string;
@@ -18,7 +22,7 @@ export function MarkdownEditor({ markdown, setMarkdown }: MarkdownEditorProps) {
           className="w-full p-3 text-lg overflow-y-auto border border-gray-300 rounded min-h-[400px]"
           placeholder="Write your Markdown here..."
           value={markdown}
-          onChange={(e) => setMarkdown(e.target.value)}
+          onChange={e => setMarkdown(e.target.value)}
         />
       </div>
       <div className="flex-1 p-3 border rounded overflow-y-auto max-h-[400px]">

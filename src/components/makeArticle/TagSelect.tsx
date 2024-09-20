@@ -1,7 +1,11 @@
-import { TagSelectedItem } from "../tag/TagSelectedItem";
-import { TagItem } from "../tag/TagItem";
-import { use, useEffect, useState } from "react";
 import { tags } from "@/data/tag";
+import {
+  use,
+  useEffect,
+  useState,
+} from "react";
+import { TagItem } from "../tag/TagItem";
+import { TagSelectedItem } from "../tag/TagSelectedItem";
 
 interface TagSelectProps {
   setTags: Function;
@@ -12,7 +16,7 @@ export function TagSelect({ setTags }: TagSelectProps) {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   useEffect(() => {
     setTags(
-      selectedTags.map((tag) => {
+      selectedTags.map(tag => {
         return tag;
       }),
     );
@@ -25,14 +29,14 @@ export function TagSelect({ setTags }: TagSelectProps) {
             <div className=" p-1 flex border border-gray-200 bg-white rounded w-full">
               <div className="flex flex-auto flex-wrap">
                 {selectedTags.length > 0 ? (
-                  selectedTags.map((tag) => {
+                  selectedTags.map(tag => {
                     return (
                       <TagSelectedItem
                         key={tag}
                         tag={tag}
                         onDelete={(tag: string) => {
                           setSelectedTags(
-                            selectedTags.filter((selectedTag) => {
+                            selectedTags.filter(selectedTag => {
                               return selectedTag !== tag;
                             }),
                           );
@@ -73,7 +77,7 @@ export function TagSelect({ setTags }: TagSelectProps) {
             </div>
             <div className=" shadow  bg-white z-40 w-full lef-0 rounded max-h-select overflow-auto">
               {isOpen &&
-                tags.map((tag) => {
+                tags.map(tag => {
                   return (
                     <TagItem
                       key={tag}

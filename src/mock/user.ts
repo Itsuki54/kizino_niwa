@@ -1,4 +1,7 @@
-import { User, Notification } from "@prisma/client";
+import {
+  Notification,
+  User,
+} from "@prisma/client";
 
 export const userMock: User = {
   id: "sample-user-id",

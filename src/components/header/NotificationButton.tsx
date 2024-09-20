@@ -17,14 +17,14 @@ export function NotificationButton({ notifications }: NotificationButtonProps) {
         onClick={() => setShowNotification(!setShowNotification)}
       />
       {showNotification
-        ? notifications.map((notification) => (
-            <NotificationList
-              description={notification.description}
-              image={notification.icon}
-              key={notification.id}
-              title={notification.title}
-            />
-          ))
+        ? notifications.map(notification => (
+          <NotificationList
+            description={notification.description}
+            image={notification.icon}
+            key={notification.id}
+            title={notification.title}
+          />
+        ))
         : null}
     </button>
   );

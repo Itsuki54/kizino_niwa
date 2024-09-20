@@ -1,9 +1,9 @@
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
 import "github-markdown-css";
+import { Toaster } from "@/components/ui/toaster";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { Toaster } from "@/components/ui/toaster";
 import "katex/dist/katex.min.css";
 
 export default function App({

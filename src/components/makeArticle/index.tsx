@@ -1,16 +1,23 @@
-import { User, Notification } from "@prisma/client";
-import { useEffect, useState } from "react";
+import {
+  Notification,
+  User,
+} from "@prisma/client";
+import {
+  useEffect,
+  useState,
+} from "react";
 
+import { tagsToBinary } from "@/utils/binary";
+import {
+  toast,
+  Toaster,
+} from "react-hot-toast";
 import { Dialog } from "../common/Dialog";
+import { InputField } from "../common/InputField";
 import { PrimaryButton } from "../common/PrimaryButton";
 import { Header } from "../header";
-import { HomeLayout } from "../../layout/HomeLayout";
-import SideBar from "../sidebar";
-import { Toaster, toast } from "react-hot-toast";
-import { InputField } from "../common/InputField";
 import { MarkdownEditor } from "./Editor";
 import { TagSelect } from "./TagSelect";
-import { tagsToBinary } from "@/utils/binary";
 
 interface MakeArticleProps {
   userId: string;
@@ -37,7 +44,8 @@ export function MakeArticle({ userId, user, notification }: MakeArticleProps) {
       tags.length > 0
     ) {
       setDisabled(false);
-    } else {
+    }
+    else {
       setDisabled(true);
     }
   }, [title, content, tags]);

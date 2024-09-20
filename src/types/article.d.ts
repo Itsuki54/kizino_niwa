@@ -1,4 +1,8 @@
-import { Article, User, Stock } from "@prisma/client";
+import {
+  Article,
+  Stock,
+  User,
+} from "@prisma/client";
 
 export type ArticleWithUserType = {
   id: Article["id"];

@@ -17,7 +17,8 @@
     "start:dev": "docker compose up -d && bun prettier&&bun run dev",
     "seed": "tsx ./prisma/seed.ts",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "format": "dprint fmt"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^1.6.0",

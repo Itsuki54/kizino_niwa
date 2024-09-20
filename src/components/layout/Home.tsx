@@ -1,10 +1,14 @@
-import { Article, Notification, User } from "@prisma/client";
+import {
+  Article,
+  Notification,
+  User,
+} from "@prisma/client";
 
+import { ArticleWithUserType } from "@/types/article";
+import { Layout } from "../../layout/HomeLayout";
 import { ArticleCard } from "../article/ArticleCard";
 import { Header } from "../header";
-import { Layout } from "../../layout/HomeLayout";
 import { SideBar } from "../sidebar";
-import { ArticleWithUserType } from "@/types/article";
 
 interface HomeProps {
   user: User | null;
@@ -17,7 +21,7 @@ export function Home({ user, notification, allArticle }: HomeProps) {
     <Layout
       header={<Header notification={notification} user={user} />}
       leftBar={<SideBar />}
-      main={allArticle.map((article) => (
+      main={allArticle.map(article => (
         <ArticleCard
           id={article.id}
           title={article.title}
@@ -30,9 +34,7 @@ export function Home({ user, notification, allArticle }: HomeProps) {
           createdUser={article.user}
         />
       ))}
-      rightBar={
-        <div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>
-      }
+      rightBar={<div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>}
     />
   );
 }

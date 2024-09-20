@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { ArticleWithUserType } from "@/types/article";
+import { PrismaClient } from "@prisma/client";
 
 import { db } from "@/lib/prisma";
 export async function UserToArticleQuery(id: string) {
@@ -24,7 +24,6 @@ export async function AllArticleQuery() {
   const article = db.article.findMany();
   return article;
 }
-
 
 export async function ArticleWithUser(articleId: string) {
   const articleWithUser = await db.article.findUnique({

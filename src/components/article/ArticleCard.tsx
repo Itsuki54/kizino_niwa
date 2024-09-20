@@ -1,7 +1,11 @@
-import { Article, User } from "@prisma/client";
-import Image from "next/image";
-import { LikeBotton } from "../common/LikeBotton";
 import { binaryToTags } from "@/utils/binary";
+import {
+  Article,
+  User,
+} from "@prisma/client";
+import Image from "next/image";
+import { useState } from "react";
+import { LikeBotton } from "../common/LikeBotton";
 
 interface ArticleCardProps {
   id: Article["id"];
@@ -29,12 +33,66 @@ export function ArticleCard({
   const createDate = new Date(createdAt);
   const updateDate = new Date(updatedAt);
   const tagList = binaryToTags(tags);
+  const [likeCount, setLikeCount] = useState(like);
+  const [isLiked, setIsLiked] = useState(false);
+  const likeAdd = async () => {
+    setLikeCount(likeCount + 1);
+    setIsLiked(true);
+    await fetch("/api/article", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        method: "LikeAdd",
+        id: id,
+        title: title,
+        content: content,
+        userId: userId,
+        tags: tags,
+      }),
+    });
+    await fetch("/api/like", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        articleId: id,
+        userId: userId,
+      }),
+    });
+  };
+  const likeRemove = async () => {
+    setLikeCount(likeCount - 1);
+    setIsLiked(false);
+    await fetch("/api/article", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        method: "LikeRemove",
+        id: id,
+        title: title,
+        content: content,
+        userId: userId,
+        tags: tags,
+      }),
+    });
+  };
   return (
     <div className="px-10 my-4 py-6 bg-white rounded-lg shadow-md items-center m-4">
       <div className="flex justify-between items-center">
         {createDate.toLocaleDateString()}
         {`最終更新日${updateDate.toLocaleDateString()}`}
-        <LikeBotton good={like} isLiked={false} />
+        <LikeBotton
+          good={likeCount}
+          isLiked={isLiked}
+          onClick={() => {
+            isLiked ? likeRemove() : likeAdd();
+          }}
+        />
       </div>
       <a
         className="text-2xl text-gray-700 font-bold hover:text-gray-600"
@@ -42,6 +100,17 @@ export function ArticleCard({
       >
         {title}
       </a>
+      {
+        <div className="flex justify-start items-center mt-4">
+          <div className="flex gap-2">
+            {tagList.map((tag, index) => (
+              <div key={index} className="bg-gray-200 rounded p-1">
+                {tag}
+              </div>
+            ))}
+          </div>
+        </div>
+      }
       <div className="flex justify-between items-center mt-4">
         <a className="text-blue-600 hover:underline" href={`/article/${[id]}`}>
           続きを読む

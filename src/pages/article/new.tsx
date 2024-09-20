@@ -1,8 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { Notification, User } from "@prisma/client";
+import {
+  Notification,
+  User,
+} from "@prisma/client";
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 import { getServerSession } from "next-auth";
+import { useRouter } from "next/router";
 
 import { MakeArticle } from "@/components/makeArticle";
 
@@ -26,7 +29,7 @@ export default function newArticle({ user, notification }: props) {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
   if (!session) {
     return {

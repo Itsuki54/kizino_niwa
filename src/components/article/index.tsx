@@ -1,9 +1,13 @@
-import { Article, User, Notification } from "@prisma/client";
+import {
+  Article,
+  Notification,
+  User,
+} from "@prisma/client";
 
-import { ArticlePage as Page } from "./ArticlePage";
-import { Header } from "../header";
 import { Layout } from "../../layout/HomeLayout";
+import { Header } from "../header";
 import SideBar from "../sidebar";
+import { ArticlePage as Page } from "./ArticlePage";
 
 interface ArticleProps {
   user: User;
@@ -23,9 +27,7 @@ export function ArticlePage({
       header={<Header notification={notification} user={user} />}
       leftBar={<SideBar />}
       main={<Page article={article} createdUser={createdUser} />}
-      rightBar={
-        <div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>
-      }
+      rightBar={<div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>}
     />
   );
 }

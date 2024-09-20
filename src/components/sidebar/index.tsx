@@ -1,7 +1,7 @@
 import React from "react";
 
-import { SideBarItem } from "./SideBarItem";
 import { IoSettingsOutline } from "react-icons/io5";
+import { SideBarItem } from "./SideBarItem";
 
 export function SideBar() {
   return (
@@ -10,7 +10,7 @@ export function SideBar() {
         <div className="px-3 py-4 overflow-y-auto rounded bg-gray-50 dark:bg-gray-800">
           <ul className="space-y-2">
             <SideBarItem title="Dashboard" icon="home" route="/dashboard" />
-            <SideBarItem title="group" icon="users" route="/group" />
+            <SideBarItem title="お気に入り" icon="users" route="/fav" />
             <SideBarItem title="Projects" icon="folder" route="/projects" />
             <SideBarItem title="Calendar" icon="calendar" route="/calendar" />
             <SideBarItem

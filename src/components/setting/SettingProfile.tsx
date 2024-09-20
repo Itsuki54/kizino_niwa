@@ -1,6 +1,16 @@
-import { Link, Notification, User } from "@prisma/client";
+import {
+  Link,
+  Notification,
+  User,
+} from "@prisma/client";
 import pica from "pica";
-import { ChangeEvent, useCallback, useEffect, useRef, useState } from "react";
+import {
+  ChangeEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Avatar from "react-avatar";
 import AvatarEditor from "react-avatar-editor";
 import { MdDriveFolderUpload } from "react-icons/md";
@@ -10,7 +20,10 @@ import { UserEmailName } from "./UserEmailName";
 
 import { ModalComponent } from "../common/Modal";
 
-import { Toaster, toast } from "react-hot-toast";
+import {
+  toast,
+  Toaster,
+} from "react-hot-toast";
 export interface SettingProfileProps {
   user: User;
   link: Link[];
@@ -109,7 +122,7 @@ export function SettingProfile({
     const canvas = editorRef.current.getImageScaledToCanvas();
     const picaResizer = pica();
     const resizedCanvas = await picaResizer.resize(canvas, canvas);
-    resizedCanvas.toBlob((blob) => {
+    resizedCanvas.toBlob(blob => {
       if (blob) {
         const nextFile = new File([blob], previewIcon!.name, {
           type: previewIcon!.type,
@@ -130,7 +143,8 @@ export function SettingProfile({
     console.log(name, email, images);
     if (name.length > 0 && email.length > 0 && images.length > 0) {
       setIsDisabled(false);
-    } else {
+    }
+    else {
       setIsDisabled(true);
     }
   }, [name, email, images]);

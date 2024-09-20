@@ -1,37 +1,37 @@
+import { Header } from "@/components/header";
+import SideBar from "@/components/sidebar";
+import { Layout } from "@/layout/HomeLayout";
+import { ArticleWithUserType } from "@/types/article";
+import { AllArticleWithUser } from "@/utils/query/Article.query";
+import { NotificationQuery } from "@/utils/query/Notification.query";
+import { UserDataQuery } from "@/utils/query/User.query";
 import {
   Notification,
   User,
 } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
-import { useSession } from "next-auth/react";
-
-import { Home } from "@/components/layout/Home";
-
-import { ArticleWithUserType } from "@/types/article";
-import { AllArticleWithUser } from "@/utils/query/Article.query";
-import { NotificationQuery } from "@/utils/query/Notification.query";
-import { UserDataQuery } from "@/utils/query/User.query";
-
 import { authOptions } from "./api/auth/[...nextauth]";
 
-import { useEffect } from "react";
-
-interface Props {
+export default function fav({
+  user,
+  notification,
+}: {
   user: User | null;
   notification: Notification[] | null;
-  allArticle: ArticleWithUserType[];
-}
-
-function Kizinoniwa({ user, notification, allArticle }: Props) {
-  const { status } = useSession();
-  useEffect(() => {
-    console.log(status, user);
-  }, []);
+}) {
   return (
-    <>
-      {status === "loading" ? null : <Home allArticle={allArticle} notification={notification} user={user} />}
-    </>
+    <Layout
+      header={<Header user={user} notification={notification} />}
+      rightBar={undefined}
+      leftBar={<SideBar />}
+      main={
+        <div className="flex flex-col items-center justify-center">
+          <h1 className="text-4xl">お気に入り</h1>
+          <p>お気に入りした記事が表示されます</p>
+        </div>
+      }
+    />
   );
 }
 
@@ -76,5 +76,3 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     }
   }
 };
-
-export default Kizinoniwa;

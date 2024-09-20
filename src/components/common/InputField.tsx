@@ -18,7 +18,7 @@ export function InputField({
   return (
     <input
       className=" m-1 rounded-md p-2 border"
-      onChange={(e) => onChange(e.target.value)}
+      onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
       style={{
         height: height ? height : "50px",

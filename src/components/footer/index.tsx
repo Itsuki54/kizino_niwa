@@ -88,10 +88,8 @@ export function Footer() {
               </a>
             </div>
           </div>
-          <div
-            className="grid grid-cols-3 gap-4
- xl:col-span-2"
-          >
+          <div className="grid grid-cols-3 gap-4
+ xl:col-span-2">
             <FooterList
               title="ヘルプ"
               footerItems={[

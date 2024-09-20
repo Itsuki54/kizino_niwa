@@ -1,11 +1,14 @@
-import { Notification, User } from "@prisma/client";
+import {
+  Notification,
+  User,
+} from "@prisma/client";
 
-import { MakeArticleButton } from "./MakeArticleButton";
+import { Button } from "@/components/ui/button";
 import { LogoTitle } from "./LogoTitle";
+import { MakeArticleButton } from "./MakeArticleButton";
 import { NotificationButton } from "./NotificationButton";
 import { ProfileButton } from "./ProfileButton";
 import { SearchArticle } from "./SearchArticle";
-import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
   user: User | null;
@@ -26,9 +29,7 @@ export function Header({ user, notification }: HeaderProps) {
           <div className="flex w-1/4 justify-end flex-row mr-4 gap-3">
             {user ? (
               <>
-                {notification ? (
-                  <NotificationButton notifications={notification} />
-                ) : null}
+                {notification ? <NotificationButton notifications={notification} /> : null}
                 <ProfileButton
                   imageUrl={user.image}
                   name={user.name}

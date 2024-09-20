@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 
-import { SideBarItemProps, SideBarItem } from "../../sidebar/SideBarItem";
+import {
+  SideBarItem,
+  SideBarItemProps,
+} from "./SideBarItem";
 
 interface SideBarContentProps {
   title: string;
@@ -20,7 +23,7 @@ export function SideBarContent({ title, sideBarItems }: SideBarContentProps) {
         <span>{title}</span>
       </div>
       <ul className={`desplegable ml-4 ${showDropdown ? "" : "hidden"}`}>
-        {sideBarItems.map((sideBarItem) => (
+        {sideBarItems.map(sideBarItem => (
           <SideBarItem
             icon={sideBarItem.icon}
             key={sideBarItem.title}

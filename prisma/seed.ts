@@ -263,7 +263,7 @@ ES2017で導入されたasync/awaitは、プロミスに基づいており、同
 }
 
 main()
-  .catch((e) => {
+  .catch(e => {
     console.log(e);
   })
   .finally(async () => {

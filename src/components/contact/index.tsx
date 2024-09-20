@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -8,14 +8,23 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Textarea } from "@/components/ui/textarea";
-import { init, send } from "@emailjs/browser";
-import { Toaster, toast } from "react-hot-toast";
+import {
+  init,
+  send,
+} from "@emailjs/browser";
+import { zodResolver } from "@hookform/resolvers/zod";
+import React, { useState } from "react";
+import {
+  SubmitHandler,
+  useForm,
+} from "react-hook-form";
+import {
+  toast,
+  Toaster,
+} from "react-hot-toast";
+import { z } from "zod";
 
 const formShema = z.object({
   name: z.string().min(2, { message: "2文字で入力してください" }).max(50),
@@ -48,10 +57,10 @@ const Contact = () => {
       setIsSending(true);
       const loadingToast = toast.loading("送信中...");
 
-      //emailjsを初期化する
+      // emailjsを初期化する
       init(userId);
 
-      //送信するデータを定義する
+      // 送信するデータを定義する
       const params = {
         name: name,
         email: email,
@@ -59,12 +68,14 @@ const Contact = () => {
       };
 
       try {
-        //送信する
+        // 送信する
         await send(serviceId, templateId, params);
         toast.success("送信が成功しました。");
-      } catch {
+      }
+      catch {
         toast.error("送信に失敗しました。");
-      } finally {
+      }
+      finally {
         form.reset();
         toast.dismiss(loadingToast);
         setIsSending(false);
