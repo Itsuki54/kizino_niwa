@@ -1,5 +1,8 @@
 const { PrismaClient } = require("@prisma/client");
 const db = new PrismaClient();
+import { tags } from "@/data/tag";
+import { tagsToBinary } from "@/utils/binary";
+
 async function main() {
   const articles = [
     // 英語の記事
@@ -237,31 +240,46 @@ ES2017で導入されたasync/awaitは、プロミスに基づいており、同
       userId: "sample-user-id",
     },
   ];
+  function getRandomTags(count: number): string[] {
+    const shuffled = [...tags].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+  }
   const user = {
-    id: "sample-user-id",
     name: "sample-user-name",
     email: "sample-user-email",
     image: "/sample-icon.jpg",
     admin: false,
-    createdAt: new Date(),
   };
 
-  await db.user.create({
-    data: user,
+  let createdUser;
+  const existingUser = await db.user.findUnique({
+    where: { email: user.email },
   });
 
+  if (!existingUser) {
+    createdUser = await db.user.create({
+      data: user,
+    });
+  }
+  else {
+    createdUser = existingUser;
+  }
+
   for (const a of articles) {
+    const randomTags = getRandomTags(3);
+    const tagsBinary = tagsToBinary(randomTags);
+
     await db.article.create({
       data: {
         title: a.title,
-        content: `<p>${a.content}</p>`,
+        content: a.content,
         like: a.like,
-        userId: a.userId,
+        userId: createdUser.id,
+        tags: tagsBinary,
       },
     });
   }
 }
-
 main()
   .catch(e => {
     console.log(e);
