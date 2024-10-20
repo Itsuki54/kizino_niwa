@@ -1,6 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
 import { createWriteStream } from "fs";
+import type {
+  NextApiRequest,
+  NextApiResponse,
+} from "next";
 
 export const config = {
   api: {
@@ -14,12 +17,12 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") return;
   let path = "";
   const form = formidable({ multiples: true, uploadDir: __dirname });
-  form.onPart = (part) => {
+  form.onPart = part => {
     if (part.originalFilename === "" || !part.mimetype) {
       form._handlePart(part);
-    } else if (part.originalFilename) {
-      path =
-        "./public/images/uploads/" +
+    }
+    else if (part.originalFilename) {
+      path = "./public/images/uploads/" +
         new Date().getTime() +
         part.originalFilename;
       const stream = createWriteStream(path);

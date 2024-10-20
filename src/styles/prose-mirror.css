@@ -1,4 +1,4 @@
-/* src/styles/prose-mirror.css */
+/* src/styles/prose-mirror.css
 
 .ProseMirror {
   min-height: 480px;
@@ -53,11 +53,11 @@
 
 .ProseMirror code {
   font-family: "Fira Code", monospace;
-  font-size: 1rem; /* 文字サイズを1remに変更 */
-  background-color: #f0f0f0; /* 背景色を灰色に変更 */
-  color: #333; /* 文字色を濃い灰色に変更 */
-  padding: 0.5rem 1rem; /* 上下の余白を0.5rem、左右の余白を1remに変更 */
-  border-radius: 0.25rem; /* 角丸を0.25remに変更 */
+  font-size: 1rem;
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
 }
 
 .ProseMirror ol {
@@ -71,3 +71,4 @@
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
+*/

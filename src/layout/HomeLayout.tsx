@@ -1,20 +1,15 @@
-import React from "react";
-import { Footer } from "../components/organisms/layout/Footer";
 import { Button } from "@/components/ui/button";
+import React from "react";
+import { Footer } from "../components/footer";
 
-interface HomeLayoutProps {
+interface LayoutProps {
   header: React.ReactNode;
   rightBar: React.ReactNode;
   leftBar: React.ReactNode;
   main: React.ReactNode;
 }
 
-export function HomeLayout({
-  header,
-  rightBar,
-  leftBar,
-  main,
-}: HomeLayoutProps) {
+export function Layout({ header, rightBar, leftBar, main }: LayoutProps) {
   return (
     <div className="flex-col h-screen ">
       <div className="flex-1  flex-col top-0 sticky ">

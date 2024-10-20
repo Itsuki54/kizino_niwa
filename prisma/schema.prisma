@@ -1,19 +1,12 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./dev.db"
 }
 
-// テーブル: User
 model User {
   id            String         @id @default(cuid())
   name          String
@@ -23,26 +16,29 @@ model User {
   createdAt     DateTime       @default(now())
   groupId       String?
   articles      Article[]
-  notifications Notification[]
   likes         Like[]
-  stocks        Stock[]
   link          Link[]
+  notifications Notification[]
+  stocks        Stock[]
   Group         Group?         @relation(fields: [groupId], references: [id])
+
+  @@index([groupId], map: "User_groupId_fkey")
 }
 
-// テーブル: Article
 model Article {
-  id         String       @id @default(cuid())
-  title      String
-  content    String       @db.LongText
-  createdAt  DateTime     @default(now())
-  updatedAt  DateTime     @updatedAt
-  like       Int          @default(0)
-  userId     String
-  user       User         @relation(fields: [userId], references: [id])
-  likes      Like[]
-  stocks     Stock[]
-  TagArticle TagArticle[]
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  tags      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  like      Int      @default(0)
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  likes     Like[]
+  stocks    Stock[]
+
+  @@index([userId], map: "Article_userId_fkey")
 }
 
 model Notification {
@@ -54,14 +50,19 @@ model Notification {
   createdAt   DateTime @default(now())
   userId      String
   user        User     @relation(fields: [userId], references: [id])
+
+  @@index([userId], map: "Notification_userId_fkey")
 }
 
 model Like {
   id        String  @id @default(cuid())
   userId    String
   articleId String
-  user      User    @relation(fields: [userId], references: [id])
   article   Article @relation(fields: [articleId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
+
+  @@index([articleId], map: "Like_articleId_fkey")
+  @@index([userId], map: "Like_userId_fkey")
 }
 
 model Stock {
@@ -69,8 +70,11 @@ model Stock {
   name      String
   userId    String
   articleId String
-  user      User    @relation(fields: [userId], references: [id])
   article   Article @relation(fields: [articleId], references: [id])
+  user      User    @relation(fields: [userId], references: [id])
+
+  @@index([articleId], map: "Stock_articleId_fkey")
+  @@index([userId], map: "Stock_userId_fkey")
 }
 
 model Link {
@@ -79,25 +83,13 @@ model Link {
   url    String
   userId String
   user   User   @relation(fields: [userId], references: [id])
-}
 
-model TagArticle {
-  id        String  @id @default(cuid())
-  tagId     String
-  articleId String
-  tag       Tag     @relation(fields: [tagId], references: [id])
-  article   Article @relation(fields: [articleId], references: [id])
-}
-
-model Tag {
-  id         String       @id @default(cuid())
-  name       String
-  TagArticle TagArticle[]
+  @@index([userId], map: "Link_userId_fkey")
 }
 
 model Group {
   id        String   @id @default(cuid())
   name      String
-  users     User[]
   createdAt DateTime @default(now())
+  users     User[]
 }
