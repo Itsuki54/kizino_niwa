@@ -1,62 +1,154 @@
+import React, { useState } from 'react';
+import { GetServerSideProps } from 'next';
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import {
-  useEffect,
-  useState,
-} from "react";
+import { Layout } from '@/layout/HomeLayout';
+import { Button } from '@/components/ui/button';
+import {db} from '@/lib/prisma';
+import { getSession } from 'next-auth/react';
 
-interface Email {
+interface User {
   id: string;
-  subject: string;
-  from: string;
-  created_at: string;
+  name: string;
+  email: string;
+  admin: boolean;
 }
 
-function Emails() {
-  const [emails, setEmails] = useState<Email[]>([]);
+interface DBStats {
+  totalUsers: number;
+  totalArticles: number;
+  totalNotifications: number;
+  totalLikes: number;
+  totalStocks: number;
+  totalLinks: number;
+  totalGroups: number;
+}
 
-  // メールリストをAPIから取得
-  useEffect(() => {
-    const fetchEmails = async () => {
-      try {
-        const res = await fetch("http://localhost:19926/api/v1/messages");
-        const data = await res.json();
-        setEmails(data.messages); // メッセージのリストをセット
-      }
-      catch (error) {
-        console.error("Error fetching emails:", error);
-      }
-    };
+interface AdminDashboardProps {
+  initialUsers: User[];
+  initialDbStats: DBStats;
+}
 
-    fetchEmails();
-  }, []);
-
+const AdminDashboard: React.FC<AdminDashboardProps> = ({ initialUsers, initialDbStats }) => {
+  const [users, setUsers] = useState<User[]>(initialUsers);
+  const [dbStats, setDbStats] = useState<DBStats>(initialDbStats);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const { data: session, status } = useSession();
   const router = useRouter();
-  const viewEmail = (id: string) => {
-    router.push(`/admin/email/${id}`);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
+
+  const handleUserClick = (user: User) => {
+    setSelectedUser(user);
   };
 
-  return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">メール一覧</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {emails.map(email => (
-          <div key={email.id} className="p-4 border rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold">{email.subject}</h2>
-            <p className="text-sm text-gray-500">{email.from}</p>
-            <p className="text-sm text-gray-500">
-              {new Date(email.created_at).toLocaleString()}
-            </p>
-            <button
-              className="mt-2 bg-blue-500 text-white px-4 py-2 rounded"
-              onClick={() => viewEmail(email.id)}
-            >
-              詳細を見る
-            </button>
-          </div>
+  const header = <h1 className="text-2xl font-bold p-4">管理ダッシュボード</h1>;
+
+  const leftBar = (
+    <div className="p-4">
+      <h2 className="text-xl font-semibold mb-4">ユーザー一覧</h2>
+      <ul>
+        {users.map(user => (
+          <li key={user.id} className="mb-2">
+            <Button variant="ghost" onClick={() => handleUserClick(user)}>
+              {user.name}
+            </Button>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
-}
 
-export default Emails;
+  const rightBar = (
+    <div className="p-4">
+      <h2 className="text-xl font-semibold mb-4">DB統計</h2>
+      <ul>
+        <li>総ユーザー数: {dbStats.totalUsers}</li>
+        <li>総記事数: {dbStats.totalArticles}</li>
+        <li>総通知数: {dbStats.totalNotifications}</li>
+        <li>総いいね数: {dbStats.totalLikes}</li>
+        <li>総ストック数: {dbStats.totalStocks}</li>
+        <li>総リンク数: {dbStats.totalLinks}</li>
+        <li>総グループ数: {dbStats.totalGroups}</li>
+      </ul>
+    </div>
+  );
+
+  const main = (
+    <div className="p-4">
+      <h2 className="text-xl font-semibold mb-4">ユーザー詳細</h2>
+      {selectedUser ? (
+        <div>
+          <p>名前: {selectedUser.name}</p>
+          <p>メール: {selectedUser.email}</p>
+          <p>管理者: {selectedUser.admin ? 'はい' : 'いいえ'}</p>
+        </div>
+      ) : (
+        <p>ユーザーを選択してください</p>
+      )}
+    </div>
+  );
+
+  return <Layout header={header} leftBar={leftBar} rightBar={rightBar} main={main} />;
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+
+  if (!session  ) {
+    return {
+      redirect: {
+        destination: '/signin',
+        permanent: false,
+      },
+    };
+  }
+
+  const users = await db.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      admin: true,
+    },
+  });
+
+  const [
+    totalUsers,
+    totalArticles,
+    totalNotifications,
+    totalLikes,
+    totalStocks,
+    totalLinks,
+    totalGroups
+  ] = await db.$transaction([
+    db.user.count(),
+    db.article.count(),
+    db.notification.count(),
+    db.like.count(),
+    db.stock.count(),
+    db.link.count(),
+    db.group.count(),
+  ]);
+
+  const dbStats = {
+    totalUsers,
+    totalArticles,
+    totalNotifications,
+    totalLikes,
+    totalStocks,
+    totalLinks,
+    totalGroups,
+  };
+
+  return {
+    props: {
+      initialUsers: users,
+      initialDbStats: dbStats,
+    },
+  };
+};
+
+export default AdminDashboard;
