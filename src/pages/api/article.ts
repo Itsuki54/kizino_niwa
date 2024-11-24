@@ -62,7 +62,6 @@ export default async function handler(
 ) {
   const { title, content, userId, tags, like, id, method } = req.body;
   let newArticle;
-  console.log(req.body);
   if (req.method === "POST") {
     newArticle = await createArticle({
       title,

@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { GetServerSideProps } from 'next';
+import { Button } from "@/components/ui/button";
+import { Layout } from "@/layout/HomeLayout";
+import { db } from "@/lib/prisma";
+import { GetServerSideProps } from "next";
 import { useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { Layout } from '@/layout/HomeLayout';
-import { Button } from '@/components/ui/button';
-import {db} from '@/lib/prisma';
-import { getSession } from 'next-auth/react';
+import React, { useState } from "react";
 
 interface User {
   id: string;
@@ -29,7 +29,10 @@ interface AdminDashboardProps {
   initialDbStats: DBStats;
 }
 
-const AdminDashboard: React.FC<AdminDashboardProps> = ({ initialUsers, initialDbStats }) => {
+const AdminDashboard: React.FC<AdminDashboardProps> = ({
+  initialUsers,
+  initialDbStats,
+}) => {
   const [users, setUsers] = useState<User[]>(initialUsers);
   const [dbStats, setDbStats] = useState<DBStats>(initialDbStats);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
@@ -83,24 +86,22 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ initialUsers, initialDb
         <div>
           <p>名前: {selectedUser.name}</p>
           <p>メール: {selectedUser.email}</p>
-          <p>管理者: {selectedUser.admin ? 'はい' : 'いいえ'}</p>
+          <p>管理者: {selectedUser.admin ? "はい" : "いいえ"}</p>
         </div>
-      ) : (
-        <p>ユーザーを選択してください</p>
-      )}
+      ) : <p>ユーザーを選択してください</p>}
     </div>
   );
 
   return <Layout header={header} leftBar={leftBar} rightBar={rightBar} main={main} />;
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async context => {
   const session = await getSession(context);
 
-  if (!session  ) {
+  if (!session) {
     return {
       redirect: {
-        destination: '/signin',
+        destination: "/signin",
         permanent: false,
       },
     };
@@ -122,7 +123,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     totalLikes,
     totalStocks,
     totalLinks,
-    totalGroups
+    totalGroups,
   ] = await db.$transaction([
     db.user.count(),
     db.article.count(),

@@ -25,9 +25,7 @@ interface Props {
 
 function Kizinoniwa({ user, notification, allArticle }: Props) {
   const { status } = useSession();
-  useEffect(() => {
-    console.log(status, user);
-  }, []);
+
   return (
     <>
       {status === "loading" ? null : <Home allArticle={allArticle} notification={notification} user={user} />}
@@ -37,7 +35,6 @@ function Kizinoniwa({ user, notification, allArticle }: Props) {
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
-  console.log(session);
   let allArticle: ArticleWithUserType[] = [];
   try {
     const allArticleData = await AllArticleWithUser();
@@ -66,6 +63,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     else {
       const notificationData = await NotificationQuery(user.id);
       const notification = JSON.parse(JSON.stringify(notificationData));
+
       return {
         props: {
           user,

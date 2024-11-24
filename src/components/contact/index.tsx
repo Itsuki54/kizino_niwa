@@ -15,7 +15,7 @@ import {
   send,
 } from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   SubmitHandler,
   useForm,
@@ -57,10 +57,8 @@ const Contact = () => {
       setIsSending(true);
       const loadingToast = toast.loading("送信中...");
 
-      // emailjsを初期化する
       init(userId);
 
-      // 送信するデータを定義する
       const params = {
         name: name,
         email: email,
@@ -68,7 +66,6 @@ const Contact = () => {
       };
 
       try {
-        // 送信する
         await send(serviceId, templateId, params);
         toast.success("送信が成功しました。");
       }

@@ -20,7 +20,6 @@ model User {
   link          Link[]
   notifications Notification[]
   stocks        Stock[]
-  Group         Group?         @relation(fields: [groupId], references: [id])
 
   @@index([groupId], map: "User_groupId_fkey")
 }
@@ -85,11 +84,4 @@ model Link {
   user   User   @relation(fields: [userId], references: [id])
 
   @@index([userId], map: "Link_userId_fkey")
-}
-
-model Group {
-  id        String   @id @default(cuid())
-  name      String
-  createdAt DateTime @default(now())
-  users     User[]
 }

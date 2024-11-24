@@ -37,7 +37,6 @@ export default function fav({
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
-  console.log(session);
   let allArticle: ArticleWithUserType[] = [];
   try {
     const allArticleData = await AllArticleWithUser();

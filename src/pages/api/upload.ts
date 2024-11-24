@@ -29,7 +29,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       part.pipe(stream);
 
       part.on("end", () => {
-        console.log(part + " is uploaded");
         stream.close();
       });
     }
