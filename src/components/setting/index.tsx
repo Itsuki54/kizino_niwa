@@ -8,7 +8,7 @@ import { Header } from "../layout/Header";
 import SideBar from "../layout/SideBar";
 import { SettingProfile } from "./SettingProfile";
 
-export interface SettingProps {
+interface SettingProps {
   user: User;
   link: Link[];
   notification: Notification[];

@@ -1,8 +1,7 @@
 import { tags } from "@/data/tag";
 import {
-  use,
   useEffect,
-  useState,
+  useState
 } from "react";
 import { TagItem } from "../tag/TagItem";
 import { TagSelectedItem } from "../tag/TagSelectedItem";

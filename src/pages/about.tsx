@@ -1,4 +1,5 @@
 import { Footer } from "@/components/footer";
+
 export default function About() {
   return (
     <div className="flex-col">

@@ -1,7 +1,6 @@
-import { useRouter } from "next/router";
 import React from "react";
 
-export interface SideBarItemProps {
+interface SideBarItemProps {
   title: string;
   icon: React.ReactNode;
   route: string;

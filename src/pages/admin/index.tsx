@@ -2,8 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Layout } from "@/layout/HomeLayout";
 import { db } from "@/lib/prisma";
 import { GetServerSideProps } from "next";
-import { useSession } from "next-auth/react";
-import { getSession } from "next-auth/react";
+import { getSession, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 

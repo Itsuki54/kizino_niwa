@@ -15,10 +15,9 @@ interface EmailDetail {
 
 function EmailDetailPage() {
   const router = useRouter();
-  const { id } = router.query; // URLからメールIDを取得
+  const { id } = router.query;
   const [email, setEmail] = useState<EmailDetail | null>(null);
 
-  // メールの詳細をAPIから取得
   useEffect(() => {
     if (id) {
       const fetchEmail = async () => {

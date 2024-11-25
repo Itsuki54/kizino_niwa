@@ -1,4 +1,3 @@
-import React from "react";
 
 import { IoSettingsOutline } from "react-icons/io5";
 import { SideBarItem } from "./SideBarItem";
@@ -25,4 +24,3 @@ export function SideBar() {
   );
 }
 
-export default SideBar;

@@ -20,12 +20,12 @@ export async function ArticleQuery(id: string) {
   return article;
 }
 
-export async function AllArticleQuery() {
+async function AllArticleQuery() {
   const article = db.article.findMany();
   return article;
 }
 
-export async function ArticleWithUser(articleId: string) {
+async function ArticleWithUser(articleId: string) {
   const articleWithUser = await db.article.findUnique({
     where: {
       id: articleId,

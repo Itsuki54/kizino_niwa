@@ -24,7 +24,7 @@ import {
   toast,
   Toaster,
 } from "react-hot-toast";
-export interface SettingProfileProps {
+interface SettingProfileProps {
   user: User;
   link: Link[];
   notification: Notification[];
