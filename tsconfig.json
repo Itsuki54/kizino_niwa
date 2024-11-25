@@ -44,7 +44,8 @@
     "src/pages/api/auth/[...nextauth].ts",
     "postcss.config.ts",
     "tailwind.config.js",
-    "next.config.mjs"
+    "next.config.mjs",
+    ".eslintrc.js"
   ],
   "exclude": ["node_modules"]
 }
