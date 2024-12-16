@@ -1,13 +1,14 @@
-import { binaryToTags } from "@/utils/binary";
 import {
   Article,
   User,
 } from "@prisma/client";
 import Image from "next/image";
 import { useState } from "react";
-import { LikeBotton } from "../common/LikeBotton";
 
-interface ArticleCardProps {
+import { LikeBotton } from "@/components/common/LikeBotton";
+import { binaryToTags } from "@/utils/binary";
+
+type ArticleCardProps = {
   id: Article["id"];
   title: Article["title"];
   content: Article["content"];
@@ -17,9 +18,9 @@ interface ArticleCardProps {
   tags: Article["tags"];
   like: number;
   createdUser: User;
-}
+};
 
-export function ArticleCard({
+export const ArticleCard: React.FC<ArticleCardProps> = ({
   id,
   title,
   content,
@@ -29,7 +30,7 @@ export function ArticleCard({
   like,
   createdUser,
   tags,
-}: ArticleCardProps) {
+}) => {
   const createDate = new Date(createdAt);
   const updateDate = new Date(updatedAt);
   const tagList = binaryToTags(tags);
@@ -104,7 +105,7 @@ export function ArticleCard({
         <div className="flex justify-start items-center mt-4">
           <div className="flex gap-2">
             {tagList.map((tag, index) => (
-              <div key={index} className="bg-gray-200 rounded p-1">
+              <div className="bg-gray-200 rounded p-1" key={index}>
                 {tag}
               </div>
             ))}
@@ -121,8 +122,8 @@ export function ArticleCard({
               alt="pen"
               height="32"
               src={createdUser.image}
-              width="32"
               style={{ borderRadius: 50, margin: 4 }}
+              width="32"
             />
             <h1 className="text-gray-700 font-bold">{createdUser.name}</h1>
           </a>
@@ -130,4 +131,4 @@ export function ArticleCard({
       </div>
     </div>
   );
-}
+};

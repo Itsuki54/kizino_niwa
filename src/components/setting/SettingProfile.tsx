@@ -13,17 +13,17 @@ import {
 } from "react";
 import Avatar from "react-avatar";
 import AvatarEditor from "react-avatar-editor";
-import { MdDriveFolderUpload } from "react-icons/md";
-import { PrimaryButton } from "../common/PrimaryButton";
-import { IconEditor } from "./IconEditor";
-import { UserEmailName } from "./UserEmailName";
-
-import { ModalComponent } from "../common/Modal";
-
 import {
   toast,
   Toaster,
 } from "react-hot-toast";
+import { MdDriveFolderUpload } from "react-icons/md";
+
+import { ModalComponent } from "../common/Modal";
+import { PrimaryButton } from "../common/PrimaryButton";
+import { IconEditor } from "./IconEditor";
+import { UserEmailName } from "./UserEmailName";
+
 interface SettingProfileProps {
   user: User;
   link: Link[];
@@ -159,28 +159,28 @@ export function SettingProfile({
         <div className="w-full md:w-2/5 p-4 sm:p-6 lg:p-8 bg-white shadow-md">
           <div className="flex-col">
             <Avatar
-              size="160"
+              alt="アイコン"
+              color="#ddd"
               name="アイコン"
               round
-              color="#ddd"
-              alt="アイコン"
+              size="160"
               src={icon ? URL.createObjectURL(icon) : user.image}
             />
-            <button type="button" onClick={handleClickChangeIcon}>
+            <button onClick={handleClickChangeIcon} type="button">
               <MdDriveFolderUpload style={{ fontSize: "32px" }} />
             </button>
             <input
-              type="file"
               accept="image/*, .png, .jpg, .jpeg, .gif, .svg"
-              style={{ display: "none" }}
-              ref={iconInputRef}
               onChange={handleChangePreviewIcon}
+              ref={iconInputRef}
+              style={{ display: "none" }}
+              type="file"
             />
           </div>
           <ModalComponent
-            title="アイコン編集"
             previewIcon={!!previewIcon}
             setPreviewIcon={setPreviewIcon}
+            title="アイコン編集"
           >
             <IconEditor
               {...{
@@ -205,12 +205,12 @@ export function SettingProfile({
       </div>
       <div className="flex justify-end mt-4">
         <PrimaryButton
-          title="保存"
+          disabled={isDisabled}
           onClick={async () => {
             await onSubmit();
             toast("保存しました");
           }}
-          disabled={isDisabled}
+          title="保存"
         />
       </div>
     </div>

@@ -3,6 +3,7 @@ import {
   Notification,
   User,
 } from "@prisma/client";
+
 import { HomeLayout } from "../../layout/HomeLayout";
 import { Header } from "../layout/Header";
 import SideBar from "../layout/SideBar";
@@ -17,10 +18,10 @@ interface SettingProps {
 export function Setting({ user, link, notification }: SettingProps) {
   return (
     <HomeLayout
-      header={<Header user={user} notification={notification} />}
-      rightBar={undefined}
+      header={<Header notification={notification} user={user} />}
       leftBar={<SideBar />}
-      main={<SettingProfile user={user} link={link} notification={notification} />}
+      main={<SettingProfile link={link} notification={notification} user={user} />}
+      rightBar={undefined}
     />
   );
 }

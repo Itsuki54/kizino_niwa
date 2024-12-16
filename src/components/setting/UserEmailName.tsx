@@ -1,7 +1,8 @@
-import { PrimaryButton } from "@/components/common/PrimaryButton";
 import { User } from "@prisma/client";
 import { useState } from "react";
 import { IoReloadOutline } from "react-icons/io5";
+
+import { PrimaryButton } from "@/components/common/PrimaryButton";
 
 interface props {
   user: User;
@@ -32,23 +33,23 @@ export function UserEmailName({ user, name, email, setName, setEmail }: props) {
         <label className="font-semibold block pb-1">名前</label>
         <div className="flex">
           <input
-            id="username"
             className="border-1  rounded-r px-4 py-2 w-full"
+            id="username"
+            onChange={e => setName(e.target.value)}
             type="text"
             value={name}
-            onChange={e => setName(e.target.value)}
           />
         </div>
         <div className="pb-2">
-          <label htmlFor="about" className="font-semibold  block pb-1">
+          <label className="font-semibold  block pb-1" htmlFor="about">
             メールアドレス
           </label>
           <input
-            id="email"
             className="border-1 px-4 py-2 w-full"
+            id="email"
+            onChange={e => setEmail(e.target.value)}
             type="email"
             value={email}
-            onChange={e => setEmail(e.target.value)}
           />
         </div>
       </div>

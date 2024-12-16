@@ -91,7 +91,7 @@ module.exports = {
     "no-restricted-imports": [
       "warn",
       {
-        patterns: ["./", "../"],
+        patterns: ["./*/", "../"],
       },
     ],
   },

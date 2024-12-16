@@ -2,16 +2,17 @@ import {
   Article,
   User,
 } from "@prisma/client";
-
-import { binaryToTags } from "@/utils/binary";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
+
 import { Divider } from "../common/Divider";
 import { ProfileButton } from "../header/ProfileButton";
+
+import { binaryToTags } from "@/utils/binary";
 
 interface ArticlePageProps {
   article: Article;
@@ -34,16 +35,16 @@ export function ArticlePage({ article, createdUser }: ArticlePageProps) {
       <div>
         <div className="flex gap-2">
           {tags.map((tag, index) => (
-            <div key={index} className="bg-gray-200 rounded p-1">
+            <div className="bg-gray-200 rounded p-1" key={index}>
               {tag}
             </div>
           ))}
         </div>
       </div>
       <ReactMarkdown
-        remarkPlugins={[remarkMath, remarkGfm]}
-        rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeKatex]}
         className="markdown-body"
+        rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeKatex]}
+        remarkPlugins={[remarkMath, remarkGfm]}
       >
         {article.content}
       </ReactMarkdown>

@@ -1,9 +1,10 @@
-import { db } from "@/lib/prisma";
 import { PrismaClient } from "@prisma/client";
 import {
   NextApiRequest,
   NextApiResponse,
 } from "next";
+
+import { db } from "@/lib/prisma";
 
 interface createProps {
   name: string;

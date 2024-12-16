@@ -6,18 +6,19 @@ import {
   useEffect,
   useState,
 } from "react";
-
-import { tagsToBinary } from "@/utils/binary";
 import {
   toast,
   Toaster,
 } from "react-hot-toast";
+
 import { Dialog } from "../common/Dialog";
 import { InputField } from "../common/InputField";
 import { PrimaryButton } from "../common/PrimaryButton";
 import { Header } from "../header";
 import { MarkdownEditor } from "./Editor";
 import { TagSelect } from "./TagSelect";
+
+import { tagsToBinary } from "@/utils/binary";
 
 interface MakeArticleProps {
   userId: string;
@@ -87,7 +88,7 @@ export function MakeArticle({ userId, user, notification }: MakeArticleProps) {
       <div>
         <Toaster />
       </div>
-      <Header user={user} notification={notification} />
+      <Header notification={notification} user={user} />
       <div className="flex-col p-4">
         <div className="flex justify-center w-full">
           <div className="w-full flex-col">
@@ -106,7 +107,7 @@ export function MakeArticle({ userId, user, notification }: MakeArticleProps) {
                 <TagSelect setTags={setTags} />
               </div>
             </div>
-            <MarkdownEditor setMarkdown={setContent} markdown={content} />
+            <MarkdownEditor markdown={content} setMarkdown={setContent} />
           </div>
         </div>
         <PrimaryButton

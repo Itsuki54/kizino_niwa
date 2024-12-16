@@ -1,10 +1,14 @@
+import { GetServerSideProps } from "next";
+import {
+  getSession,
+  useSession,
+} from "next-auth/react";
+import { useRouter } from "next/router";
+import React, { useState } from "react";
+
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/layout/HomeLayout";
 import { db } from "@/lib/prisma";
-import { GetServerSideProps } from "next";
-import { getSession, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import React, { useState } from "react";
 
 interface User {
   id: string;
@@ -53,8 +57,8 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({
       <h2 className="text-xl font-semibold mb-4">ユーザー一覧</h2>
       <ul>
         {users.map(user => (
-          <li key={user.id} className="mb-2">
-            <Button variant="ghost" onClick={() => handleUserClick(user)}>
+          <li className="mb-2" key={user.id}>
+            <Button onClick={() => handleUserClick(user)} variant="ghost">
               {user.name}
             </Button>
           </li>
@@ -91,7 +95,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({
     </div>
   );
 
-  return <Layout header={header} leftBar={leftBar} rightBar={rightBar} main={main} />;
+  return <Layout header={header} leftBar={leftBar} main={main} rightBar={rightBar} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async context => {

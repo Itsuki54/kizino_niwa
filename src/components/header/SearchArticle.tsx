@@ -1,5 +1,6 @@
-import { Input } from "@/components/ui/input";
 import { InputField } from "../../common/InputField";
+
+import { Input } from "@/components/ui/input";
 
 export function SearchArticle() {
   return (
@@ -13,7 +14,7 @@ export function SearchArticle() {
         value={""}
       /> */
       }
-      <Input type="text" placeholder="Search Article" />
+      <Input placeholder="Search Article" type="text" />
     </div>
   );
 }

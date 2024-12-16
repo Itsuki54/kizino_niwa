@@ -5,17 +5,15 @@ import {
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
+import { useEffect } from "react";
+
+import { authOptions } from "./api/auth/[...nextauth]";
 
 import { Home } from "@/components/layout/Home";
-
 import { ArticleWithUserType } from "@/types/article";
 import { AllArticleWithUser } from "@/utils/query/Article.query";
 import { NotificationQuery } from "@/utils/query/Notification.query";
 import { UserDataQuery } from "@/utils/query/User.query";
-
-import { authOptions } from "./api/auth/[...nextauth]";
-
-import { useEffect } from "react";
 
 interface Props {
   user: User | null;

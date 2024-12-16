@@ -1,10 +1,11 @@
-import { db } from "@/lib/prisma";
 import { PrismaClient } from "@prisma/client";
 import {
   NextApiRequest,
   NextApiResponse,
 } from "next";
 import { use } from "react";
+
+import { db } from "@/lib/prisma";
 
 interface createProps {
   articleId: string;

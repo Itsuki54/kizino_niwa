@@ -2,11 +2,11 @@ import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 import { useRouter } from "next/router";
 
+import { authOptions } from "./api/auth/[...nextauth]";
+
 import { UserToArticleQuery } from "@/utils/query/Article.query";
 import { NotificationQuery } from "@/utils/query/Notification.query";
 import { UserDataQuery } from "@/utils/query/User.query";
-
-import { authOptions } from "./api/auth/[...nextauth]";
 
 export default function UserProfilePage() {
   const router = useRouter();

@@ -21,10 +21,10 @@ export function ModalComponent({
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Modal
-      isOpen={previewIcon}
-      onRequestClose={() => setIsOpen(false)}
       ariaHideApp={false}
       closeTimeoutMS={500}
+      isOpen={previewIcon}
+      onRequestClose={() => setIsOpen(false)}
       style={{
         overlay: {
           backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -46,7 +46,7 @@ export function ModalComponent({
     >
       <div className="flex-col m-4">
         <div className="flex justify-end">
-          <button type="button" onClick={() => setPreviewIcon(null)}>
+          <button onClick={() => setPreviewIcon(null)} type="button">
             <IoClose style={{ fontSize: "32px" }} />
           </button>
         </div>

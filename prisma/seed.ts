@@ -1,4 +1,5 @@
 const { PrismaClient } = require("@prisma/client");
+
 const db = new PrismaClient();
 import { tags } from "@/data/tag";
 import { tagsToBinary } from "@/utils/binary";

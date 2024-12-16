@@ -6,17 +6,16 @@ import {
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 
+import { authOptions } from "../api/auth/[...nextauth]";
+
 import { ArticlePage } from "@/components/article";
-
-import { ArticleQuery } from "@/utils/query/Article.query";
-import { NotificationQuery } from "@/utils/query/Notification.query";
-import { UserDataQuery } from "@/utils/query/User.query";
-
 import {
   NotificationMock,
   userMock,
 } from "@/mock/user";
-import { authOptions } from "../api/auth/[...nextauth]";
+import { ArticleQuery } from "@/utils/query/Article.query";
+import { NotificationQuery } from "@/utils/query/Notification.query";
+import { UserDataQuery } from "@/utils/query/User.query";
 
 interface props {
   user: User;

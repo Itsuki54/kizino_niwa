@@ -20,16 +20,16 @@ export function MarkdownEditor({ markdown, setMarkdown }: MarkdownEditorProps) {
       <div className=" overflow-y-auto w-1/2">
         <textarea
           className="w-full p-3 text-lg overflow-y-auto border border-gray-300 rounded min-h-[400px]"
+          onChange={e => setMarkdown(e.target.value)}
           placeholder="Write your Markdown here..."
           value={markdown}
-          onChange={e => setMarkdown(e.target.value)}
         />
       </div>
       <div className="flex-1 p-3 border rounded overflow-y-auto max-h-[400px]">
         <ReactMarkdown
-          remarkPlugins={[remarkMath, remarkGfm]}
-          rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeKatex]}
           className="markdown-body"
+          rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeKatex]}
+          remarkPlugins={[remarkMath, remarkGfm]}
         >
           {markdown}
         </ReactMarkdown>

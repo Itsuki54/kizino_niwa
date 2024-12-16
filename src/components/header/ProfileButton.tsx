@@ -18,10 +18,10 @@ export function ProfileButton({ imageUrl, name, userId }: ProfileButtonProps) {
     <div className="flex flex-row items-center gap-1">
       <Image
         alt={name}
+        className="rounded-full cursor-pointer"
         height={32}
         onClick={GotoPage}
         src={imageUrl}
-        className="rounded-full cursor-pointer"
         width={32}
       />
     </div>

@@ -7,11 +7,11 @@ import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 import { useRouter } from "next/router";
 
-import { MakeArticle } from "@/components/makeArticle";
+import { authOptions } from "../api/auth/[...nextauth]";
 
+import { MakeArticle } from "@/components/makeArticle";
 import { NotificationQuery } from "@/utils/query/Notification.query";
 import { UserDataQuery } from "@/utils/query/User.query";
-import { authOptions } from "../api/auth/[...nextauth]";
 
 interface props {
   user: User;

@@ -1,7 +1,3 @@
-import { Setting } from "@/components/setting";
-import { NotificationQuery } from "@/utils/query/Notification.query";
-import { UserDataQuery } from "@/utils/query/User.query";
-import { UserToLinkQuery } from "@/utils/query/User.query";
 import {
   Link,
   Notification,
@@ -9,7 +5,13 @@ import {
 } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
+
 import { authOptions } from "./api/auth/[...nextauth]";
+
+import { Setting } from "@/components/setting";
+import { NotificationQuery } from "@/utils/query/Notification.query";
+import { UserDataQuery } from "@/utils/query/User.query";
+import { UserToLinkQuery } from "@/utils/query/User.query";
 
 export interface SettingProps {
   user: User;
@@ -18,7 +20,7 @@ export interface SettingProps {
 }
 
 export default function setting({ user, link, notification }: SettingProps) {
-  return <Setting user={user} link={link} notification={notification} />;
+  return <Setting link={link} notification={notification} user={user} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {

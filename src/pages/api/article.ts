@@ -1,8 +1,9 @@
-import { db } from "@/lib/prisma";
 import {
   NextApiRequest,
   NextApiResponse,
 } from "next";
+
+import { db } from "@/lib/prisma";
 interface createProps {
   title: string;
   content: string;

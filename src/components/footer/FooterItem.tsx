@@ -8,8 +8,8 @@ export function FooterItem({ title, icon, route }: FooterItemProps) {
   return (
     <li>
       <a
-        href={route}
         className="text-sm leading-6 text-gray-600 hover:text-gray-900"
+        href={route}
       >
         {icon}
         <span className="ml-2">{title}</span>

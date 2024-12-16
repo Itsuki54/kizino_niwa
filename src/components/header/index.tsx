@@ -3,12 +3,13 @@ import {
   User,
 } from "@prisma/client";
 
-import { Button } from "@/components/ui/button";
 import { LogoTitle } from "./LogoTitle";
 import { MakeArticleButton } from "./MakeArticleButton";
 import { NotificationButton } from "./NotificationButton";
 import { ProfileButton } from "./ProfileButton";
 import { SearchArticle } from "./SearchArticle";
+
+import { Button } from "@/components/ui/button";
 
 interface HeaderProps {
   user: User | null;

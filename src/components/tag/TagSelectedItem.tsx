@@ -12,19 +12,19 @@ export function TagSelectedItem({ tag, onDelete }: TagSelectedItemProps) {
       <div className="flex flex-auto flex-row-reverse">
         <div>
           <svg
-            width="100%"
-            height="100%"
+            className="feather feather-x cursor-pointer rounded-full w-4 h-4 ml-2"
             fill="none"
-            viewBox="0 0 24 24"
+            height="100%"
+            onClick={() => onDelete(tag)}
             stroke="currentColor"
-            stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
-            className="feather feather-x cursor-pointer rounded-full w-4 h-4 ml-2"
-            onClick={() => onDelete(tag)}
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            width="100%"
           >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
+            <line x1="18" x2="6" y1="6" y2="18"></line>
+            <line x1="6" x2="18" y1="6" y2="18"></line>
           </svg>
         </div>
       </div>

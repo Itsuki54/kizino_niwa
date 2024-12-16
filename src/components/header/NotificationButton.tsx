@@ -13,8 +13,8 @@ export function NotificationButton({ notifications }: NotificationButtonProps) {
   return (
     <button className="menu-item">
       <FaBell
-        size={20}
         onClick={() => setShowNotification(!setShowNotification)}
+        size={20}
       />
       {showNotification
         ? notifications.map(notification => (

@@ -1,6 +1,8 @@
-import { Button } from "@/components/ui/button";
 import React from "react";
+
 import { Footer } from "../components/footer";
+
+import { Button } from "@/components/ui/button";
 
 interface LayoutProps {
   header: React.ReactNode;

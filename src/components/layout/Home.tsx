@@ -4,11 +4,12 @@ import {
   User,
 } from "@prisma/client";
 
-import { ArticleWithUserType } from "@/types/article";
 import { Layout } from "../../layout/HomeLayout";
 import { ArticleCard } from "../article/ArticleCard";
 import { Header } from "../header";
 import { SideBar } from "../sidebar";
+
+import { ArticleWithUserType } from "@/types/article";
 
 interface HomeProps {
   user: User | null;
@@ -23,15 +24,15 @@ export function Home({ user, notification, allArticle }: HomeProps) {
       leftBar={<SideBar />}
       main={allArticle.map(article => (
         <ArticleCard
-          id={article.id}
-          title={article.title}
           content={article.content}
-          userId={article.userId}
           createdAt={article.createdAt}
-          updatedAt={article.updatedAt}
+          createdUser={article.user}
+          id={article.id}
           like={article.like}
           tags={article.tags}
-          createdUser={article.user}
+          title={article.title}
+          updatedAt={article.updatedAt}
+          userId={article.userId}
         />
       ))}
       rightBar={<div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>}
