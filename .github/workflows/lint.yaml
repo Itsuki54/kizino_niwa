@@ -8,10 +8,10 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install dependencies
         run: npm install
-      - name: Lint JavaScript/TypeScript
-        run: npm run check
+      - name: ESLint
+        run: npm run lint
       - name: Dprint Check
-        run: dprint check
+        run: npm run format:check
       - name: Secretlint
         run: secretlint --maskSecrets --secretlintignore .gitignore '**/*'
       - name: Markuplint
