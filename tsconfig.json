@@ -1,51 +1,51 @@
 {
-  "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "bundler",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noUncheckedIndexedAccess": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": ["./src/*"],
-      "@components/*": ["./src/components/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@images/*": ["./public/images/*"],
-      "@types/*": ["./src/types/*"],
-      "@query/*": ["./src/utils/query/*"],
-      "@mutation/*": ["./src/pages/api/mutation/*"],
-      "@atoms/*": ["./src/components/atoms/*"],
-      "@molecules/*": ["./src/components/molecules/*"],
-      "@organisms/*": ["./src/components/organisms/*"],
-      "@templates/*": ["./src/components/templates/*"],
-      "@context/*": ["./src/context/*"]
-    }
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/pages/api/auth/[...nextauth].ts",
-    "postcss.config.ts",
-    "tailwind.config.js",
-    "next.config.mjs",
-    ".eslintrc.js"
-  ],
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true,
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitReturns": true,
+		"noUncheckedIndexedAccess": true,
+		"plugins": [
+			{
+				"name": "next"
+			}
+		],
+		"paths": {
+			"@/*": ["./src/*"],
+			"@components/*": ["./src/components/*"],
+			"@pages/*": ["./src/pages/*"],
+			"@styles/*": ["./src/styles/*"],
+			"@images/*": ["./public/images/*"],
+			"@types/*": ["./src/types/*"],
+			"@query/*": ["./src/utils/query/*"],
+			"@mutation/*": ["./src/pages/api/mutation/*"],
+			"@atoms/*": ["./src/components/atoms/*"],
+			"@molecules/*": ["./src/components/molecules/*"],
+			"@organisms/*": ["./src/components/organisms/*"],
+			"@templates/*": ["./src/components/templates/*"],
+			"@context/*": ["./src/context/*"]
+		}
+	},
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		".next/types/**/*.ts",
+		"src/pages/api/auth/[...nextauth].ts",
+		"postcss.config.ts",
+		"tailwind.config.js",
+		"next.config.mjs",
+		".eslintrc.js"
+	],
+	"exclude": ["node_modules"]
 }

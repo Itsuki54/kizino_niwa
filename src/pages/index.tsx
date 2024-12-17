@@ -1,6 +1,6 @@
 import {
-  Notification,
-  User,
+	Notification,
+	User,
 } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
@@ -15,60 +15,60 @@ import { UserDataQuery } from "@/utils/query/User.query";
 import { authOptions } from "./api/auth/[...nextauth]";
 
 type Props = {
-  user: User | null;
-  notification: Notification[] | null;
-  allArticle: ArticleWithUserType[];
+	user: User | null;
+	notification: Notification[] | null;
+	allArticle: ArticleWithUserType[];
 };
 
 function Kizinoniwa({ user, notification, allArticle }: Props) {
-  const { status } = useSession();
+	const { status } = useSession();
 
-  return (
-    <>
-      {status === "loading" ? null : <Home allArticle={allArticle} notification={notification} user={user} />}
-    </>
-  );
+	return (
+		<>
+			{status === "loading" ? null : <Home allArticle={allArticle} notification={notification} user={user} />}
+		</>
+	);
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
-  const session = await getServerSession(ctx.req, ctx.res, authOptions);
-  let allArticle: ArticleWithUserType[] = [];
-  try {
-    const allArticleData = await AllArticleWithUser();
-    allArticle = JSON.parse(JSON.stringify(allArticleData));
-  }
-  catch (error) {
-  }
-  if (!session) {
-    return {
-      props: {
-        allArticle: allArticle,
-      },
-    };
-  }
-  else {
-    const userData = await UserDataQuery(session.user.uid);
-    const user = JSON.parse(JSON.stringify(userData));
-    if (!user) {
-      return {
-        props: {
-          allArticle: allArticle,
-        },
-      };
-    }
-    else {
-      const notificationData = await NotificationQuery(user.id);
-      const notification = JSON.parse(JSON.stringify(notificationData));
+	const session = await getServerSession(ctx.req, ctx.res, authOptions);
+	let allArticle: ArticleWithUserType[] = [];
+	try {
+		const allArticleData = await AllArticleWithUser();
+		allArticle = JSON.parse(JSON.stringify(allArticleData));
+	}
+	catch (error) {
+	}
+	if (!session) {
+		return {
+			props: {
+				allArticle: allArticle,
+			},
+		};
+	}
+	else {
+		const userData = await UserDataQuery(session.user.uid);
+		const user = JSON.parse(JSON.stringify(userData));
+		if (!user) {
+			return {
+				props: {
+					allArticle: allArticle,
+				},
+			};
+		}
+		else {
+			const notificationData = await NotificationQuery(user.id);
+			const notification = JSON.parse(JSON.stringify(notificationData));
 
-      return {
-        props: {
-          user,
-          notification,
-          allArticle,
-        },
-      };
-    }
-  }
+			return {
+				props: {
+					user,
+					notification,
+					allArticle,
+				},
+			};
+		}
+	}
 };
 
 export default Kizinoniwa;
