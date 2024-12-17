@@ -1,6 +1,6 @@
 import { db } from '@/lib/prisma';
 
-export async function NotificationQuery(id: string) {
+export const NotificationQuery = async (id: string) => {
   const notification = db.notification.findMany({
     where: {
       userId: id,
@@ -8,4 +8,4 @@ export async function NotificationQuery(id: string) {
   });
 
   return notification;
-}
+};

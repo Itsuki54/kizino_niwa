@@ -11,7 +11,7 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async signIn(user: any) {
+    signIn: async (user: any) => {
       const { name } = user.user;
       await db.user.upsert({
         where: { name },
@@ -26,7 +26,7 @@ export const authOptions = {
 
       return true;
     },
-    async session({ session, token }: any) {
+    session: async ({ session, token }: any) => {
       session.accessToken = token.accessToken;
 
       session.user.id = token.id;
@@ -35,7 +35,7 @@ export const authOptions = {
       return session;
     },
 
-    async jwt({ token, user }: any) {
+    jwt: async ({ token, user }: any) => {
       if (user) {
         const userExist = await db.user.findUnique({
           where: {

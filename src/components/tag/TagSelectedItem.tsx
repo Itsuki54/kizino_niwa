@@ -3,7 +3,7 @@ type TagSelectedItemProps = {
   onDelete: Function;
 };
 
-export function TagSelectedItem({ tag, onDelete }: TagSelectedItemProps) {
+export const TagSelectedItem = ({ tag, onDelete }: TagSelectedItemProps) => {
   return (
     <div className='flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full border  '>
       <div className='text-s font-normal leading-none max-w-full flex-initial m-1'>
@@ -30,4 +30,4 @@ export function TagSelectedItem({ tag, onDelete }: TagSelectedItemProps) {
       </div>
     </div>
   );
-}
+};

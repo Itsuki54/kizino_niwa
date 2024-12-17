@@ -19,7 +19,7 @@ module.exports = {
       2,
       {
         selector: 'TSEnumDeclaration',
-        message: 'Don\'t declare enums.',
+        message: "Don't declare enums.",
       },
       {
         selector: 'TSInterfaceDeclaration',
@@ -105,7 +105,7 @@ module.exports = {
           2,
           {
             selector: 'TSEnumDeclaration',
-            message: 'Don\'t declare enums.',
+            message: "Don't declare enums.",
           },
         ],
       },

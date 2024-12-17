@@ -1,32 +1,24 @@
 import { GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
 import { getServerSession } from 'next-auth';
 import {
   getProviders,
   signOut,
 } from 'next-auth/react';
+import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { UserDataQuery } from '@/utils/query/User.query';
 
-import { authOptions } from './api/auth/[...nextauth]';
-export default function SignOut() {
-  const router = useRouter();
-
-  function handleClick() {
-    signOut();
-    router.push('/');
-  }
+const SignOut = () => {
   return (
-    <>
-      <Button onClick={() => handleClick()}>Sign out</Button>
-    </>
+    <Link href='/'>
+      <Button onClick={() => signOut()}>Sign out</Button>
+    </Link>
   );
-}
+};
 
-// もしアカウントがなければ/にリダイレクトする
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const session = await getServerSession(context.req, context.res, authOptions);
   const providers = await getProviders();
   if (!session) {
@@ -50,4 +42,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: { providers: providers ?? [] },
   };
-}
+};
+
+export default SignOut;

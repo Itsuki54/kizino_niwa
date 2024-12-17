@@ -8,20 +8,19 @@ import { getServerSession } from 'next-auth';
 import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
 import { Layout } from '@/layout/HomeLayout';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ArticleWithUserType } from '@/types/article';
 import { AllArticleWithUser } from '@/utils/query/Article.query';
 import { NotificationQuery } from '@/utils/query/Notification.query';
 import { UserDataQuery } from '@/utils/query/User.query';
 
-import { authOptions } from './api/auth/[...nextauth]';
-
-export default function fav({
+const fav = ({
   user,
   notification,
 }: {
   user: User | null;
   notification: Notification[] | null;
-}) {
+}) => {
   return (
     <Layout
       header={<Header notification={notification} user={user} />}
@@ -35,7 +34,7 @@ export default function fav({
       rightBar={undefined}
     />
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
@@ -76,3 +75,5 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     }
   }
 };
+
+export default fav;

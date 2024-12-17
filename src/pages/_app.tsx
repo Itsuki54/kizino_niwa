@@ -1,5 +1,5 @@
-import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
+import Head from 'next/head';
 
 import { Toaster } from '@/components/ui/toaster';
 

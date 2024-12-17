@@ -4,18 +4,17 @@ import {
   signIn,
 } from 'next-auth/react';
 
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { UserDataQuery } from '@/utils/query/User.query';
-
-import { authOptions } from './api/auth/[...nextauth]';
 
 import type {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
 } from 'next';
 
-export default function SignIn({
+const Signin = ({
   providers,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <>
       {Object.values(providers).map(provider => (
@@ -27,9 +26,9 @@ export default function SignIn({
       ))}
     </>
   );
-}
+};
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const session = await getServerSession(context.req, context.res, authOptions);
   const providers = await getProviders();
   if (!session) {
@@ -56,4 +55,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   return {
     props: { providers: providers ?? [] },
   };
-}
+};
+
+export default Signin;

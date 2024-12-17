@@ -12,12 +12,12 @@ type updateProps = {
   image: string;
 };
 
-export async function updateUserMutation({
+export const updateUserMutation = async ({
   id,
   name,
   email,
   image,
-}: updateProps) {
+}: updateProps) => {
   const updateUser = await db.user.update({
     where: {
       id: id,
@@ -29,13 +29,15 @@ export async function updateUserMutation({
     },
   });
   return updateUser;
-}
+};
 
-export default async function handler(
+const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
-) {
+) => {
   const { id, name, email, image } = req.body;
   const updateUser = await updateUserMutation({ id, name, email, image });
   res.status(200).json(updateUser);
-}
+};
+
+export default handler;
