@@ -19,7 +19,7 @@ import {
 } from 'react-hot-toast';
 import { MdDriveFolderUpload } from 'react-icons/md';
 
-import { Modal } from '@/components/common/Modal';
+import { ModalComponent } from '@/components/common/Modal';
 import { PrimaryButton } from '@/components/common/PrimaryButton';
 
 import { IconEditor } from './IconEditor';
@@ -31,11 +31,11 @@ type SettingProfileProps = {
   notification: Notification[];
 };
 
-export function SettingProfile({
+export const SettingProfile=({
   user,
   link,
   notification,
-}: SettingProfileProps) {
+}: SettingProfileProps) =>{
   const [email, setEmail] = useState(user.email);
   const [isDisabled, setIsDisabled] = useState(true);
   const [imageURL, setImageURL] = useState(user.image);
@@ -48,7 +48,7 @@ export function SettingProfile({
   const editorRef = useRef<AvatarEditor | null>(null);
   const [scale, setScale] = useState(1);
 
-  async function save() {
+  const save=async()=> {
     await fetch('/api/mutation/user/UpdateUser', {
       method: 'POST',
       headers: {
@@ -169,7 +169,7 @@ export function SettingProfile({
               type='file'
             />
           </div>
-          <Modal
+          <ModalComponent
             previewIcon={!!previewIcon}
             setPreviewIcon={setPreviewIcon}
             title='アイコン編集'
@@ -183,7 +183,7 @@ export function SettingProfile({
                 handleClickFileSave,
               }}
             />
-          </Modal>
+          </ModalComponent>
         </div>
         <UserEmailName
           {...{
