@@ -11,14 +11,14 @@ import {
   Toaster,
 } from "react-hot-toast";
 
-import { Dialog } from "../common/Dialog";
-import { InputField } from "../common/InputField";
-import { PrimaryButton } from "../common/PrimaryButton";
-import { Header } from "../header";
+import { Dialog } from "@/components/common/Dialog";
+import { InputField } from "@/components/common/InputField";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
+import { Header } from "@/components/header";
+import { tagsToBinary } from "@/utils/binary";
+
 import { MarkdownEditor } from "./Editor";
 import { TagSelect } from "./TagSelect";
-
-import { tagsToBinary } from "@/utils/binary";
 
 interface MakeArticleProps {
   userId: string;

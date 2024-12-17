@@ -3,10 +3,10 @@ import {
   useState,
 } from "react";
 
+import { tags } from "@/data/tag";
+
 import { TagItem } from "../tag/TagItem";
 import { TagSelectedItem } from "../tag/TagSelectedItem";
-
-import { tags } from "@/data/tag";
 
 interface TagSelectProps {
   setTags: Function;

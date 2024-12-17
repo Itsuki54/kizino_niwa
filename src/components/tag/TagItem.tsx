@@ -1,7 +1,7 @@
-interface TagItemProps {
+type TagItemProps = {
   tag: string;
   onClick: Function;
-}
+};
 
 export function TagItem({ tag, onClick }: TagItemProps) {
   return (

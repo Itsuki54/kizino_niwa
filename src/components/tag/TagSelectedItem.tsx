@@ -1,7 +1,7 @@
-interface TagSelectedItemProps {
+type TagSelectedItemProps = {
   tag: string;
   onDelete: Function;
-}
+};
 
 export function TagSelectedItem({ tag, onDelete }: TagSelectedItemProps) {
   return (

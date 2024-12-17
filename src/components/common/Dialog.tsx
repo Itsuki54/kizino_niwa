@@ -1,6 +1,6 @@
 import React from "react";
 
-interface DialogProps {
+type DialogProps = {
   title: string;
   description: string;
   isOpen: boolean;
@@ -9,7 +9,7 @@ interface DialogProps {
   setIsCancel: Function;
   confirmText?: string;
   cancelText?: string;
-}
+};
 
 export function Dialog({
   title,

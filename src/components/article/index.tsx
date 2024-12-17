@@ -6,15 +6,15 @@ import {
 
 import { Layout } from "../../layout/HomeLayout";
 import { Header } from "../header";
-import SideBar from "../sidebar";
+import { SideBar } from "../sidebar";
 import { ArticlePage as Page } from "./ArticlePage";
 
-interface ArticleProps {
+type ArticleProps = {
   user: User;
   article: Article;
   notification: Notification[];
   createdUser: User;
-}
+};
 
 export function ArticlePage({
   user,

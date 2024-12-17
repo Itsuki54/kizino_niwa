@@ -1,16 +1,17 @@
-import { PrismaClient } from "@prisma/client";
 import {
   NextApiRequest,
   NextApiResponse,
 } from "next";
 
-interface createProps {
+import { db } from "@/lib/prisma";
+
+type createProps = {
   title: string;
   description: string;
   icon: string;
   read: boolean;
   userId: string;
-}
+};
 
 export async function createNotificationMutation({
   title,

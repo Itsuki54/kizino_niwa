@@ -4,14 +4,14 @@ import {
   signIn,
 } from "next-auth/react";
 
+import { UserDataQuery } from "@/utils/query/User.query";
+
 import { authOptions } from "./api/auth/[...nextauth]";
 
 import type {
   GetServerSidePropsContext,
   InferGetServerSidePropsType,
 } from "next";
-
-import { UserDataQuery } from "@/utils/query/User.query";
 
 export default function SignIn({
   providers,

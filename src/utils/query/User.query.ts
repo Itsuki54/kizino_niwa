@@ -1,5 +1,3 @@
-import { PrismaClient } from "@prisma/client";
-
 import { db } from "@/lib/prisma";
 
 export async function UserDataQuery(id: string) {

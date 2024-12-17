@@ -6,18 +6,18 @@ import {
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 
-import { authOptions } from "./api/auth/[...nextauth]";
-
 import { Setting } from "@/components/setting";
 import { NotificationQuery } from "@/utils/query/Notification.query";
 import { UserDataQuery } from "@/utils/query/User.query";
 import { UserToLinkQuery } from "@/utils/query/User.query";
 
-export interface SettingProps {
+import { authOptions } from "./api/auth/[...nextauth]";
+
+type SettingProps = {
   user: User;
   link: Link[];
   notification: Notification[];
-}
+};
 
 export default function setting({ user, link, notification }: SettingProps) {
   return <Setting link={link} notification={notification} user={user} />;

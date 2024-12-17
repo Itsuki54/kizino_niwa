@@ -1,5 +1,3 @@
-import { PrismaClient } from "@prisma/client";
-
 import { db } from "@/lib/prisma";
 import { ArticleWithUserType } from "@/types/article";
 export async function UserToArticleQuery(id: string) {

@@ -1,12 +1,12 @@
-const { PrismaClient } = require("@prisma/client");
+import { PrismaClient } from "@prisma/client";
 
-const db = new PrismaClient();
 import { tags } from "@/data/tag";
 import { tagsToBinary } from "@/utils/binary";
 
-async function main() {
+const db = new PrismaClient();
+
+const main = async () => {
   const articles = [
-    // 英語の記事
     {
       title: "Introduction to Prisma",
       content: `Prisma is an ORM that helps developers build scalable and maintainable applications. It abstracts the complexities of working with databases and provides a clean API for database access. With Prisma, you can define your database schema using a declarative syntax, and Prisma generates the database migrations and type-safe client automatically.
@@ -241,10 +241,10 @@ ES2017で導入されたasync/awaitは、プロミスに基づいており、同
       userId: "sample-user-id",
     },
   ];
-  function getRandomTags(count: number): string[] {
+  const getRandomTags = (count: number) => {
     const shuffled = [...tags].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, count);
-  }
+  };
   const user = {
     name: "sample-user-name",
     email: "sample-user-email",
@@ -280,11 +280,9 @@ ES2017で導入されたasync/awaitは、プロミスに基づいており、同
       },
     });
   }
-}
+};
 main()
-  .catch(e => {
-    console.log(e);
-  })
+  .catch(e => {})
   .finally(async () => {
     await db.$disconnect();
   });

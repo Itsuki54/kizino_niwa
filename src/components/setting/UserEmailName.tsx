@@ -2,8 +2,6 @@ import { User } from "@prisma/client";
 import { useState } from "react";
 import { IoReloadOutline } from "react-icons/io5";
 
-import { PrimaryButton } from "@/components/common/PrimaryButton";
-
 interface props {
   user: User;
   name: string;

@@ -1,11 +1,11 @@
-interface InputProps {
+type InputProps = {
   type: string;
   placeholder: string;
   value: string;
   onChange: Function;
   height?: string;
   widrh?: string;
-}
+};
 
 export function InputField({
   type,

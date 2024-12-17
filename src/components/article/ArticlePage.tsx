@@ -9,15 +9,15 @@ import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 
+import { binaryToTags } from "@/utils/binary";
+
 import { Divider } from "../common/Divider";
 import { ProfileButton } from "../header/ProfileButton";
 
-import { binaryToTags } from "@/utils/binary";
-
-interface ArticlePageProps {
+type ArticlePageProps = {
   article: Article;
   createdUser: User;
-}
+};
 
 export function ArticlePage({ article, createdUser }: ArticlePageProps) {
   const tags = binaryToTags(article.tags);

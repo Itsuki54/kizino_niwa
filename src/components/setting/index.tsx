@@ -4,10 +4,10 @@ import {
   User,
 } from "@prisma/client";
 
+import { SettingProfile } from "./SettingProfile";
 import { HomeLayout } from "../../layout/HomeLayout";
 import { Header } from "../layout/Header";
 import SideBar from "../layout/SideBar";
-import { SettingProfile } from "./SettingProfile";
 
 interface SettingProps {
   user: User;

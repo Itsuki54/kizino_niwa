@@ -6,8 +6,6 @@ import {
 import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 
-import { authOptions } from "../api/auth/[...nextauth]";
-
 import { ArticlePage } from "@/components/article";
 import {
   NotificationMock,
@@ -17,12 +15,14 @@ import { ArticleQuery } from "@/utils/query/Article.query";
 import { NotificationQuery } from "@/utils/query/Notification.query";
 import { UserDataQuery } from "@/utils/query/User.query";
 
-interface props {
+import { authOptions } from "../api/auth/[...nextauth]";
+
+type props = {
   user: User;
   notification: Notification[];
   article: Article;
   createdUser: User;
-}
+};
 
 export default function articleIdPage({
   user,

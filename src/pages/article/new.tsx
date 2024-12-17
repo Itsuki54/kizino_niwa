@@ -4,19 +4,19 @@ import {
   User,
 } from "@prisma/client";
 import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth";
 import { useRouter } from "next/router";
-
-import { authOptions } from "../api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 
 import { MakeArticle } from "@/components/makeArticle";
 import { NotificationQuery } from "@/utils/query/Notification.query";
 import { UserDataQuery } from "@/utils/query/User.query";
 
-interface props {
+import { authOptions } from "../api/auth/[...nextauth]";
+
+type props = {
   user: User;
   notification: Notification[];
-}
+};
 
 export default function newArticle({ user, notification }: props) {
   const { userId } = useRouter().query;

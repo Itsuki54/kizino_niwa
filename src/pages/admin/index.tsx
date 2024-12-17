@@ -1,23 +1,23 @@
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 import {
   getSession,
   useSession,
 } from "next-auth/react";
-import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/layout/HomeLayout";
 import { db } from "@/lib/prisma";
 
-interface User {
+type User = {
   id: string;
   name: string;
   email: string;
   admin: boolean;
-}
+};
 
-interface DBStats {
+type DBStats = {
   totalUsers: number;
   totalArticles: number;
   totalNotifications: number;
@@ -25,12 +25,12 @@ interface DBStats {
   totalStocks: number;
   totalLinks: number;
   totalGroups: number;
-}
+};
 
-interface AdminDashboardProps {
+type AdminDashboardProps = {
   initialUsers: User[];
   initialDbStats: DBStats;
-}
+};
 
 const AdminDashboard: React.FC<AdminDashboardProps> = ({
   initialUsers,

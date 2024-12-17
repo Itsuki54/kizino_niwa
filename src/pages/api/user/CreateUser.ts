@@ -1,15 +1,14 @@
-import { PrismaClient } from "@prisma/client";
 import {
   NextApiRequest,
   NextApiResponse,
 } from "next";
 
-interface createProps {
+type createProps = {
   id: string;
   name: string;
   email: string;
   image: string;
-}
+};
 
 export async function createUserMutation({
   id,

@@ -1,8 +1,6 @@
-import { useEffect } from "react";
-import { BsHeart } from "react-icons/bs";
 import { FaHeart } from "react-icons/fa";
 
-interface LikeBottonProps {
+type LikeBottonProps ={
   good: number;
   isLiked: boolean;
   onClick?: () => void;

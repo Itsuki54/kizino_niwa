@@ -1,8 +1,3 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
 import ReactMarkdown from "react-markdown";
 import rehypeKatex from "rehype-katex";
 import rehypeRaw from "rehype-raw";
@@ -10,11 +5,12 @@ import rehypeSanitize from "rehype-sanitize";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 
-interface MarkdownEditorProps {
+type MarkdownEditorProps = {
   markdown: string;
   setMarkdown: Function;
-}
-export function MarkdownEditor({ markdown, setMarkdown }: MarkdownEditorProps) {
+};
+
+export const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ markdown, setMarkdown }) => {
   return (
     <div className="flex gap-5 p-5">
       <div className=" overflow-y-auto w-1/2">
@@ -36,4 +32,4 @@ export function MarkdownEditor({ markdown, setMarkdown }: MarkdownEditorProps) {
       </div>
     </div>
   );
-}
+};

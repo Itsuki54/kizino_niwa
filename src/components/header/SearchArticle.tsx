@@ -1,5 +1,3 @@
-import { InputField } from "../../common/InputField";
-
 import { Input } from "@/components/ui/input";
 
 export function SearchArticle() {

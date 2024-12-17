@@ -1,17 +1,15 @@
-import { PrismaClient } from "@prisma/client";
 import {
   NextApiRequest,
   NextApiResponse,
 } from "next";
-import { use } from "react";
 
 import { db } from "@/lib/prisma";
 
-interface createProps {
+type createProps = {
   articleId: string;
   userId: string;
   id?: string;
-}
+};
 
 export async function createLike({ articleId, userId }: createProps) {
   const newLike = await db.like.create({

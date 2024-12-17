@@ -1,5 +1,4 @@
 import AvatarEditor from "react-avatar-editor";
-import { set } from "react-hook-form";
 import ReactSlider from "react-slider";
 
 interface IconEditorProps {

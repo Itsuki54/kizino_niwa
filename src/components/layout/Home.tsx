@@ -1,15 +1,14 @@
 import {
-  Article,
   Notification,
   User,
 } from "@prisma/client";
+
+import { ArticleWithUserType } from "@/types/article";
 
 import { Layout } from "../../layout/HomeLayout";
 import { ArticleCard } from "../article/ArticleCard";
 import { Header } from "../header";
 import { SideBar } from "../sidebar";
-
-import { ArticleWithUserType } from "@/types/article";
 
 interface HomeProps {
   user: User | null;

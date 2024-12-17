@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ["next/core-web-vitals", "prettier"],
+  extends: ["next/core-web-vitals"],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: "tsconfig.json",
@@ -14,7 +14,6 @@ module.exports = {
     "react/jsx-filename-extension": [2, { extensions: [".tsx"] }],
     "react/jsx-max-depth": [2, { max: 5 }],
     "react/jsx-sort-props": 2,
-    "arrow-body-style": [2, "as-needed"],
     "no-restricted-syntax": [
       2,
       {
@@ -47,6 +46,7 @@ module.exports = {
         },
       },
     ],
+    "unused-imports/no-unused-imports": "error",
     "prefer-arrow/prefer-arrow-functions": [
       "warn",
       {

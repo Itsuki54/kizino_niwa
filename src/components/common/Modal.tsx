@@ -5,7 +5,7 @@ import {
 import { IoClose } from "react-icons/io5";
 import Modal from "react-modal";
 
-interface ModalProps {
+type ModalProps = {
   title: string;
   previewIcon: boolean;
   children: ReactNode;
