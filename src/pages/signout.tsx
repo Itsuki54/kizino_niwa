@@ -1,10 +1,10 @@
 import { GetServerSidePropsContext } from 'next';
+import { useRouter } from 'next/router';
 import { getServerSession } from 'next-auth';
 import {
   getProviders,
   signOut,
 } from 'next-auth/react';
-import { useRouter } from 'next/router';
 
 import { Button } from '@/components/ui/button';
 import { UserDataQuery } from '@/utils/query/User.query';
