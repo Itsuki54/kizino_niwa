@@ -12,12 +12,12 @@ type ModalProps = {
   setPreviewIcon: Function;
 };
 
-export function ModalComponent({
+export const ModalComponent = ({
   title,
   previewIcon,
   children,
   setPreviewIcon,
-}: ModalProps) {
+}: ModalProps) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Modal
@@ -54,4 +54,4 @@ export function ModalComponent({
       </div>
     </Modal>
   );
-}
+};

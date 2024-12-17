@@ -4,7 +4,7 @@ type NotificationListProps = {
   title: string;
   description: string;
   image: string;
-}
+};
 
 export function NotificationList({
   title,

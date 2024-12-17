@@ -4,14 +4,14 @@ import {
   useState,
 } from "react";
 
-interface EmailDetail {
+type EmailDetail = {
   id: string;
   subject: string;
   from: string;
   to: string;
   created_at: string;
   body: string;
-}
+};
 
 function EmailDetailPage() {
   const router = useRouter();

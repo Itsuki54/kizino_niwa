@@ -13,7 +13,7 @@ type SettingProps = {
   user: User;
   link: Link[];
   notification: Notification[];
-}
+};
 
 export function Setting({ user, link, notification }: SettingProps) {
   return (

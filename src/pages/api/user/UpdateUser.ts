@@ -4,12 +4,13 @@ import {
 } from "next";
 
 import { db } from "@/lib/prisma";
-interface updateProps {
+
+type updateProps = {
   id: string;
   name: string;
   email: string;
   image: string;
-}
+};
 
 export async function updateUserMutation({
   id,

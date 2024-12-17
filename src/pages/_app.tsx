@@ -1,12 +1,12 @@
+import Head from "next/head";
+import { SessionProvider } from "next-auth/react";
+
 import { Toaster } from "@/components/ui/toaster";
 
 import "@/styles/globals.css";
 import "github-markdown-css";
-import { SessionProvider } from "next-auth/react";
 
 import type { AppProps } from "next/app";
-
-import Head from "next/head";
 
 export default function App({
   Component,

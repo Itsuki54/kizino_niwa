@@ -3,21 +3,20 @@ import {
   useState,
 } from "react";
 
+import { TagItem } from "@/components/tag/TagItem";
+import { TagSelectedItem } from "@/components/tag/TagSelectedItem";
 import { tags } from "@/data/tag";
 
-import { TagItem } from "../tag/TagItem";
-import { TagSelectedItem } from "../tag/TagSelectedItem";
-
-interface TagSelectProps {
+type TagSelectProps = {
   setTags: Function;
-}
+};
 
-export function TagSelect({ setTags }: TagSelectProps) {
+export const TagSelect = ({ setTags }: TagSelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   useEffect(() => {
     setTags(selectedTags.map(tag => tag));
-  }, [selectedTags]);
+  }, [selectedTags, setTags]);
   return (
     <>
       <div className="w-full p-1 flex flex-col items-center  mx-auto">
@@ -49,7 +48,6 @@ export function TagSelect({ setTags }: TagSelectProps) {
                 <button
                   className="cursor-pointer w-6 h-6 outline-none focus:outline-none"
                   onClick={() => {
-                    console.log("isOpen", isOpen);
                     setIsOpen(!isOpen);
                   }}
                 >
@@ -87,4 +85,4 @@ export function TagSelect({ setTags }: TagSelectProps) {
       </div>
     </>
   );
-}
+};

@@ -2,12 +2,12 @@ import React from "react";
 
 import { Footer } from "../components/footer";
 
-interface LayoutProps {
+type LayoutProps = {
   header: React.ReactNode;
   rightBar: React.ReactNode;
   leftBar: React.ReactNode;
   main: React.ReactNode;
-}
+};
 
 export function Layout({ header, rightBar, leftBar, main }: LayoutProps) {
   return (

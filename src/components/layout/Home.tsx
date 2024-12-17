@@ -10,11 +10,11 @@ import { ArticleCard } from "../article/ArticleCard";
 import { Header } from "../header";
 import { SideBar } from "../sidebar";
 
-interface HomeProps {
+type HomeProps = {
   user: User | null;
   notification: Notification[] | null;
   allArticle: ArticleWithUserType[];
-}
+};
 
 export function Home({ user, notification, allArticle }: HomeProps) {
   return (

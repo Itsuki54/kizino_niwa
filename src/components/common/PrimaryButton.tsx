@@ -6,13 +6,13 @@ type ButtonProps = {
   disabled?: boolean;
 };
 
-export function PrimaryButton({
+export const PrimaryButton=({
   title,
   height,
   width,
   onClick,
   disabled,
-}: ButtonProps) {
+}: ButtonProps)=> {
   return (
     <button
       className={`font-bold py-2 px-4 rounded

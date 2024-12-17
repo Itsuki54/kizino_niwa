@@ -2,22 +2,18 @@ import { User } from "@prisma/client";
 import { useState } from "react";
 import { IoReloadOutline } from "react-icons/io5";
 
-interface props {
+type props = {
   user: User;
-  name: string;
   email: string;
-  setName: (value: string) => void;
   setEmail: (value: string) => void;
-}
+};
 
-export function UserEmailName({ user, name, email, setName, setEmail }: props) {
-  const [orginName, setOrginName] = useState(name);
+export const UserEmailName = ({ user, email, setEmail }: props) => {
   const [orginEmail, setOrginEmail] = useState(email);
 
-  function cancel() {
-    setName(orginName);
+  const cancel = () => {
     setEmail(orginEmail);
-  }
+  };
 
   return (
     <div className="w-full md:w-3/5 p-4 lg:ml-4 shadow-md ">
@@ -27,30 +23,18 @@ export function UserEmailName({ user, name, email, setName, setEmail }: props) {
           <IoReloadOutline />
         </button>
       </div>
-      <div className="rounded  shadow p-6">
-        <label className="font-semibold block pb-1">名前</label>
-        <div className="flex">
-          <input
-            className="border-1  rounded-r px-4 py-2 w-full"
-            id="username"
-            onChange={e => setName(e.target.value)}
-            type="text"
-            value={name}
-          />
-        </div>
-        <div className="pb-2">
-          <label className="font-semibold  block pb-1" htmlFor="about">
-            メールアドレス
-          </label>
-          <input
-            className="border-1 px-4 py-2 w-full"
-            id="email"
-            onChange={e => setEmail(e.target.value)}
-            type="email"
-            value={email}
-          />
-        </div>
+      <div className="pb-2">
+        <label className="font-semibold  block pb-1" htmlFor="about">
+          メールアドレス
+        </label>
+        <input
+          className="border-1 px-4 py-2 w-full"
+          id="email"
+          onChange={e => setEmail(e.target.value)}
+          type="email"
+          value={email}
+        />
       </div>
     </div>
   );
-}
+};

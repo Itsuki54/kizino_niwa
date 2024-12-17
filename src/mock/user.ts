@@ -10,7 +10,6 @@ export const userMock: User = {
   image: "/sample-icon.png",
   admin: false,
   createdAt: new Date(),
-  groupId: `sample-group-id`,
 };
 
 export const NotificationMock: Notification[] = [

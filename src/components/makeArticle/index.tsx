@@ -3,6 +3,7 @@ import {
   User,
 } from "@prisma/client";
 import {
+  useCallback,
   useEffect,
   useState,
 } from "react";
@@ -26,15 +27,15 @@ type MakeArticleProps = {
   notification: Notification[];
 };
 
-export function MakeArticle({ userId, user, notification }: MakeArticleProps) {
+export const MakeArticle = ({ userId, user, notification }: MakeArticleProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [tags, setTags] = useState([]);
-  const [disabled, setDisabled] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const [isCancel, setIsCancel] = useState(false);
-  const [fin, setFin] = useState(false);
+  const [isFin, setIsFin] = useState(false);
   useEffect(() => {
     if (
       title &&
@@ -44,14 +45,14 @@ export function MakeArticle({ userId, user, notification }: MakeArticleProps) {
       content.length > 0 &&
       tags.length > 0
     ) {
-      setDisabled(false);
+      setIsDisabled(false);
     }
     else {
-      setDisabled(true);
+      setIsDisabled(true);
     }
   }, [title, content, tags]);
 
-  async function create() {
+  const create = useCallback(async () => {
     const binary = tagsToBinary(tags);
     await fetch("/api/mutation/article/CreateArticle", {
       method: "POST",
@@ -68,20 +69,20 @@ export function MakeArticle({ userId, user, notification }: MakeArticleProps) {
     setTitle("");
     setContent("");
     setTags([]);
-    setDisabled(true);
+    setIsDisabled(true);
     setIsConfirm(false);
     toast("記事を投稿しました！");
-  }
+  }, [tags, title, content, userId]);
 
   useEffect(() => {
     if (isConfirm) {
       create();
-      setFin(true);
+      setIsFin(true);
     }
     if (isCancel) {
       setIsCancel(false);
     }
-  }, [isConfirm, isCancel]);
+  }, [isConfirm, isCancel, create]);
 
   return (
     <div>
@@ -111,7 +112,7 @@ export function MakeArticle({ userId, user, notification }: MakeArticleProps) {
           </div>
         </div>
         <PrimaryButton
-          disabled={disabled}
+          disabled={isDisabled}
           onClick={() => setIsOpen(true)}
           title="投稿する"
           width="100px"
@@ -129,4 +130,4 @@ export function MakeArticle({ userId, user, notification }: MakeArticleProps) {
       />
     </div>
   );
-}
+};

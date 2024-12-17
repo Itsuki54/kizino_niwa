@@ -19,23 +19,23 @@ import {
 } from "react-hot-toast";
 import { MdDriveFolderUpload } from "react-icons/md";
 
-import { ModalComponent } from "../common/Modal";
-import { PrimaryButton } from "../common/PrimaryButton";
+import { Modal } from "@/components/common/Modal";
+import { PrimaryButton } from "@/components/common/PrimaryButton";
+
 import { IconEditor } from "./IconEditor";
 import { UserEmailName } from "./UserEmailName";
 
-interface SettingProfileProps {
+type SettingProfileProps = {
   user: User;
   link: Link[];
   notification: Notification[];
-}
+};
 
 export function SettingProfile({
   user,
   link,
   notification,
 }: SettingProfileProps) {
-  const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
   const [isDisabled, setIsDisabled] = useState(true);
   const [imageURL, setImageURL] = useState(user.image);
@@ -49,7 +49,6 @@ export function SettingProfile({
   const [scale, setScale] = useState(1);
 
   async function save() {
-    console.log("save", name, email, imageURL);
     await fetch("/api/mutation/user/UpdateUser", {
       method: "POST",
       headers: {
@@ -57,7 +56,7 @@ export function SettingProfile({
       },
       body: JSON.stringify({
         id: user.id,
-        name: name,
+        name: user.name,
         email: email,
         image: imageURL,
       }),
@@ -66,12 +65,11 @@ export function SettingProfile({
   }
 
   const onSubmit = async () => {
-    console.log("onSubmit", name, email, imageURL);
     const formData = new FormData();
     for (const image of images) {
       formData.append("files", image);
     }
-    formData.append("name", name || "");
+    formData.append("name", user.name || "");
     const post = await fetch("/api/upload", {
       method: "POST",
       body: formData,
@@ -81,7 +79,6 @@ export function SettingProfile({
   };
 
   useEffect(() => {
-    console.log("useEffect", imageURL);
     if (!imageURL) return;
     (async () => {
       await save();
@@ -89,7 +86,6 @@ export function SettingProfile({
   }, [imageURL]);
 
   const handleClickChangeIcon = useCallback(() => {
-    console.log("handleClickChangeIcon", iconInputRef.current);
     if (!iconInputRef.current) return;
     iconInputRef.current.click();
   }, []);
@@ -97,7 +93,6 @@ export function SettingProfile({
   // アイコンプレビュー変更ハンドラ
   const handleChangePreviewIcon = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      console.log("handleChangePreviewIcon", e.target.files?.length);
       if (!e.target.files?.length) return;
       setPreviewIcon(e!.target!.files[0]!);
       e.currentTarget.value = "";
@@ -111,13 +106,11 @@ export function SettingProfile({
   }, []);
 
   useEffect(() => {
-    console.log("useEffectIcon", icon);
     setImages([icon!]);
   }, [icon]);
 
   // ファイル保存ハンドラ
   const handleClickFileSave = useCallback(async () => {
-    console.log("handleClickFileSave", previewIcon);
     if (!editorRef.current) return;
     const canvas = editorRef.current.getImageScaledToCanvas();
     const picaResizer = pica();
@@ -140,14 +133,13 @@ export function SettingProfile({
   }, []);
 
   useEffect(() => {
-    console.log(name, email, images);
-    if (name.length > 0 && email.length > 0 && images.length > 0) {
+    if (email.length > 0 && images.length > 0) {
       setIsDisabled(false);
     }
     else {
       setIsDisabled(true);
     }
-  }, [name, email, images]);
+  }, [email, images]);
 
   return (
     <div className="h-full m-2">
@@ -177,7 +169,7 @@ export function SettingProfile({
               type="file"
             />
           </div>
-          <ModalComponent
+          <Modal
             previewIcon={!!previewIcon}
             setPreviewIcon={setPreviewIcon}
             title="アイコン編集"
@@ -191,14 +183,12 @@ export function SettingProfile({
                 handleClickFileSave,
               }}
             />
-          </ModalComponent>
+          </Modal>
         </div>
         <UserEmailName
           {...{
             user,
-            name,
             email,
-            setName,
             setEmail,
           }}
         />

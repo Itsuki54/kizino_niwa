@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-interface ProfileButtonProps {
+type ProfileButtonProps = {
   imageUrl: string;
   name: string;
   userId: string;
-}
+};
 
 export function ProfileButton({ imageUrl, name, userId }: ProfileButtonProps) {
   const router = useRouter();

@@ -19,7 +19,7 @@ type ArticlePageProps = {
   createdUser: User;
 };
 
-export function ArticlePage({ article, createdUser }: ArticlePageProps) {
+export const ArticlePage = ({ article, createdUser }: ArticlePageProps) => {
   const tags = binaryToTags(article.tags);
   return (
     <div className="p-4">
@@ -50,4 +50,4 @@ export function ArticlePage({ article, createdUser }: ArticlePageProps) {
       </ReactMarkdown>
     </div>
   );
-}
+};

@@ -3,7 +3,7 @@ import pkg from "next-remove-imports";
 const { removeImports } = pkg;
 const nextConfig = {
   images: {
-    domains: ["lh3.googleusercontent.com", "bit.ly"],
+    domains: ["lh3.googleusercontent.com", "bit.ly", "avatars.githubusercontent.com"],
   },
   reactStrictMode: true,
   removeImports: {

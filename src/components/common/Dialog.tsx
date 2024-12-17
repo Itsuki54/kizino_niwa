@@ -1,5 +1,3 @@
-import React from "react";
-
 type DialogProps = {
   title: string;
   description: string;
@@ -11,7 +9,7 @@ type DialogProps = {
   cancelText?: string;
 };
 
-export function Dialog({
+export const Dialog = ({
   title,
   description,
   isOpen,
@@ -20,16 +18,16 @@ export function Dialog({
   setIsConfirm,
   confirmText,
   cancelText,
-}: DialogProps) {
-  function handleConfirm() {
+}: DialogProps) => {
+  const handleConfirm = () => {
     setIsConfirm(true);
     setIsOpen(false);
-  }
+  };
 
-  function handleCancel() {
+  const handleCancel = () => {
     setIsCancel(true);
     setIsOpen(false);
-  }
+  };
 
   return (
     <>
@@ -64,4 +62,4 @@ export function Dialog({
       )}
     </>
   );
-}
+};

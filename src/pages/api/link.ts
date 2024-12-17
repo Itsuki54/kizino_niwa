@@ -5,11 +5,11 @@ import {
 
 import { db } from "@/lib/prisma";
 
-interface createProps {
+type createProps = {
   name: string;
   url: string;
   userId: string;
-}
+};
 
 export async function createLinkMutation({ name, url, userId }: createProps) {
   const newLink = await db.link.create({

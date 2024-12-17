@@ -5,19 +5,21 @@ type InputProps = {
   onChange: Function;
   height?: string;
   widrh?: string;
+  className?: string;
 };
 
-export function InputField({
+export const InputField = ({
   type,
   placeholder,
   value,
   onChange,
   height,
   widrh,
-}: InputProps) {
+  className,
+}: InputProps) => {
   return (
     <input
-      className=" m-1 rounded-md p-2 border"
+      className={`m-1 rounded-md p-2 border ${className}`}
       onChange={e => onChange(e.target.value)}
       placeholder={placeholder}
       style={{
@@ -28,4 +30,4 @@ export function InputField({
       value={value}
     />
   );
-}
+};

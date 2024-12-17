@@ -14,11 +14,11 @@ import { UserDataQuery } from "@/utils/query/User.query";
 
 import { authOptions } from "./api/auth/[...nextauth]";
 
-interface Props {
+type Props = {
   user: User | null;
   notification: Notification[] | null;
   allArticle: ArticleWithUserType[];
-}
+};
 
 function Kizinoniwa({ user, notification, allArticle }: Props) {
   const { status } = useSession();
@@ -38,7 +38,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     allArticle = JSON.parse(JSON.stringify(allArticleData));
   }
   catch (error) {
-    console.error(error);
   }
   if (!session) {
     return {

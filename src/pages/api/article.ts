@@ -4,12 +4,13 @@ import {
 } from "next";
 
 import { db } from "@/lib/prisma";
-interface createProps {
+
+type createProps = {
   title: string;
   content: string;
   userId: string;
   tags: string;
-}
+};
 
 export async function createArticle({
   title,

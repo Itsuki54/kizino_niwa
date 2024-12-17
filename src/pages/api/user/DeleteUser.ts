@@ -3,9 +3,11 @@ import {
   NextApiResponse,
 } from "next";
 
-interface deleteProps {
+import { db } from "@/lib/prisma";
+
+type deleteProps = {
   id: string;
-}
+};
 
 export async function deleteUserMutation({ id }: deleteProps) {
   const deleteUser = await db.user.delete({

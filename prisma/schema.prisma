@@ -9,19 +9,16 @@ datasource db {
 
 model User {
   id            String         @id @default(cuid())
-  name          String
-  email         String         @unique
+  name          String         @unique
+  email         String?
   image         String
   admin         Boolean
   createdAt     DateTime       @default(now())
-  groupId       String?
   articles      Article[]
   likes         Like[]
   link          Link[]
   notifications Notification[]
   stocks        Stock[]
-
-  @@index([groupId], map: "User_groupId_fkey")
 }
 
 model Article {

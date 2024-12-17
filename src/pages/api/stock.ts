@@ -3,11 +3,13 @@ import {
   NextApiResponse,
 } from "next";
 
-interface createProps {
+type createProps = {
   userId: string;
   articleId: string;
   name: string;
-}
+};
+
+import { db } from "@/lib/prisma";
 
 export async function createStockMutation({
   userId,

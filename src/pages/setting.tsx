@@ -9,7 +9,6 @@ import { getServerSession } from "next-auth";
 import { Setting } from "@/components/setting";
 import { NotificationQuery } from "@/utils/query/Notification.query";
 import { UserDataQuery } from "@/utils/query/User.query";
-import { UserToLinkQuery } from "@/utils/query/User.query";
 
 import { authOptions } from "./api/auth/[...nextauth]";
 

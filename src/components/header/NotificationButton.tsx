@@ -4,9 +4,9 @@ import { FaBell } from "react-icons/fa6";
 
 import { NotificationList } from "./NotificationList";
 
-type NotificationButtonProps ={
+type NotificationButtonProps = {
   notifications: Notification[];
-}
+};
 
 export function NotificationButton({ notifications }: NotificationButtonProps) {
   const [showNotification, setShowNotification] = useState(false);

@@ -1,13 +1,13 @@
 import AvatarEditor from "react-avatar-editor";
 import ReactSlider from "react-slider";
 
-interface IconEditorProps {
+type IconEditorProps = {
   previewIcon: File | null;
   editorRef: React.RefObject<AvatarEditor>;
   scale: number;
   handleChangeScale: (value: number) => void;
   handleClickFileSave: () => void;
-}
+};
 
 export function IconEditor({
   previewIcon,

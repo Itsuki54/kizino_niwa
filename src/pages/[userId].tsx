@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth";
 import { useRouter } from "next/router";
+import { getServerSession } from "next-auth";
 
 import { UserToArticleQuery } from "@/utils/query/Article.query";
 import { NotificationQuery } from "@/utils/query/Notification.query";

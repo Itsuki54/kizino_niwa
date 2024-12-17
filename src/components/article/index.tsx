@@ -16,12 +16,12 @@ type ArticleProps = {
   createdUser: User;
 };
 
-export function ArticlePage({
+export const ArticlePage = ({
   user,
   article,
   notification,
   createdUser,
-}: ArticleProps) {
+}: ArticleProps) => {
   return (
     <Layout
       header={<Header notification={notification} user={user} />}
@@ -30,4 +30,4 @@ export function ArticlePage({
       rightBar={<div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>}
     />
   );
-}
+};

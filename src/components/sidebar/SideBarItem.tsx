@@ -1,10 +1,10 @@
 import React from "react";
 
-interface SideBarItemProps {
+type SideBarItemProps = {
   title: string;
   icon: React.ReactNode;
   route: string;
-}
+};
 
 export function SideBarItem({ title, icon, route }: SideBarItemProps) {
   return (

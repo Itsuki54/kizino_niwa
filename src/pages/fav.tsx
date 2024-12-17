@@ -6,7 +6,7 @@ import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 
 import { Header } from "@/components/header";
-import SideBar from "@/components/sidebar";
+import { SideBar } from "@/components/sidebar";
 import { Layout } from "@/layout/HomeLayout";
 import { ArticleWithUserType } from "@/types/article";
 import { AllArticleWithUser } from "@/utils/query/Article.query";
@@ -45,7 +45,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     allArticle = JSON.parse(JSON.stringify(allArticleData));
   }
   catch (error) {
-    console.error(error);
   }
   if (!session) {
     return {

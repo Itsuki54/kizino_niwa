@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
 
-type  MakeArticleButtonProps = {
+type MakeArticleButtonProps = {
   id: string;
-}
+};
 
 export function MakeArticleButton({ id }: MakeArticleButtonProps) {
   const router = useRouter();

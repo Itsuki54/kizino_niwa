@@ -4,8 +4,8 @@ import {
   User,
 } from "@prisma/client";
 import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth";
 import { useRouter } from "next/router";
+import { getServerSession } from "next-auth";
 
 import { MakeArticle } from "@/components/makeArticle";
 import { NotificationQuery } from "@/utils/query/Notification.query";
