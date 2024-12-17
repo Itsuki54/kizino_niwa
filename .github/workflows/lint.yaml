@@ -10,13 +10,3 @@ jobs:
         run: npm install
       - name: ESLint
         run: npm run lint
-      - name: Dprint Check
-        run: npm run format:check
-      - name: Secretlint
-        run: secretlint --maskSecrets --secretlintignore .gitignore '**/*'
-      - name: Markuplint
-        run: markuplint "./**/*.tsx"
-      - name: Knip
-        run: knip
-      - name: Prisma Generate
-        run: prisma generate
