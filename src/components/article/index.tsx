@@ -2,32 +2,32 @@ import {
   Article,
   Notification,
   User,
-} from "@prisma/client";
+} from '@prisma/client';
 
-import { Layout } from "../../layout/HomeLayout";
-import { Header } from "../header";
-import SideBar from "../sidebar";
-import { ArticlePage as Page } from "./ArticlePage";
+import { Layout } from '../../layout/HomeLayout';
+import { Header } from '../header';
+import { Sidebar } from '../sidebar';
+import { ArticlePage as Page } from './ArticlePage';
 
-interface ArticleProps {
+type ArticleProps = {
   user: User;
   article: Article;
   notification: Notification[];
   createdUser: User;
-}
+};
 
-export function ArticlePage({
+export const ArticlePage = ({
   user,
   article,
   notification,
   createdUser,
-}: ArticleProps) {
+}: ArticleProps) => {
   return (
     <Layout
       header={<Header notification={notification} user={user} />}
-      leftBar={<SideBar />}
+      leftBar={<Sidebar />}
       main={<Page article={article} createdUser={createdUser} />}
-      rightBar={<div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>}
+      rightBar={<div className='bg-gray-50 w-full h-full'>広告とか貼れそう</div>}
     />
   );
-}
+};

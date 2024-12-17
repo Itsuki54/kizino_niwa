@@ -1,22 +1,22 @@
-import { Notification } from "@prisma/client";
-import React, { useState } from "react";
-import { FaBell } from "react-icons/fa6";
+import { Notification } from '@prisma/client';
+import { useState } from 'react';
+import { FaBell } from 'react-icons/fa6';
 
-import { NotificationList } from "./NotificationList";
+import { NotificationList } from './NotificationList';
 
-interface NotificationButtonProps {
+type NotificationButtonProps = {
   notifications: Notification[];
-}
+};
 
-export function NotificationButton({ notifications }: NotificationButtonProps) {
-  const [showNotification, setShowNotification] = useState(false);
+export const NotificationButton = ({ notifications }: NotificationButtonProps) => {
+  const [isShowNotification, setIsShowNotification] = useState(false);
   return (
-    <button className="menu-item">
+    <button className='menu-item'>
       <FaBell
+        onClick={() => setIsShowNotification(!setIsShowNotification)}
         size={20}
-        onClick={() => setShowNotification(!setShowNotification)}
       />
-      {showNotification
+      {isShowNotification
         ? notifications.map(notification => (
           <NotificationList
             description={notification.description}
@@ -28,4 +28,4 @@ export function NotificationButton({ notifications }: NotificationButtonProps) {
         : null}
     </button>
   );
-}
+};

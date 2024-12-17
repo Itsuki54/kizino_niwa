@@ -1,39 +1,35 @@
-import {
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import ReactMarkdown from "react-markdown";
-import rehypeKatex from "rehype-katex";
-import rehypeRaw from "rehype-raw";
-import rehypeSanitize from "rehype-sanitize";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
+import ReactMarkdown from 'react-markdown';
+import rehypeKatex from 'rehype-katex';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
+import remarkGfm from 'remark-gfm';
+import remarkMath from 'remark-math';
 
-interface MarkdownEditorProps {
+type MarkdownEditorProps = {
   markdown: string;
   setMarkdown: Function;
-}
-export function MarkdownEditor({ markdown, setMarkdown }: MarkdownEditorProps) {
+};
+
+export const MarkdownEditor: React.FC<MarkdownEditorProps> = ({ markdown, setMarkdown }) => {
   return (
-    <div className="flex gap-5 p-5">
-      <div className=" overflow-y-auto w-1/2">
+    <div className='flex gap-5 p-5'>
+      <div className=' overflow-y-auto w-1/2'>
         <textarea
-          className="w-full p-3 text-lg overflow-y-auto border border-gray-300 rounded min-h-[400px]"
-          placeholder="Write your Markdown here..."
-          value={markdown}
+          className='w-full p-3 text-lg overflow-y-auto border border-gray-300 rounded min-h-[400px]'
           onChange={e => setMarkdown(e.target.value)}
+          placeholder='Write your Markdown here...'
+          value={markdown}
         />
       </div>
-      <div className="flex-1 p-3 border rounded overflow-y-auto max-h-[400px]">
+      <div className='flex-1 p-3 border rounded overflow-y-auto max-h-[400px]'>
         <ReactMarkdown
-          remarkPlugins={[remarkMath, remarkGfm]}
+          className='markdown-body'
           rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeKatex]}
-          className="markdown-body"
+          remarkPlugins={[remarkMath, remarkGfm]}
         >
           {markdown}
         </ReactMarkdown>
       </div>
     </div>
   );
-}
+};

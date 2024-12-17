@@ -1,9 +1,12 @@
-import { Toaster } from "@/components/ui/toaster";
-import "@/styles/globals.css";
-import "github-markdown-css";
-import { SessionProvider } from "next-auth/react";
-import type { AppProps } from "next/app";
-import Head from "next/head";
+import Head from 'next/head';
+import { SessionProvider } from 'next-auth/react';
+
+import { Toaster } from '@/components/ui/toaster';
+
+import '@/styles/globals.css';
+import 'github-markdown-css';
+
+import type { AppProps } from 'next/app';
 
 export default function App({
   Component,
@@ -13,30 +16,30 @@ export default function App({
     <SessionProvider session={session}>
       <Head>
         <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/favicons/apple-touch-icon.png"
+          href='/favicons/apple-touch-icon.png'
+          rel='apple-touch-icon'
+          sizes='180x180'
         />
         <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicons/favicon-32x32.png"
+          href='/favicons/favicon-32x32.png'
+          rel='icon'
+          sizes='32x32'
+          type='image/png'
         />
         <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicons/favicon-16x16.png"
+          href='/favicons/favicon-16x16.png'
+          rel='icon'
+          sizes='16x16'
+          type='image/png'
         />
-        <link rel="manifest" href="/favicons/site.webmanifest" />
+        <link href='/favicons/site.webmanifest' rel='manifest' />
         <link
-          rel="mask-icon"
-          href="/favicons/safari-pinned-tab.svg"
-          color="#5bbad5"
+          color='#5bbad5'
+          href='/favicons/safari-pinned-tab.svg'
+          rel='mask-icon'
         />
-        <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta content='#da532c' name='msapplication-TileColor' />
+        <meta content='#ffffff' name='theme-color' />
       </Head>
       <Component {...pageProps} />
       <Toaster />

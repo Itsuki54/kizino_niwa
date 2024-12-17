@@ -2,28 +2,27 @@ import {
   Article,
   Notification,
   User,
-} from "@prisma/client";
-import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth";
+} from '@prisma/client';
+import { GetServerSideProps } from 'next';
+import { getServerSession } from 'next-auth';
 
-import { ArticlePage } from "@/components/article";
-
-import { ArticleQuery } from "@/utils/query/Article.query";
-import { NotificationQuery } from "@/utils/query/Notification.query";
-import { UserDataQuery } from "@/utils/query/User.query";
-
+import { ArticlePage } from '@/components/article';
 import {
   NotificationMock,
   userMock,
-} from "@/mock/user";
-import { authOptions } from "../api/auth/[...nextauth]";
+} from '@/mock/user';
+import { ArticleQuery } from '@/utils/query/Article.query';
+import { NotificationQuery } from '@/utils/query/Notification.query';
+import { UserDataQuery } from '@/utils/query/User.query';
 
-interface props {
+import { authOptions } from '../api/auth/[...nextauth]';
+
+type props = {
   user: User;
   notification: Notification[];
   article: Article;
   createdUser: User;
-}
+};
 
 export default function articleIdPage({
   user,

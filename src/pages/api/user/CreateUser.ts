@@ -1,22 +1,23 @@
-import { PrismaClient } from "@prisma/client";
 import {
   NextApiRequest,
   NextApiResponse,
-} from "next";
+} from 'next';
 
-interface createProps {
+import { db } from '@/lib/prisma';
+
+type createProps = {
   id: string;
   name: string;
   email: string;
   image: string;
-}
+};
 
-export async function createUserMutation({
+export const createUserMutation = async ({
   id,
   name,
   email,
   image,
-}: createProps) {
+}: createProps) => {
   const newUser = await db.user.create({
     data: {
       id: id,
@@ -27,13 +28,15 @@ export async function createUserMutation({
     },
   });
   return newUser;
-}
+};
 
-export default async function handler(
+const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
-) {
+) => {
   const { id, name, email, image } = req.body;
   const newUser = await createUserMutation({ id, name, email, image });
   res.status(200).json(newUser);
-}
+};
+
+export default handler;

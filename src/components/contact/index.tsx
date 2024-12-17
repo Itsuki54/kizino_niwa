@@ -1,4 +1,20 @@
-import { Button } from "@/components/ui/button";
+import {
+  init,
+  send,
+} from '@emailjs/browser';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
+import {
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
+import {
+  toast,
+  Toaster,
+} from 'react-hot-toast';
+import { z } from 'zod';
+
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -7,28 +23,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  init,
-  send,
-} from "@emailjs/browser";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
-import {
-  SubmitHandler,
-  useForm,
-} from "react-hook-form";
-import {
-  toast,
-  Toaster,
-} from "react-hot-toast";
-import { z } from "zod";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 
 const formShema = z.object({
-  name: z.string().min(2, { message: "2文字で入力してください" }).max(50),
-  email: z.string().email({ message: "メールアドレスの形式ではありません" }),
+  name: z.string().min(2, { message: '2文字で入力してください' }).max(50),
+  email: z.string().email({ message: 'メールアドレスの形式ではありません' }),
   content: z.string(),
 });
 
@@ -40,9 +41,9 @@ const Contact = () => {
   const form = useForm<formType>({
     resolver: zodResolver(formShema),
     defaultValues: {
-      name: "",
-      email: "",
-      content: "",
+      name: '',
+      email: '',
+      content: '',
     },
   });
 
@@ -55,7 +56,7 @@ const Contact = () => {
 
     if (userId && serviceId && templateId) {
       setIsSending(true);
-      const loadingToast = toast.loading("送信中...");
+      const loadingToast = toast.loading('送信中...');
 
       init(userId);
 
@@ -67,10 +68,10 @@ const Contact = () => {
 
       try {
         await send(serviceId, templateId, params);
-        toast.success("送信が成功しました。");
+        toast.success('送信が成功しました。');
       }
       catch {
-        toast.error("送信に失敗しました。");
+        toast.error('送信に失敗しました。');
       }
       finally {
         form.reset();
@@ -81,20 +82,20 @@ const Contact = () => {
   };
 
   return (
-    <div className="container h-screen flex items-center">
+    <div className='container h-screen flex items-center'>
       <Toaster />
-      <div className="lg:w-[60%] w-full mx-auto">
-        <h2 className="text-[40px] font-bold mb-[30px]">お問い合わせ</h2>
+      <div className='lg:w-[60%] w-full mx-auto'>
+        <h2 className='text-[40px] font-bold mb-[30px]'>お問い合わせ</h2>
         <Form {...form}>
-          <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
+          <form className='space-y-8' onSubmit={form.handleSubmit(onSubmit)}>
             <FormField
               control={form.control}
-              name="name"
+              name='name'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>名前</FormLabel>
                   <FormControl>
-                    <Input placeholder="y_ta" {...field} disabled={isSending} />
+                    <Input placeholder='y_ta' {...field} disabled={isSending} />
                   </FormControl>
                   <FormDescription>お名前をお書きください。</FormDescription>
                   <FormMessage />
@@ -103,13 +104,13 @@ const Contact = () => {
             />
             <FormField
               control={form.control}
-              name="email"
+              name='email'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>メールアドレス</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="example@gmail.com"
+                      placeholder='example@gmail.com'
                       {...field}
                       disabled={isSending}
                     />
@@ -123,15 +124,15 @@ const Contact = () => {
             />
             <FormField
               control={form.control}
-              name="content"
+              name='content'
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>お問い合わせ内容</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="Next.jsの使い方を教えてください"
+                      placeholder='Next.jsの使い方を教えてください'
                       {...field}
-                      className="resize-none h-[200px]"
+                      className='resize-none h-[200px]'
                       disabled={isSending}
                     />
                   </FormControl>

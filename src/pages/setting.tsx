@@ -1,24 +1,25 @@
-import { Setting } from "@/components/setting";
-import { NotificationQuery } from "@/utils/query/Notification.query";
-import { UserDataQuery } from "@/utils/query/User.query";
-import { UserToLinkQuery } from "@/utils/query/User.query";
 import {
   Link,
   Notification,
   User,
-} from "@prisma/client";
-import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]";
+} from '@prisma/client';
+import { GetServerSideProps } from 'next';
+import { getServerSession } from 'next-auth';
 
-export interface SettingProps {
+import { Setting } from '@/components/setting';
+import { NotificationQuery } from '@/utils/query/Notification.query';
+import { UserDataQuery } from '@/utils/query/User.query';
+
+import { authOptions } from './api/auth/[...nextauth]';
+
+type SettingProps = {
   user: User;
   link: Link[];
   notification: Notification[];
-}
+};
 
 export default function setting({ user, link, notification }: SettingProps) {
-  return <Setting user={user} link={link} notification={notification} />;
+  return <Setting link={link} notification={notification} user={user} />;
 }
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
@@ -26,7 +27,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   if (!session) {
     return {
       redirect: {
-        destination: "/signin",
+        destination: '/signin',
         permanent: false,
       },
     };

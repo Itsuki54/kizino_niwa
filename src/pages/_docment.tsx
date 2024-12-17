@@ -3,7 +3,7 @@ import NextDocument, {
   Html,
   Main,
   NextScript,
-} from "next/document";
+} from 'next/document';
 
 export default class Document extends NextDocument {
   render() {

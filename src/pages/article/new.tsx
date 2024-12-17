@@ -2,21 +2,21 @@
 import {
   Notification,
   User,
-} from "@prisma/client";
-import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth";
-import { useRouter } from "next/router";
+} from '@prisma/client';
+import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
+import { getServerSession } from 'next-auth';
 
-import { MakeArticle } from "@/components/makeArticle";
+import { MakeArticle } from '@/components/makeArticle';
+import { NotificationQuery } from '@/utils/query/Notification.query';
+import { UserDataQuery } from '@/utils/query/User.query';
 
-import { NotificationQuery } from "@/utils/query/Notification.query";
-import { UserDataQuery } from "@/utils/query/User.query";
-import { authOptions } from "../api/auth/[...nextauth]";
+import { authOptions } from '../api/auth/[...nextauth]';
 
-interface props {
+type props = {
   user: User;
   notification: Notification[];
-}
+};
 
 export default function newArticle({ user, notification }: props) {
   const { userId } = useRouter().query;
@@ -34,7 +34,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   if (!session) {
     return {
       redirect: {
-        destination: "/signin",
+        destination: '/signin',
         permanent: false,
       },
     };

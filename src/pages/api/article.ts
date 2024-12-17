@@ -1,14 +1,16 @@
-import { db } from "@/lib/prisma";
 import {
   NextApiRequest,
   NextApiResponse,
-} from "next";
-interface createProps {
+} from 'next';
+
+import { db } from '@/lib/prisma';
+
+type createProps = {
   title: string;
   content: string;
   userId: string;
   tags: string;
-}
+};
 
 export async function createArticle({
   title,
@@ -62,7 +64,7 @@ export default async function handler(
 ) {
   const { title, content, userId, tags, like, id, method } = req.body;
   let newArticle;
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     newArticle = await createArticle({
       title,
       content,
@@ -70,8 +72,8 @@ export default async function handler(
       tags,
     });
   }
-  else if (req.method === "PUT") {
-    if (method === "LikeAdd") {
+  else if (req.method === 'PUT') {
+    if (method === 'LikeAdd') {
       newArticle = await updateArticle({
         id,
         title,
@@ -81,7 +83,7 @@ export default async function handler(
         like: like + 1,
       });
     }
-    else if (method === "LikeRemove") {
+    else if (method === 'LikeRemove') {
       newArticle = await updateArticle({
         id,
         title,

@@ -6,12 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p 9000",
-    "prepare": "husky && husky install",
-    "commit": "git add . && cz ",
     "erd": "prisma generate",
     "lint": "next lint",
     "lint:fix": "eslint '**/*.{js,ts,tsx}' --fix",
-    "prettier": "prettier --write .",
     "markuplint": "markuplint \"./**/*.tsx\"",
     "secretlint": "secretlint --maskSecrets --secretlintignore .gitignore '**/*'",
     "start:dev": "bun format&&bun run dev",
@@ -19,19 +16,21 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "format": "dprint fmt",
+    "format:check": "dprint check",
     "knip": "knip",
     "knip:fix": "knip --fix"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@hookform/resolvers": "^3.9.1",
-    "@prisma/client": "^5.22.0",
+    "@prisma/client": "^6.0.1",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-slot": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.2",
     "@types/formidable": "^3.4.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "dprint": "^0.47.6",
     "formidable": "^3.5.2",
     "github-markdown-css": "^5.8.0",
     "knip": "^5.37.2",
@@ -50,6 +49,7 @@
     "react-icons": "^5.3.0",
     "react-markdown": "^9.0.1",
     "react-modal": "^3.16.1",
+    "react-select": "^5.9.0",
     "react-slider": "^2.0.6",
     "rehype-katex": "^7.0.1",
     "rehype-raw": "^7.0.0",
@@ -64,7 +64,6 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@commitlint/config-conventional": "^19.6.0",
     "@types/node": "^20.17.7",
     "@types/nodemailer": "^6.4.17",
     "@types/pica": "^9.0.4",
@@ -76,31 +75,18 @@
     "@typescript-eslint/eslint-plugin": "^7.18.0",
     "@typescript-eslint/parser": "^7.18.0",
     "autoprefixer": "^10.4.20",
-    "commitizen": "^4.3.1",
-    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.57.1",
     "eslint-config-next": "15.0.3",
-    "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
     "eslint-plugin-storybook": "^0.8.0",
     "eslint-plugin-unused-imports": "^3.2.0",
-    "husky": "^8.0.3",
     "markuplint": "^4.11.3",
     "postcss": "^8.4.49",
-    "prettier": "^3.3.3",
-    "prisma": "^5.22.0",
+    "prisma": "^6.0.1",
     "storybook": "^8.4.5",
     "tailwindcss": "^3.4.15",
     "typescript": "^5.7.2"
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
   },
   "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
   "main": "index.js",

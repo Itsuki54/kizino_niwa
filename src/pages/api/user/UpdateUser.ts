@@ -1,15 +1,16 @@
-import { db } from "@/lib/prisma";
-import { PrismaClient } from "@prisma/client";
 import {
   NextApiRequest,
   NextApiResponse,
-} from "next";
-interface updateProps {
+} from 'next';
+
+import { db } from '@/lib/prisma';
+
+type updateProps = {
   id: string;
   name: string;
   email: string;
   image: string;
-}
+};
 
 export async function updateUserMutation({
   id,

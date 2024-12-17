@@ -1,12 +1,12 @@
-import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth";
-import { useRouter } from "next/router";
+import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
+import { getServerSession } from 'next-auth';
 
-import { UserToArticleQuery } from "@/utils/query/Article.query";
-import { NotificationQuery } from "@/utils/query/Notification.query";
-import { UserDataQuery } from "@/utils/query/User.query";
+import { UserToArticleQuery } from '@/utils/query/Article.query';
+import { NotificationQuery } from '@/utils/query/Notification.query';
+import { UserDataQuery } from '@/utils/query/User.query';
 
-import { authOptions } from "./api/auth/[...nextauth]";
+import { authOptions } from './api/auth/[...nextauth]';
 
 export default function UserProfilePage() {
   const router = useRouter();
@@ -25,7 +25,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   if (!session) {
     return {
       redirect: {
-        destination: "/signin",
+        destination: '/signin',
         permanent: false,
       },
     };
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     if (!user) {
       return {
         redirect: {
-          destination: "/signin",
+          destination: '/signin',
           permanent: false,
         },
       };

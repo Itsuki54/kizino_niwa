@@ -1,34 +1,31 @@
 import {
   Notification,
   User,
-} from "@prisma/client";
-import { GetServerSideProps } from "next";
-import { getServerSession } from "next-auth";
-import { useSession } from "next-auth/react";
+} from '@prisma/client';
+import { GetServerSideProps } from 'next';
+import { getServerSession } from 'next-auth';
+import { useSession } from 'next-auth/react';
 
-import { Home } from "@/components/layout/Home";
+import { Home } from '@/components/layout/Home';
+import { ArticleWithUserType } from '@/types/article';
+import { AllArticleWithUser } from '@/utils/query/Article.query';
+import { NotificationQuery } from '@/utils/query/Notification.query';
+import { UserDataQuery } from '@/utils/query/User.query';
 
-import { ArticleWithUserType } from "@/types/article";
-import { AllArticleWithUser } from "@/utils/query/Article.query";
-import { NotificationQuery } from "@/utils/query/Notification.query";
-import { UserDataQuery } from "@/utils/query/User.query";
+import { authOptions } from './api/auth/[...nextauth]';
 
-import { authOptions } from "./api/auth/[...nextauth]";
-
-import { useEffect } from "react";
-
-interface Props {
+type Props = {
   user: User | null;
   notification: Notification[] | null;
   allArticle: ArticleWithUserType[];
-}
+};
 
 function Kizinoniwa({ user, notification, allArticle }: Props) {
   const { status } = useSession();
 
   return (
     <>
-      {status === "loading" ? null : <Home allArticle={allArticle} notification={notification} user={user} />}
+      {status === 'loading' ? null : <Home allArticle={allArticle} notification={notification} user={user} />}
     </>
   );
 }
@@ -41,7 +38,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     allArticle = JSON.parse(JSON.stringify(allArticleData));
   }
   catch (error) {
-    console.error(error);
   }
   if (!session) {
     return {

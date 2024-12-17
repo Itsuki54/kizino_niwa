@@ -2,25 +2,27 @@ import {
   Link,
   Notification,
   User,
-} from "@prisma/client";
-import { HomeLayout } from "../../layout/HomeLayout";
-import { Header } from "../layout/Header";
-import SideBar from "../layout/SideBar";
-import { SettingProfile } from "./SettingProfile";
+} from '@prisma/client';
 
-interface SettingProps {
+import { Header } from '@/components/header';
+import { Sidebar } from '@/components/sidebar';
+import { Layout } from '@/layout/HomeLayout';
+
+import { SettingProfile } from './SettingProfile';
+
+type SettingProps = {
   user: User;
   link: Link[];
   notification: Notification[];
-}
+};
 
-export function Setting({ user, link, notification }: SettingProps) {
+export const Setting = ({ user, link, notification }: SettingProps) => {
   return (
-    <HomeLayout
-      header={<Header user={user} notification={notification} />}
+    <Layout
+      header={<Header notification={notification} user={user} />}
+      leftBar={<Sidebar />}
+      main={<SettingProfile link={link} notification={notification} user={user} />}
       rightBar={undefined}
-      leftBar={<SideBar />}
-      main={<SettingProfile user={user} link={link} notification={notification} />}
     />
   );
-}
+};

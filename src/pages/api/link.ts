@@ -1,15 +1,15 @@
-import { db } from "@/lib/prisma";
-import { PrismaClient } from "@prisma/client";
 import {
   NextApiRequest,
   NextApiResponse,
-} from "next";
+} from 'next';
 
-interface createProps {
+import { db } from '@/lib/prisma';
+
+type createProps = {
   name: string;
   url: string;
   userId: string;
-}
+};
 
 export async function createLinkMutation({ name, url, userId }: createProps) {
   const newLink = await db.link.create({

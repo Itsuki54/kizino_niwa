@@ -1,16 +1,15 @@
-import { db } from "@/lib/prisma";
-import { PrismaClient } from "@prisma/client";
 import {
   NextApiRequest,
   NextApiResponse,
-} from "next";
-import { use } from "react";
+} from 'next';
 
-interface createProps {
+import { db } from '@/lib/prisma';
+
+type createProps = {
   articleId: string;
   userId: string;
   id?: string;
-}
+};
 
 export async function createLike({ articleId, userId }: createProps) {
   const newLike = await db.like.create({
@@ -38,13 +37,13 @@ export default async function handler(
 ) {
   const { articleId, userId, id } = req.body;
   let newLike;
-  if (req.method === "POST") {
+  if (req.method === 'POST') {
     newLike = await createLike({
       articleId,
       userId,
     });
   }
-  else if (req.method === "DELETE") {
+  else if (req.method === 'DELETE') {
     newLike = await deleteLike({
       articleId,
       userId,

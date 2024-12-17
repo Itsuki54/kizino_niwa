@@ -1,19 +1,21 @@
-import { Button } from "@/components/ui/button";
-import { UserDataQuery } from "@/utils/query/User.query";
-import { GetServerSidePropsContext } from "next";
-import { getServerSession } from "next-auth";
+import { GetServerSidePropsContext } from 'next';
+import { useRouter } from 'next/router';
+import { getServerSession } from 'next-auth';
 import {
   getProviders,
   signOut,
-} from "next-auth/react";
-import { useRouter } from "next/router";
-import { authOptions } from "./api/auth/[...nextauth]";
+} from 'next-auth/react';
+
+import { Button } from '@/components/ui/button';
+import { UserDataQuery } from '@/utils/query/User.query';
+
+import { authOptions } from './api/auth/[...nextauth]';
 export default function SignOut() {
   const router = useRouter();
 
   function handleClick() {
     signOut();
-    router.push("/");
+    router.push('/');
   }
   return (
     <>
@@ -30,7 +32,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!session) {
     return {
       redirect: {
-        destination: "/",
+        destination: '/',
         permanent: false,
       },
     };
@@ -40,7 +42,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   if (!user) {
     return {
       redirect: {
-        destination: "/",
+        destination: '/',
         permanent: false,
       },
     };

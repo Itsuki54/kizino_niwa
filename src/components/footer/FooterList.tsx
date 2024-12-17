@@ -1,18 +1,18 @@
 import {
   FooterItem,
   FooterItemProps,
-} from "@/components/footer/FooterItem";
+} from '@/components/footer/FooterItem';
 
-interface FooterListProps {
+type FooterListProps = {
   footerItems: FooterItemProps[];
   title: string;
-}
+};
 
-export function FooterList({ footerItems, title }: FooterListProps) {
+export const FooterList = ({ footerItems, title }: FooterListProps) => {
   return (
     <div>
-      <h3 className="text-sm font-semibold leading-6 text-gray-900">{title}</h3>
-      <ul role="list" className="mt-6 space-y-4">
+      <h3 className='text-sm font-semibold leading-6 text-gray-900'>{title}</h3>
+      <ul className='mt-6 space-y-4' role='list'>
         {footerItems.map(footerItem => (
           <FooterItem
             icon={footerItem.icon}
@@ -24,4 +24,4 @@ export function FooterList({ footerItems, title }: FooterListProps) {
       </ul>
     </div>
   );
-}
+};

@@ -1,7 +1,6 @@
-import { db } from "@/lib/prisma";
-import { PrismaClient } from "@prisma/client";
+import { db } from '@/lib/prisma';
 
-export async function UserDataQuery(id: string) {
+export const UserDataQuery = async (id: string) => {
   const user = db.user.findUnique({
     where: {
       id: id,
@@ -9,9 +8,9 @@ export async function UserDataQuery(id: string) {
   });
 
   return user;
-}
+};
 
-export async function UserToLinkQuery(id: string) {
+export const UserLinkQuery = async (id: string) => {
   const link = db.link.findMany({
     where: {
       userId: id,
@@ -19,4 +18,4 @@ export async function UserToLinkQuery(id: string) {
   });
 
   return link;
-}
+};
