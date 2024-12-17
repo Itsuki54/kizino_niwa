@@ -93,20 +93,18 @@ export const MakeArticle = ({ userId, user, notification }: MakeArticleProps) =>
       <div className="flex-col p-4">
         <div className="flex justify-center w-full">
           <div className="w-full flex-col">
-            <div className="flex-col flex justify-center">
-              <h1 className="text-3xl font-bold m-3">新しい記事の投稿</h1>
-              <p className="text-m m-3">
+            <div className="flex-col flex justify-center gap-3">
+              <h1 className="text-3xl font-bold">新しい記事の投稿</h1>
+              <p className="text-m">
                 記事のタイトルとタグを入力してください
               </p>
-              <div className="m-3">
-                <InputField
-                  onChange={setTitle}
-                  placeholder="Title"
-                  type="text"
-                  value={title}
-                />
-                <TagSelect setTags={setTags} />
-              </div>
+              <InputField
+                onChange={setTitle}
+                placeholder="Title"
+                type="text"
+                value={title}
+              />
+              <TagSelect setTags={setTags} />
             </div>
             <MarkdownEditor markdown={content} setMarkdown={setContent} />
           </div>

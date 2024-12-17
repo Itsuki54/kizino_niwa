@@ -3,6 +3,6 @@ node_modules
 .next
 /public/images/uploads
 *storybook.log
-prisma/**.db
-prisma/**.db-journal
+prisma/dev.db
+prisma/dev.db-journal
 prisma/migrations/

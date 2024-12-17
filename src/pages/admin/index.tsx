@@ -1,9 +1,9 @@
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
 import {
   getSession,
   useSession,
 } from "next-auth/react";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -24,7 +24,6 @@ type DBStats = {
   totalLikes: number;
   totalStocks: number;
   totalLinks: number;
-  totalGroups: number;
 };
 
 type AdminDashboardProps = {
@@ -77,7 +76,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({
         <li>総いいね数: {dbStats.totalLikes}</li>
         <li>総ストック数: {dbStats.totalStocks}</li>
         <li>総リンク数: {dbStats.totalLinks}</li>
-        <li>総グループ数: {dbStats.totalGroups}</li>
       </ul>
     </div>
   );
@@ -126,7 +124,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     totalLikes,
     totalStocks,
     totalLinks,
-    totalGroups,
   ] = await db.$transaction([
     db.user.count(),
     db.article.count(),
@@ -134,7 +131,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     db.like.count(),
     db.stock.count(),
     db.link.count(),
-    db.group.count(),
   ]);
 
   const dbStats = {
@@ -144,7 +140,6 @@ export const getServerSideProps: GetServerSideProps = async context => {
     totalLikes,
     totalStocks,
     totalLinks,
-    totalGroups,
   };
 
   return {

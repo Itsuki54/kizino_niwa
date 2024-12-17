@@ -4,7 +4,7 @@ type InputProps = {
   value: string;
   onChange: Function;
   height?: string;
-  widrh?: string;
+  width?: string;
   className?: string;
 };
 
@@ -14,7 +14,7 @@ export const InputField = ({
   value,
   onChange,
   height,
-  widrh,
+  width,
   className,
 }: InputProps) => {
   return (
@@ -24,7 +24,7 @@ export const InputField = ({
       placeholder={placeholder}
       style={{
         height: height ? height : "50px",
-        width: widrh ? widrh : "100%",
+        width: width ? width : "100%",
       }}
       type={type}
       value={value}

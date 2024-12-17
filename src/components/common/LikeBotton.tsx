@@ -6,7 +6,7 @@ type LikeBottonProps = {
   onClick?: () => void;
 };
 
-export const LikeBotton=({ good, isLiked, onClick }: LikeBottonProps) =>{
+export const LikeBotton = ({ good, isLiked, onClick }: LikeBottonProps) => {
   return (
     <div className="flex p-1 items-center justify-center gap-2">
       <FaHeart
@@ -16,4 +16,4 @@ export const LikeBotton=({ good, isLiked, onClick }: LikeBottonProps) =>{
       <a className="text-s items-center justify-center">{good}</a>
     </div>
   );
-}
+};
