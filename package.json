@@ -17,8 +17,7 @@
     "build-storybook": "storybook build",
     "format": "dprint fmt",
     "knip": "knip",
-    "knip:fix": "knip --fix",
-    "check": "eslint '**/*.{js,ts,tsx}' --fix && dprint check && secretlint --maskSecrets --secretlintignore .gitignore '**/*' && markuplint \"./**/*.tsx\" && knip && prisma generate"
+    "knip:fix": "knip --fix"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

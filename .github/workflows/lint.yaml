@@ -1,5 +1,5 @@
 name: lint
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
     lint:
@@ -8,5 +8,15 @@ jobs:
           - uses: actions/checkout@v2
           - name: Install dependencies
             run: npm install
-          - name: Lint
+          - name: Lint JavaScript/TypeScript
             run: npm run check
+          - name: Dprint Check
+            run: dprint check
+          - name: Secretlint
+            run: secretlint --maskSecrets --secretlintignore .gitignore '**/*'
+          - name: Markuplint
+            run: markuplint "./**/*.tsx"
+          - name: Knip
+            run: knip
+          - name: Prisma Generate
+            run: prisma generate
