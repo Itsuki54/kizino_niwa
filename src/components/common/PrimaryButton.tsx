@@ -1,10 +1,10 @@
-interface ButtonProps {
+type ButtonProps = {
   title: string;
   height?: string;
   width?: string;
   onClick: Function;
   disabled?: boolean;
-}
+};
 
 export function PrimaryButton({
   title,

@@ -19,10 +19,10 @@ import {
 } from "react-hot-toast";
 import { MdDriveFolderUpload } from "react-icons/md";
 
-import { IconEditor } from "./IconEditor";
-import { UserEmailName } from "./UserEmailName";
 import { ModalComponent } from "../common/Modal";
 import { PrimaryButton } from "../common/PrimaryButton";
+import { IconEditor } from "./IconEditor";
+import { UserEmailName } from "./UserEmailName";
 
 interface SettingProfileProps {
   user: User;

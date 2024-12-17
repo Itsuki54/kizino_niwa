@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/router";
-interface MakeArticleButtonProps {
+
+type  MakeArticleButtonProps = {
   id: string;
 }
 

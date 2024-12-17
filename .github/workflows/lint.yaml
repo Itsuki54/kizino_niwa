@@ -2,21 +2,21 @@ name: lint
 on: [pull_request]
 
 jobs:
-    lint:
-        runs-on: ubuntu-latest
-        steps:
-          - uses: actions/checkout@v2
-          - name: Install dependencies
-            run: npm install
-          - name: Lint JavaScript/TypeScript
-            run: npm run check
-          - name: Dprint Check
-            run: dprint check
-          - name: Secretlint
-            run: secretlint --maskSecrets --secretlintignore .gitignore '**/*'
-          - name: Markuplint
-            run: markuplint "./**/*.tsx"
-          - name: Knip
-            run: knip
-          - name: Prisma Generate
-            run: prisma generate
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Lint JavaScript/TypeScript
+        run: npm run check
+      - name: Dprint Check
+        run: dprint check
+      - name: Secretlint
+        run: secretlint --maskSecrets --secretlintignore .gitignore '**/*'
+      - name: Markuplint
+        run: markuplint "./**/*.tsx"
+      - name: Knip
+        run: knip
+      - name: Prisma Generate
+        run: prisma generate

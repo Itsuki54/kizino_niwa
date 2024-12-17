@@ -1,10 +1,10 @@
 import { Notification } from "@prisma/client";
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaBell } from "react-icons/fa6";
 
 import { NotificationList } from "./NotificationList";
 
-interface NotificationButtonProps {
+type NotificationButtonProps ={
   notifications: Notification[];
 }
 

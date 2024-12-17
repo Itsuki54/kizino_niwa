@@ -9,7 +9,7 @@ import { HomeLayout } from "../../layout/HomeLayout";
 import { Header } from "../layout/Header";
 import SideBar from "../layout/SideBar";
 
-interface SettingProps {
+type SettingProps = {
   user: User;
   link: Link[];
   notification: Notification[];

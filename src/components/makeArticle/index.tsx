@@ -20,11 +20,11 @@ import { tagsToBinary } from "@/utils/binary";
 import { MarkdownEditor } from "./Editor";
 import { TagSelect } from "./TagSelect";
 
-interface MakeArticleProps {
+type MakeArticleProps = {
   userId: string;
   user: User;
   notification: Notification[];
-}
+};
 
 export function MakeArticle({ userId, user, notification }: MakeArticleProps) {
   const [title, setTitle] = useState("");

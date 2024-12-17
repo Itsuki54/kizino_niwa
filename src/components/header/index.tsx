@@ -11,10 +11,10 @@ import { NotificationButton } from "./NotificationButton";
 import { ProfileButton } from "./ProfileButton";
 import { SearchArticle } from "./SearchArticle";
 
-interface HeaderProps {
+type HeaderProps = {
   user: User | null;
   notification: Notification[] | null;
-}
+};
 
 export function Header({ user, notification }: HeaderProps) {
   return (

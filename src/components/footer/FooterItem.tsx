@@ -1,8 +1,8 @@
-export interface FooterItemProps {
+export type FooterItemProps = {
   title: string;
   icon?: React.ReactNode;
   route: string;
-}
+};
 
 export function FooterItem({ title, icon, route }: FooterItemProps) {
   return (

@@ -3,10 +3,10 @@ import {
   FooterItemProps,
 } from "@/components/footer/FooterItem";
 
-interface FooterListProps {
+type FooterListProps = {
   footerItems: FooterItemProps[];
   title: string;
-}
+};
 
 export function FooterList({ footerItems, title }: FooterListProps) {
   return (

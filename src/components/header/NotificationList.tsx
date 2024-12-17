@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-interface NotificationListProps {
+type NotificationListProps = {
   title: string;
   description: string;
   image: string;

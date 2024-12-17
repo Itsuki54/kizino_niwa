@@ -10,7 +10,7 @@ type ModalProps = {
   previewIcon: boolean;
   children: ReactNode;
   setPreviewIcon: Function;
-}
+};
 
 export function ModalComponent({
   title,

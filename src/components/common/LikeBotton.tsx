@@ -1,10 +1,10 @@
 import { FaHeart } from "react-icons/fa";
 
-type LikeBottonProps ={
+type LikeBottonProps = {
   good: number;
   isLiked: boolean;
   onClick?: () => void;
-}
+};
 
 export function LikeBotton({ good, isLiked, onClick }: LikeBottonProps) {
   return (
