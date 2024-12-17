@@ -6,7 +6,7 @@ import {
 
 import { Layout } from "../../layout/HomeLayout";
 import { Header } from "../header";
-import { SideBar } from "../sidebar";
+import { Sidebar } from "../sidebar";
 import { ArticlePage as Page } from "./ArticlePage";
 
 type ArticleProps = {
@@ -25,7 +25,7 @@ export const ArticlePage = ({
   return (
     <Layout
       header={<Header notification={notification} user={user} />}
-      leftBar={<SideBar />}
+      leftBar={<Sidebar />}
       main={<Page article={article} createdUser={createdUser} />}
       rightBar={<div className="bg-gray-50 w-full h-full">広告とか貼れそう</div>}
     />

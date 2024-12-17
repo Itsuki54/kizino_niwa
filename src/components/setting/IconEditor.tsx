@@ -9,13 +9,13 @@ type IconEditorProps = {
   handleClickFileSave: () => void;
 };
 
-export function IconEditor({
+export const IconEditor = ({
   previewIcon,
   editorRef,
   scale,
   handleChangeScale,
   handleClickFileSave,
-}: IconEditorProps) {
+}: IconEditorProps) => {
   return (
     <div className="flex justify-center">
       <div className="flex-col justify-center">
@@ -52,4 +52,4 @@ export function IconEditor({
       </div>
     </div>
   );
-}
+};

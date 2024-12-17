@@ -6,7 +6,7 @@ import { GetServerSideProps } from "next";
 import { getServerSession } from "next-auth";
 
 import { Header } from "@/components/header";
-import { SideBar } from "@/components/sidebar";
+import { Sidebar } from "@/components/sidebar";
 import { Layout } from "@/layout/HomeLayout";
 import { ArticleWithUserType } from "@/types/article";
 import { AllArticleWithUser } from "@/utils/query/Article.query";
@@ -25,7 +25,7 @@ export default function fav({
   return (
     <Layout
       header={<Header notification={notification} user={user} />}
-      leftBar={<SideBar />}
+      leftBar={<Sidebar />}
       main={
         <div className="flex flex-col items-center justify-center">
           <h1 className="text-4xl">お気に入り</h1>

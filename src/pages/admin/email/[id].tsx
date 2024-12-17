@@ -13,7 +13,7 @@ type EmailDetail = {
   body: string;
 };
 
-function EmailDetailPage() {
+const EmailDetailPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const [email, setEmail] = useState<EmailDetail | null>(null);
@@ -29,7 +29,6 @@ function EmailDetailPage() {
           setEmail(data);
         }
         catch (error) {
-          console.error("Error fetching email details:", error);
         }
       };
 
@@ -53,6 +52,6 @@ function EmailDetailPage() {
       </div>
     </div>
   );
-}
+};
 
 export default EmailDetailPage;

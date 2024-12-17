@@ -4,9 +4,10 @@ import {
   User,
 } from "@prisma/client";
 
-import { HomeLayout } from "../../layout/HomeLayout";
-import { Header } from "../layout/Header";
-import SideBar from "../layout/SideBar";
+import { Header } from "@/components/header";
+import { Sidebar } from "@/components/sidebar";
+import { Layout } from "@/layout/HomeLayout";
+
 import { SettingProfile } from "./SettingProfile";
 
 type SettingProps = {
@@ -15,13 +16,13 @@ type SettingProps = {
   notification: Notification[];
 };
 
-export function Setting({ user, link, notification }: SettingProps) {
+export const Setting = ({ user, link, notification }: SettingProps) => {
   return (
-    <HomeLayout
+    <Layout
       header={<Header notification={notification} user={user} />}
-      leftBar={<SideBar />}
+      leftBar={<Sidebar />}
       main={<SettingProfile link={link} notification={notification} user={user} />}
       rightBar={undefined}
     />
   );
-}
+};

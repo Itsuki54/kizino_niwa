@@ -30,7 +30,7 @@ type MakeArticleProps = {
 export const MakeArticle = ({ userId, user, notification }: MakeArticleProps) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState<string[]>([]);
   const [isDisabled, setIsDisabled] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);

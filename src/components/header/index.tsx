@@ -2,6 +2,7 @@ import {
   Notification,
   User,
 } from "@prisma/client";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
@@ -16,7 +17,7 @@ type HeaderProps = {
   notification: Notification[] | null;
 };
 
-export function Header({ user, notification }: HeaderProps) {
+export const Header = ({ user, notification }: HeaderProps) => {
   return (
     <header className="flex justify-between items-center bg-white shadow sticky top-0 ">
       <div className="sticky top-0 flex-1 bg-white">
@@ -39,13 +40,13 @@ export function Header({ user, notification }: HeaderProps) {
                 <MakeArticleButton id={user.id} />
               </>
             ) : (
-              <a href="/signin">
+              <Link href="/signin">
                 <Button>Sign in</Button>
-              </a>
+              </Link>
             )}
           </div>
         </div>
       </div>
     </header>
   );
-}
+};

@@ -4,7 +4,7 @@ export type FooterItemProps = {
   route: string;
 };
 
-export function FooterItem({ title, icon, route }: FooterItemProps) {
+export const FooterItem = ({ title, icon, route }: FooterItemProps) => {
   return (
     <li>
       <a
@@ -16,4 +16,4 @@ export function FooterItem({ title, icon, route }: FooterItemProps) {
       </a>
     </li>
   );
-}
+};

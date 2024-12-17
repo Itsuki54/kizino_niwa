@@ -6,11 +6,11 @@ type NotificationListProps = {
   image: string;
 };
 
-export function NotificationList({
+export const NotificationList = ({
   title,
   description,
   image,
-}: NotificationListProps) {
+}: NotificationListProps) => {
   return (
     <div className="flex">
       <Image alt={title} height={40} src={image} width={16} />
@@ -20,4 +20,4 @@ export function NotificationList({
       </div>
     </div>
   );
-}
+};

@@ -7,7 +7,7 @@ type ProfileButtonProps = {
   userId: string;
 };
 
-export function ProfileButton({ imageUrl, name, userId }: ProfileButtonProps) {
+export const ProfileButton = ({ imageUrl, name, userId }: ProfileButtonProps) => {
   const router = useRouter();
   const GotoPage = () => {
     void router.push({
@@ -26,4 +26,4 @@ export function ProfileButton({ imageUrl, name, userId }: ProfileButtonProps) {
       />
     </div>
   );
-}
+};

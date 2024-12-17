@@ -8,15 +8,15 @@ type NotificationButtonProps = {
   notifications: Notification[];
 };
 
-export function NotificationButton({ notifications }: NotificationButtonProps) {
-  const [showNotification, setShowNotification] = useState(false);
+export const NotificationButton = ({ notifications }: NotificationButtonProps) => {
+  const [isShowNotification, setIsShowNotification] = useState(false);
   return (
     <button className="menu-item">
       <FaBell
-        onClick={() => setShowNotification(!setShowNotification)}
+        onClick={() => setIsShowNotification(!setIsShowNotification)}
         size={20}
       />
-      {showNotification
+      {isShowNotification
         ? notifications.map(notification => (
           <NotificationList
             description={notification.description}
@@ -28,4 +28,4 @@ export function NotificationButton({ notifications }: NotificationButtonProps) {
         : null}
     </button>
   );
-}
+};
