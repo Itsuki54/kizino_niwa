@@ -4,6 +4,7 @@ import {
   signIn,
 } from 'next-auth/react';
 
+import { Button } from '@/components/ui/button';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { UserDataQuery } from '@/utils/query/user.query';
 
@@ -12,16 +13,16 @@ import type {
   InferGetServerSidePropsType,
 } from 'next';
 
-const SignIn = ({
+const Signin = ({
   providers,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <>
       {Object.values(providers).map(provider => (
         <div key={provider.name}>
-          <button onClick={() => signIn(provider.id)}>
+          <Button onClick={() => signIn(provider.id)}>
             Sign in with {provider.name}
-          </button>
+          </Button>
         </div>
       ))}
     </>
@@ -57,4 +58,4 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   };
 };
 
-export default SignIn;
+export default Signin;

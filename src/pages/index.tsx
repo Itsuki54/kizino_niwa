@@ -6,10 +6,13 @@ import { GetServerSideProps } from 'next';
 import { getServerSession } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
-import { Home } from '@/components/layout/home';
+import { ArticleCard } from '@/components/article/article-card';
+import { Header } from '@/components/header';
+import { Sidebar } from '@/components/sidebar';
+import { Layout } from '@/layout/home-layout';
+import { db } from '@/lib/prisma';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ArticleWithUserType } from '@/types/article';
-import { AllArticleWithUserQuery } from '@/utils/query/article.query';
 import { NotificationQuery } from '@/utils/query/notification.query';
 import { UserDataQuery } from '@/utils/query/user.query';
 
@@ -22,52 +25,74 @@ type Props = {
 const Kizinoniwa = ({ user, notification, allArticle }: Props) => {
   const { status } = useSession();
 
+  if (status === 'loading') return null;
+
   return (
-    <>
-      {status === 'loading' ? null : <Home allArticle={allArticle} notification={notification} user={user} />}
-    </>
+    <Layout
+      header={<Header notification={notification} user={user} />}
+      leftBar={<Sidebar />}
+      main={allArticle.map(article => (
+        <ArticleCard
+          content={article.content}
+          createdAt={article.createdAt}
+          createdUser={article.user}
+          id={article.id}
+          key={article.id}
+          like={article.like}
+          tags={article.tags}
+          title={article.title}
+          updatedAt={article.updatedAt}
+          userId={article.userId}
+        />
+      ))}
+      rightBar={<div className='bg-gray-50 w-full h-full'>広告とか貼れそう</div>}
+    />
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
   let allArticle: ArticleWithUserType[] = [];
-  try {
-    const allArticleData = await AllArticleWithUserQuery();
-    allArticle = JSON.parse(JSON.stringify(allArticleData));
-  }
-  catch (error) {
-  }
-  if (!session) {
-    return {
-      props: {
-        allArticle: allArticle,
-      },
-    };
-  }
-  else {
-    const userData = await UserDataQuery(session.user.uid);
-    const user = JSON.parse(JSON.stringify(userData));
-    if (!user) {
-      return {
-        props: {
-          allArticle: allArticle,
-        },
-      };
-    }
-    else {
-      const notificationData = await NotificationQuery(user.id);
-      const notification = JSON.parse(JSON.stringify(notificationData));
+  let user = null;
+  let notification = null;
 
-      return {
-        props: {
-          user,
-          notification,
-          allArticle,
-        },
-      };
+  try {
+    const allArticleData = await db.article.findMany({
+      include: {
+        user: true,
+        stocks: true,
+      },
+    });
+    allArticle = JSON.parse(JSON.stringify(allArticleData));
+  } catch (error) {
+    console.error('Error fetching articles:', error);
+  }
+
+  if (session) {
+    try {
+      const userData = await UserDataQuery(session.user.uid);
+      user = JSON.parse(JSON.stringify(userData));
+    } catch (error) {
+
+    }
+
+    if (user) {
+      try {
+        const notificationData = await NotificationQuery(user.id);
+        notification = JSON.parse(JSON.stringify(notificationData));
+      } catch (error) {
+        console.error('Error fetching notifications:', error);
+      }
     }
   }
+
+  return {
+    props: {
+      user,
+      notification,
+      allArticle,
+    },
+  };
 };
 
 export default Kizinoniwa;
