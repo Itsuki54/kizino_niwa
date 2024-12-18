@@ -123,7 +123,7 @@ export const SettingProfile = ({
   }, []);
 
   useEffect(() => {
-    if (email && images.length) {
+    if (images.length > 0 && email) {
       setIsDisabled(false);
     }
     else {

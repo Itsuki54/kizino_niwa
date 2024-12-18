@@ -4,7 +4,7 @@ import {
   getSession,
   useSession,
 } from 'next-auth/react';
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { Layout } from '@/layout/home-layout';
