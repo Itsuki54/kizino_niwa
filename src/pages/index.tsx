@@ -12,14 +12,14 @@ import { Sidebar } from '@/components/sidebar';
 import { Layout } from '@/layout/home-layout';
 import { db } from '@/lib/prisma';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { ArticleWithUserType } from '@/types/article';
+import { ArticleWithUser } from '@/types/article';
 import { NotificationQuery } from '@/utils/query/notification.query';
 import { UserDataQuery } from '@/utils/query/user.query';
 
 type Props = {
   user: User | null;
   notification: Notification[] | null;
-  allArticle: ArticleWithUserType[];
+  allArticle: ArticleWithUser[];
 };
 
 const Kizinoniwa = ({ user, notification, allArticle }: Props) => {
@@ -52,7 +52,7 @@ const Kizinoniwa = ({ user, notification, allArticle }: Props) => {
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
-  let allArticle: ArticleWithUserType[] = [];
+  let allArticle: ArticleWithUser[] = [];
   let user = null;
   let notification = null;
 
@@ -64,24 +64,24 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       },
     });
     allArticle = JSON.parse(JSON.stringify(allArticleData));
-  } catch (error) {
-    console.error('Error fetching articles:', error);
+  }
+  catch (error) {
   }
 
   if (session) {
     try {
       const userData = await UserDataQuery(session.user.uid);
       user = JSON.parse(JSON.stringify(userData));
-    } catch (error) {
-
+    }
+    catch (error) {
     }
 
     if (user) {
       try {
         const notificationData = await NotificationQuery(user.id);
         notification = JSON.parse(JSON.stringify(notificationData));
-      } catch (error) {
-        console.error('Error fetching notifications:', error);
+      }
+      catch (error) {
       }
     }
   }

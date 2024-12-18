@@ -9,7 +9,7 @@ import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
 import { Layout } from '@/layout/home-layout';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { ArticleWithUserType } from '@/types/article';
+import { ArticleWithUser } from '@/types/article';
 import { AllArticleWithUserQuery } from '@/utils/query/article.query';
 import { NotificationQuery } from '@/utils/query/notification.query';
 import { UserDataQuery } from '@/utils/query/user.query';
@@ -38,7 +38,7 @@ const fav = ({
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
-  let allArticle: ArticleWithUserType[] = [];
+  let allArticle: ArticleWithUser[] = [];
   try {
     const allArticleData = await AllArticleWithUserQuery();
     allArticle = JSON.parse(JSON.stringify(allArticleData));
