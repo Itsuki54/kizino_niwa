@@ -19,24 +19,6 @@ export const ArticleQuery = async (id: string) => {
   return article;
 };
 
-export const AllArticleQuery = async () => {
-  const article = db.article.findMany();
-  return article;
-};
-
-export const ArticleWithUser = async (articleId: string) => {
-  const articleWithUser = await db.article.findUnique({
-    where: {
-      id: articleId,
-    },
-    include: {
-      user: true,
-      stocks: true,
-    },
-  });
-  return articleWithUser;
-};
-
 export const AllArticleWithUserQuery = async (): Promise<ArticleWithUserType[]> => {
   const allArticleWithUser = await db.article.findMany({
     include: {

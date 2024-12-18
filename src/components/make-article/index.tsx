@@ -52,26 +52,36 @@ export const MakeArticle = ({ userId, user, notification }: MakeArticleProps) =>
     }
   }, [title, content, tags]);
 
+  // ... existing code ...
   const create = useCallback(async () => {
-    const binary = tagsToBinary(tags);
-    await fetch('/api/mutation/article/CreateArticle', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        title: title,
-        content: content,
-        userId: userId,
-        tags: binary,
-      }),
-    });
-    setTitle('');
-    setContent('');
-    setTags([]);
-    setIsDisabled(true);
-    setIsConfirm(false);
-    toast('記事を投稿しました！');
+    try {
+      const binary = tagsToBinary(tags);
+      const response = await fetch('/api/article', {
+        body: JSON.stringify({
+          content,
+          tags: binary,
+          title,
+          userId,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: 'POST',
+      });
+      if (response.status !== 200) {
+        toast.error('記事の投稿に失敗しました。もう一度お試しください。');
+      }
+      else {
+        toast.success('記事を投稿しました！');
+        setTitle('');
+        setContent('');
+        setTags([]);
+        setIsDisabled(true);
+        setIsConfirm(false);
+      }
+    } catch (error) {
+      toast.error('記事の投稿に失敗しました。もう一度お試しください。');
+    }
   }, [tags, title, content, userId]);
 
   useEffect(() => {

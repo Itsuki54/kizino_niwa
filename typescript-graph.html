@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>typescript-graph.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="typescript-graph">TypeScript Graph</h1>
+<pre class="hljs"><code><div>tsg --exclude node_modules
+</div></code></pre>
+<pre><code class="language-mermaid"><div class="mermaid">flowchart
+    subgraph src["src"]
+        subgraph src/data["/data"]
+            src/data/tag.ts["tag.ts"]
+        end
+        subgraph src/utils["/utils"]
+            src/utils/binary.ts["binary.ts"]
+            subgraph src/utils/query["/query"]
+                src/utils/query/article.query.ts["article.query.ts"]
+                src/utils/query/notification.query.ts["notification.query.ts"]
+                src/utils/query/user.query.ts["user.query.ts"]
+            end
+        end
+        subgraph src/lib["/lib"]
+            src/lib/utils.ts["utils.ts"]
+            src/lib/prisma.ts["prisma.ts"]
+        end
+        subgraph src/components["/components"]
+            subgraph src/components/ui["/ui"]
+                src/components/ui/toast.tsx["toast.tsx"]
+                src/components/ui/use//toast.ts["use-toast.ts"]
+                src/components/ui/button.tsx["button.tsx"]
+                src/components/ui/input.tsx["input.tsx"]
+                src/components/ui/label.tsx["label.tsx"]
+                src/components/ui/form.tsx["form.tsx"]
+                src/components/ui/textarea.tsx["textarea.tsx"]
+                src/components/ui/toaster.tsx["toaster.tsx"]
+            end
+            subgraph src/components/common["/common"]
+                src/components/common/like//button.tsx["like-button.tsx"]
+                src/components/common/divider.tsx["divider.tsx"]
+                src/components/common/dialog.tsx["dialog.tsx"]
+                src/components/common/input//field.tsx["input-field.tsx"]
+                src/components/common/modal.tsx["modal.tsx"]
+                src/components/common/primary//button.tsx["primary-button.tsx"]
+            end
+            subgraph src/components/article["/article"]
+                src/components/article/article//card.tsx["article-card.tsx"]
+                src/components/article/article//page.tsx["article-page.tsx"]
+                src/components/article/index.tsx["index.tsx"]
+            end
+            subgraph src/components/header["/header"]
+                src/components/header/profile//button.tsx["profile-button.tsx"]
+                src/components/header/logo//title.tsx["logo-title.tsx"]
+                src/components/header/make//article//button.tsx["make-article-button.tsx"]
+                src/components/header/notification//list.tsx["notification-list.tsx"]
+                src/components/header/notification//button.tsx["notification-button.tsx"]
+                src/components/header/search//article.tsx["search-article.tsx"]
+                src/components/header/index.tsx["index.tsx"]
+            end
+            subgraph src/components/sidebar["/sidebar"]
+                src/components/sidebar/side//bar//item.tsx["side-bar-item.tsx"]
+                src/components/sidebar/index.tsx["index.tsx"]
+            end
+            subgraph src/components/footer["/footer"]
+                src/components/footer/footer//item.tsx["footer-item.tsx"]
+                src/components/footer/footer//list.tsx["footer-list.tsx"]
+                src/components/footer/index.tsx["index.tsx"]
+            end
+            subgraph src/components/contact["/contact"]
+                src/components/contact/index.tsx["index.tsx"]
+            end
+            subgraph src/components/make//article["/make-article"]
+                src/components/make//article/editor.tsx["editor.tsx"]
+                src/components/make//article/tag//select.tsx["tag-select.tsx"]
+                src/components/make//article/index.tsx["index.tsx"]
+            end
+            subgraph src/components/setting["/setting"]
+                src/components/setting/icon//editor.tsx["icon-editor.tsx"]
+                src/components/setting/user//email//name.tsx["user-email-name.tsx"]
+                src/components/setting/setting//profile.tsx["setting-profile.tsx"]
+                src/components/setting/index.tsx["index.tsx"]
+            end
+            subgraph src/components/tag["/tag"]
+                src/components/tag/tag//item.tsx["tag-item.tsx"]
+                src/components/tag/tag//selected//item.tsx["tag-selected-item.tsx"]
+            end
+        end
+        subgraph src/mock["/mock"]
+            src/mock/user.ts["user.ts"]
+        end
+        subgraph src/pages["/pages"]
+            src/pages///userId//.tsx["[userId].tsx"]
+            src/pages///app.tsx["_app.tsx"]
+            src/pages///docment.tsx["_docment.tsx"]
+            src/pages/about.tsx["about.tsx"]
+            src/pages/company.tsx["company.tsx"]
+            src/pages/contact.tsx["contact.tsx"]
+            src/pages/fav.tsx["fav.tsx"]
+            src/pages/guidline.tsx["guidline.tsx"]
+            src/pages/index.tsx["index.tsx"]
+            src/pages/news.tsx["news.tsx"]
+            src/pages/privacy.tsx["privacy.tsx"]
+            src/pages/ranking.tsx["ranking.tsx"]
+            src/pages/release//note.tsx["release-note.tsx"]
+            src/pages/setting.tsx["setting.tsx"]
+            src/pages/signin.tsx["signin.tsx"]
+            src/pages/signout.tsx["signout.tsx"]
+            src/pages/terms.tsx["terms.tsx"]
+            subgraph src/pages/api["/api"]
+                src/pages/api/article.ts["article.ts"]
+                src/pages/api/like.ts["like.ts"]
+                src/pages/api/link.ts["link.ts"]
+                src/pages/api/notification.ts["notification.ts"]
+                src/pages/api/stock.ts["stock.ts"]
+                src/pages/api/upload.ts["upload.ts"]
+                subgraph src/pages/api/auth["/auth"]
+                    src/pages/api/auth///...nextauth//.ts["[...nextauth].ts"]
+                end
+                subgraph src/pages/api/user["/user"]
+                    src/pages/api/user/create//user.ts["create-user.ts"]
+                    src/pages/api/user/delete//user.ts["delete-user.ts"]
+                    src/pages/api/user/update//user.ts["update-user.ts"]
+                end
+            end
+            subgraph src/pages/admin["/admin"]
+                src/pages/admin/index.tsx["index.tsx"]
+                subgraph src/pages/admin/email["/email"]
+                    src/pages/admin/email///id//.tsx["[id].tsx"]
+                end
+            end
+            subgraph src/pages/article["/article"]
+                src/pages/article///articleId//.tsx["[articleId].tsx"]
+                src/pages/article/new.tsx["new.tsx"]
+            end
+        end
+        subgraph src/types["/types"]
+            src/types/article.d.ts["article.d.ts"]
+        end
+        subgraph src/layout["/layout"]
+            src/layout/home//layout.tsx["home-layout.tsx"]
+        end
+    end
+    subgraph prisma["prisma"]
+        prisma/seed.ts["seed.ts"]
+    end
+    src/utils/binary.ts-->src/data/tag.ts
+    prisma/seed.ts-->src/data/tag.ts
+    prisma/seed.ts-->src/utils/binary.ts
+    src/components/ui/toast.tsx-->src/lib/utils.ts
+    src/components/ui/use//toast.ts-->src/components/ui/toast.tsx
+    src/pages/api/article.ts-->src/lib/prisma.ts
+    src/pages/api/like.ts-->src/lib/prisma.ts
+    src/pages/api/link.ts-->src/lib/prisma.ts
+    src/pages/api/notification.ts-->src/lib/prisma.ts
+    src/pages/api/stock.ts-->src/lib/prisma.ts
+    src/pages/api/auth///...nextauth//.ts-->src/lib/prisma.ts
+    src/pages/api/user/create//user.ts-->src/lib/prisma.ts
+    src/pages/api/user/delete//user.ts-->src/lib/prisma.ts
+    src/pages/api/user/update//user.ts-->src/lib/prisma.ts
+    src/utils/query/article.query.ts-->src/lib/prisma.ts
+    src/utils/query/article.query.ts-->src/types/article.d.ts
+    src/utils/query/notification.query.ts-->src/lib/prisma.ts
+    src/utils/query/user.query.ts-->src/lib/prisma.ts
+    src/components/article/article//card.tsx-->src/components/common/like//button.tsx
+    src/components/article/article//card.tsx-->src/utils/binary.ts
+    src/components/article/article//page.tsx-->src/components/common/divider.tsx
+    src/components/article/article//page.tsx-->src/components/header/profile//button.tsx
+    src/components/article/article//page.tsx-->src/utils/binary.ts
+    src/components/ui/button.tsx-->src/lib/utils.ts
+    src/components/header/notification//button.tsx-->src/components/header/notification//list.tsx
+    src/components/ui/input.tsx-->src/lib/utils.ts
+    src/components/header/search//article.tsx-->src/components/ui/input.tsx
+    src/components/header/index.tsx-->src/components/ui/button.tsx
+    src/components/header/index.tsx-->src/components/header/logo//title.tsx
+    src/components/header/index.tsx-->src/components/header/make//article//button.tsx
+    src/components/header/index.tsx-->src/components/header/notification//button.tsx
+    src/components/header/index.tsx-->src/components/header/profile//button.tsx
+    src/components/header/index.tsx-->src/components/header/search//article.tsx
+    src/components/sidebar/index.tsx-->src/components/sidebar/side//bar//item.tsx
+    src/components/footer/footer//list.tsx-->src/components/footer/footer//item.tsx
+    src/components/footer/index.tsx-->src/components/common/divider.tsx
+    src/components/footer/index.tsx-->src/components/footer/footer//list.tsx
+    src/layout/home//layout.tsx-->src/components/footer/index.tsx
+    src/components/article/index.tsx-->src/components/header/index.tsx
+    src/components/article/index.tsx-->src/components/sidebar/index.tsx
+    src/components/article/index.tsx-->src/layout/home//layout.tsx
+    src/components/article/index.tsx-->src/components/article/article//page.tsx
+    src/components/ui/label.tsx-->src/lib/utils.ts
+    src/components/ui/form.tsx-->src/components/ui/label.tsx
+    src/components/ui/form.tsx-->src/lib/utils.ts
+    src/components/ui/textarea.tsx-->src/lib/utils.ts
+    src/components/contact/index.tsx-->src/components/ui/button.tsx
+    src/components/contact/index.tsx-->src/components/ui/form.tsx
+    src/components/contact/index.tsx-->src/components/ui/input.tsx
+    src/components/contact/index.tsx-->src/components/ui/textarea.tsx
+    src/components/make//article/tag//select.tsx-->src/data/tag.ts
+    src/components/make//article/index.tsx-->src/components/common/dialog.tsx
+    src/components/make//article/index.tsx-->src/components/common/input//field.tsx
+    src/components/make//article/index.tsx-->src/components/common/primary//button.tsx
+    src/components/make//article/index.tsx-->src/components/header/index.tsx
+    src/components/make//article/index.tsx-->src/utils/binary.ts
+    src/components/make//article/index.tsx-->src/components/make//article/editor.tsx
+    src/components/make//article/index.tsx-->src/components/make//article/tag//select.tsx
+    src/components/setting/setting//profile.tsx-->src/components/common/modal.tsx
+    src/components/setting/setting//profile.tsx-->src/components/common/primary//button.tsx
+    src/components/setting/setting//profile.tsx-->src/components/setting/icon//editor.tsx
+    src/components/setting/setting//profile.tsx-->src/components/setting/user//email//name.tsx
+    src/components/setting/index.tsx-->src/components/header/index.tsx
+    src/components/setting/index.tsx-->src/components/sidebar/index.tsx
+    src/components/setting/index.tsx-->src/layout/home//layout.tsx
+    src/components/setting/index.tsx-->src/components/setting/setting//profile.tsx
+    src/components/ui/toaster.tsx-->src/components/ui/toast.tsx
+    src/components/ui/toaster.tsx-->src/components/ui/use//toast.ts
+    src/pages///userId//.tsx-->src/pages/api/auth///...nextauth//.ts
+    src/pages///userId//.tsx-->src/utils/query/article.query.ts
+    src/pages///userId//.tsx-->src/utils/query/notification.query.ts
+    src/pages///userId//.tsx-->src/utils/query/user.query.ts
+    src/pages///app.tsx-->src/components/ui/toaster.tsx
+    src/pages/about.tsx-->src/components/footer/index.tsx
+    src/pages/contact.tsx-->src/components/contact/index.tsx
+    src/pages/fav.tsx-->src/components/header/index.tsx
+    src/pages/fav.tsx-->src/components/sidebar/index.tsx
+    src/pages/fav.tsx-->src/layout/home//layout.tsx
+    src/pages/fav.tsx-->src/pages/api/auth///...nextauth//.ts
+    src/pages/fav.tsx-->src/types/article.d.ts
+    src/pages/fav.tsx-->src/utils/query/article.query.ts
+    src/pages/fav.tsx-->src/utils/query/notification.query.ts
+    src/pages/fav.tsx-->src/utils/query/user.query.ts
+    src/pages/index.tsx-->src/components/article/article//card.tsx
+    src/pages/index.tsx-->src/components/header/index.tsx
+    src/pages/index.tsx-->src/components/sidebar/index.tsx
+    src/pages/index.tsx-->src/layout/home//layout.tsx
+    src/pages/index.tsx-->src/pages/api/auth///...nextauth//.ts
+    src/pages/index.tsx-->src/types/article.d.ts
+    src/pages/index.tsx-->src/utils/query/article.query.ts
+    src/pages/index.tsx-->src/utils/query/notification.query.ts
+    src/pages/index.tsx-->src/utils/query/user.query.ts
+    src/pages/setting.tsx-->src/components/setting/index.tsx
+    src/pages/setting.tsx-->src/pages/api/auth///...nextauth//.ts
+    src/pages/setting.tsx-->src/utils/query/notification.query.ts
+    src/pages/setting.tsx-->src/utils/query/user.query.ts
+    src/pages/signin.tsx-->src/components/ui/button.tsx
+    src/pages/signin.tsx-->src/pages/api/auth///...nextauth//.ts
+    src/pages/signin.tsx-->src/utils/query/user.query.ts
+    src/pages/signout.tsx-->src/components/ui/button.tsx
+    src/pages/signout.tsx-->src/pages/api/auth///...nextauth//.ts
+    src/pages/signout.tsx-->src/utils/query/user.query.ts
+    src/pages/admin/index.tsx-->src/components/ui/button.tsx
+    src/pages/admin/index.tsx-->src/layout/home//layout.tsx
+    src/pages/admin/index.tsx-->src/lib/prisma.ts
+    src/pages/article///articleId//.tsx-->src/components/article/index.tsx
+    src/pages/article///articleId//.tsx-->src/mock/user.ts
+    src/pages/article///articleId//.tsx-->src/pages/api/auth///...nextauth//.ts
+    src/pages/article///articleId//.tsx-->src/utils/query/article.query.ts
+    src/pages/article///articleId//.tsx-->src/utils/query/notification.query.ts
+    src/pages/article///articleId//.tsx-->src/utils/query/user.query.ts
+    src/pages/article/new.tsx-->src/components/make//article/index.tsx
+    src/pages/article/new.tsx-->src/pages/api/auth///...nextauth//.ts
+    src/pages/article/new.tsx-->src/utils/query/notification.query.ts
+    src/pages/article/new.tsx-->src/utils/query/user.query.ts
+</div></code></pre>
+
+</body>
+</html>

@@ -58,7 +58,7 @@ export const updateArticle = async ({
   return updatedArticle;
 };
 
-export const handler = async (
+const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ) => {
@@ -97,3 +97,5 @@ export const handler = async (
 
   res.status(200).json(newArticle);
 };
+
+export default handler;
