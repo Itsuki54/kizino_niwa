@@ -13,13 +13,13 @@ type createProps = {
   userId: string;
 };
 
-export async function createNotificationMutation({
+export const createNotificationMutation = async ({
   title,
   description,
   icon,
   read,
   userId,
-}: createProps) {
+}: createProps) => {
   const newNotification = await db.notification.create({
     data: {
       title: title,
@@ -30,12 +30,12 @@ export async function createNotificationMutation({
     },
   });
   return newNotification;
-}
+};
 
-export default async function handler(
+const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
-) {
+) => {
   const { title, description, icon, read, userId } = req.body;
   const newNotification = await createNotificationMutation({
     title,
@@ -45,4 +45,6 @@ export default async function handler(
     userId,
   });
   res.status(200).json(newNotification);
-}
+};
+
+export default handler;

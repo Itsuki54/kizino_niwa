@@ -15,7 +15,7 @@ export const config = {
 type Data = {
   msg?: string;
 };
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') return;
   let path = '';
   const form = formidable({ multiples: true, uploadDir: __dirname });
@@ -42,4 +42,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
     }
     res.status(200).json({ msg: 'アップロードが完了しました', path });
   });
-}
+};
+
+export default handler;

@@ -1,29 +1,29 @@
 import { db } from '@/lib/prisma';
 import { ArticleWithUserType } from '@/types/article';
-export async function UserToArticleQuery(id: string) {
+export const UserToArticleQuery = async (id: string) => {
   const article = db.article.findMany({
     where: {
       userId: id,
     },
   });
   return article;
-}
+};
 
-export async function ArticleQuery(id: string) {
+export const ArticleQuery = (id: string) => {
   const article = db.article.findUnique({
     where: {
       id: id,
     },
   });
   return article;
-}
+};
 
-async function AllArticleQuery() {
+export const AllArticleQuery = async () => {
   const article = db.article.findMany();
   return article;
-}
+};
 
-async function ArticleWithUser(articleId: string) {
+export const ArticleWithUser = async (articleId: string) => {
   const articleWithUser = await db.article.findUnique({
     where: {
       id: articleId,
@@ -34,9 +34,9 @@ async function ArticleWithUser(articleId: string) {
     },
   });
   return articleWithUser;
-}
+};
 
-export async function AllArticleWithUser(): Promise<ArticleWithUserType[]> {
+export const AllArticleWithUserQuery = async (): Promise<ArticleWithUserType[]> => {
   const allArticleWithUser = await db.article.findMany({
     include: {
       user: true,
@@ -44,4 +44,4 @@ export async function AllArticleWithUser(): Promise<ArticleWithUserType[]> {
     },
   });
   return allArticleWithUser;
-}
+};

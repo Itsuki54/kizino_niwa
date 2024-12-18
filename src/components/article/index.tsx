@@ -4,9 +4,10 @@ import {
   User,
 } from '@prisma/client';
 
-import { Layout } from '../../layout/HomeLayout';
-import { Header } from '../header';
-import { Sidebar } from '../sidebar';
+import { Header } from '@/components/header';
+import { Sidebar } from '@/components/sidebar';
+import { Layout } from '@/layout/HomeLayout';
+
 import { ArticlePage as Page } from './ArticlePage';
 
 type ArticleProps = {

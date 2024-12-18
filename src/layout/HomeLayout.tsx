@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Footer } from '../components/footer';
+import { Footer } from '@/components/footer';
 
 type LayoutProps = {
   header: React.ReactNode;
@@ -9,7 +9,7 @@ type LayoutProps = {
   main: React.ReactNode;
 };
 
-export function Layout({ header, rightBar, leftBar, main }: LayoutProps) {
+export const Layout = ({ header, rightBar, leftBar, main }: LayoutProps) => {
   return (
     <div className='flex-col h-screen '>
       <div className='flex-1  flex-col top-0 sticky '>
@@ -27,4 +27,4 @@ export function Layout({ header, rightBar, leftBar, main }: LayoutProps) {
       </div>
     </div>
   );
-}
+};

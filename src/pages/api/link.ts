@@ -11,7 +11,7 @@ type createProps = {
   userId: string;
 };
 
-export async function createLinkMutation({ name, url, userId }: createProps) {
+export const createLinkMutation = async ({ name, url, userId }: createProps) => {
   const newLink = await db.link.create({
     data: {
       name: name,
@@ -21,12 +21,12 @@ export async function createLinkMutation({ name, url, userId }: createProps) {
   });
 
   return newLink;
-}
+};
 
-export default async function handler(
+const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
-) {
+) => {
   const { name, url, userId } = req.body;
   const newLink = await createLinkMutation({
     name,
@@ -34,4 +34,6 @@ export default async function handler(
     userId,
   });
   res.status(200).json(newLink);
-}
+};
+
+export default handler;

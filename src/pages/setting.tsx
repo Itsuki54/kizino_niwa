@@ -7,10 +7,12 @@ import { GetServerSideProps } from 'next';
 import { getServerSession } from 'next-auth';
 
 import { Setting } from '@/components/setting';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { NotificationQuery } from '@/utils/query/Notification.query';
-import { UserDataQuery } from '@/utils/query/User.query';
-
-import { authOptions } from './api/auth/[...nextauth]';
+import {
+  UserDataQuery,
+  UserLinkQuery,
+} from '@/utils/query/User.query';
 
 type SettingProps = {
   user: User;
@@ -18,9 +20,7 @@ type SettingProps = {
   notification: Notification[];
 };
 
-export default function setting({ user, link, notification }: SettingProps) {
-  return <Setting link={link} notification={notification} user={user} />;
-}
+const SettingPage = ({ user, link, notification }: SettingProps) => <Setting link={link} notification={notification} user={user} />;
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
@@ -35,7 +35,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
 
   const userData = await UserDataQuery(session.user.uid);
   const user = JSON.parse(JSON.stringify(userData));
-  const linkData = await UserToLinkQuery(user.id);
+  const linkData = await UserLinkQuery(user.id);
   const link = JSON.parse(JSON.stringify(linkData));
   const notificationData = await NotificationQuery(user.id);
   const notification = JSON.parse(JSON.stringify(notificationData));
@@ -47,3 +47,5 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     },
   };
 };
+
+export default SettingPage;

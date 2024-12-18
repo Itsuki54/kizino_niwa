@@ -7,12 +7,11 @@ import { getServerSession } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
 import { Home } from '@/components/layout/Home';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ArticleWithUserType } from '@/types/article';
-import { AllArticleWithUser } from '@/utils/query/Article.query';
+import { AllArticleWithUserQuery } from '@/utils/query/Article.query';
 import { NotificationQuery } from '@/utils/query/Notification.query';
 import { UserDataQuery } from '@/utils/query/User.query';
-
-import { authOptions } from './api/auth/[...nextauth]';
 
 type Props = {
   user: User | null;
@@ -20,7 +19,7 @@ type Props = {
   allArticle: ArticleWithUserType[];
 };
 
-function Kizinoniwa({ user, notification, allArticle }: Props) {
+const Kizinoniwa = ({ user, notification, allArticle }: Props) => {
   const { status } = useSession();
 
   return (
@@ -28,13 +27,13 @@ function Kizinoniwa({ user, notification, allArticle }: Props) {
       {status === 'loading' ? null : <Home allArticle={allArticle} notification={notification} user={user} />}
     </>
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
   let allArticle: ArticleWithUserType[] = [];
   try {
-    const allArticleData = await AllArticleWithUser();
+    const allArticleData = await AllArticleWithUserQuery();
     allArticle = JSON.parse(JSON.stringify(allArticleData));
   }
   catch (error) {
