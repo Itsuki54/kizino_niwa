@@ -56,3 +56,5 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
     props: { providers: providers ?? [] },
   };
 };
+
+export default SignIn;

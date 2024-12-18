@@ -1,5 +1,5 @@
 import { GetServerSidePropsContext } from 'next';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import {
   getProviders,
@@ -11,18 +11,10 @@ import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { UserDataQuery } from '@/utils/query/User.query';
 
 const SignOut = () => {
-  const router = useRouter();
-
-  const handleSignOut = async () => {
-    await signOut({ callbackUrl: '/' });
-    router.push('/');
-  };
-
   return (
-    <div className='container mx-auto p-4'>
-      <h1 className='text-2xl font-bold mb-4'>Sign Out</h1>
-      <Button onClick={handleSignOut}>Sign Out</Button>
-    </div>
+    <Link href='/'>
+      <Button onClick={() => signOut()}>Sign out</Button>
+    </Link>
   );
 };
 
