@@ -12,7 +12,7 @@ type createProps = {
   tags: string;
 };
 
-const createArticle = async ({
+export const createArticle = async ({
   title,
   content,
   userId,
@@ -30,7 +30,7 @@ const createArticle = async ({
   return newArticle;
 };
 
-const updateArticle = async ({
+export const updateArticle = async ({
   id,
   title,
   content,
@@ -58,7 +58,7 @@ const updateArticle = async ({
   return updatedArticle;
 };
 
-const handler = async (
+export const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ) => {
@@ -97,5 +97,3 @@ const handler = async (
 
   res.status(200).json(newArticle);
 };
-
-export default handler;

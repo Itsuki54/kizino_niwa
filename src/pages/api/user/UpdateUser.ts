@@ -31,7 +31,7 @@ export const updateUserMutation = async ({
   return updateUser;
 };
 
-const handler = async (
+export const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ) => {
@@ -39,5 +39,3 @@ const handler = async (
   const updateUser = await updateUserMutation({ id, name, email, image });
   res.status(200).json(updateUser);
 };
-
-export default handler;

@@ -11,11 +11,11 @@ type createProps = {
 
 import { db } from '@/lib/prisma';
 
-export async function createStockMutation({
+export const createStockMutation = async ({
   userId,
   articleId,
   name,
-}: createProps) {
+}: createProps) => {
   const newStock = await db.stock.create({
     data: {
       userId: userId,
@@ -25,12 +25,12 @@ export async function createStockMutation({
   });
 
   return newStock;
-}
+};
 
-export default async function handler(
+const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
-) {
+) => {
   const { userId, articleId, name } = req.body;
   const newStock = await createStockMutation({
     userId,
@@ -38,4 +38,6 @@ export default async function handler(
     name,
   });
   res.status(200).json(newStock);
-}
+};
+
+export default handler;

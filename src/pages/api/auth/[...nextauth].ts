@@ -12,9 +12,8 @@ export const authOptions = {
   ],
   callbacks: {
     signIn: async (user: any) => {
-      const { name } = user.user;
       await db.user.upsert({
-        where: { name },
+        where: { name: user.user.name },
         update: {},
         create: {
           name: user.user.name,

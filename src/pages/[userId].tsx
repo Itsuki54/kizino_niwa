@@ -2,13 +2,12 @@ import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { getServerSession } from 'next-auth';
 
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { UserToArticleQuery } from '@/utils/query/Article.query';
 import { NotificationQuery } from '@/utils/query/Notification.query';
 import { UserDataQuery } from '@/utils/query/User.query';
 
-import { authOptions } from './api/auth/[...nextauth]';
-
-export default function UserProfilePage() {
+const UserProfilePage = () => {
   const router = useRouter();
   const { userId } = router.query;
 
@@ -18,7 +17,7 @@ export default function UserProfilePage() {
       <p>User ID: {userId}</p>
     </div>
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
@@ -57,3 +56,5 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     }
   }
 };
+
+export default UserProfilePage;

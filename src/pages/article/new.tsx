@@ -4,21 +4,20 @@ import {
   User,
 } from '@prisma/client';
 import { GetServerSideProps } from 'next';
-import { getServerSession } from 'next-auth';
 import { useRouter } from 'next/router';
+import { getServerSession } from 'next-auth';
 
 import { MakeArticle } from '@/components/makeArticle';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { NotificationQuery } from '@/utils/query/Notification.query';
 import { UserDataQuery } from '@/utils/query/User.query';
-
-import { authOptions } from '../api/auth/[...nextauth]';
 
 type props = {
   user: User;
   notification: Notification[];
 };
 
-export default function newArticle({ user, notification }: props) {
+const newArticle = ({ user, notification }: props) => {
   const { userId } = useRouter().query;
   return (
     <MakeArticle
@@ -27,7 +26,7 @@ export default function newArticle({ user, notification }: props) {
       userId={userId as string}
     />
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
@@ -51,3 +50,5 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     },
   };
 };
+
+export default newArticle;

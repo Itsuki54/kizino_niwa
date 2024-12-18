@@ -1,5 +1,7 @@
-import Contact from '@/components/contact';
+import { Contact } from '@/components/contact';
 
-export default function ContactPage() {
+const ContactPage = () => {
   return <Contact />;
-}
+};
+
+export default ContactPage;

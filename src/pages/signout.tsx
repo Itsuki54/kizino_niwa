@@ -1,10 +1,10 @@
 import { GetServerSidePropsContext } from 'next';
+import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 import {
   getProviders,
   signOut,
 } from 'next-auth/react';
-import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';

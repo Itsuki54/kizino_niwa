@@ -10,7 +10,7 @@ import { Sidebar } from '@/components/sidebar';
 import { Layout } from '@/layout/HomeLayout';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ArticleWithUserType } from '@/types/article';
-import { AllArticleWithUser } from '@/utils/query/Article.query';
+import { AllArticleWithUserQuery } from '@/utils/query/Article.query';
 import { NotificationQuery } from '@/utils/query/Notification.query';
 import { UserDataQuery } from '@/utils/query/User.query';
 
@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
   const session = await getServerSession(ctx.req, ctx.res, authOptions);
   let allArticle: ArticleWithUserType[] = [];
   try {
-    const allArticleData = await AllArticleWithUser();
+    const allArticleData = await AllArticleWithUserQuery();
     allArticle = JSON.parse(JSON.stringify(allArticleData));
   }
   catch (error) {
