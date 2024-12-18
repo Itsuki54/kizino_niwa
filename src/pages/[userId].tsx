@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import { getServerSession } from 'next-auth';
 
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { UserToArticleQuery } from '@/utils/query/Article.query';
-import { NotificationQuery } from '@/utils/query/Notification.query';
-import { UserDataQuery } from '@/utils/query/User.query';
+import { UserToArticleQuery } from '@/utils/query/article.query';
+import { NotificationQuery } from '@/utils/query/notification.query';
+import { UserDataQuery } from '@/utils/query/user.query';
 
 const UserProfilePage = () => {
   const router = useRouter();

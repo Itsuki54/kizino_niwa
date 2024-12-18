@@ -6,9 +6,9 @@ import {
 
 import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
-import { Layout } from '@/layout/HomeLayout';
+import { Layout } from '@/layout/home-layout';
 
-import { ArticlePage as Page } from './ArticlePage';
+import { ArticlePage as Page } from './article-page';
 
 type ArticleProps = {
   user: User;

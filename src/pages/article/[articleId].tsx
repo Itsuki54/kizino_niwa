@@ -12,9 +12,9 @@ import {
   userMock,
 } from '@/mock/user';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { ArticleQuery } from '@/utils/query/Article.query';
-import { NotificationQuery } from '@/utils/query/Notification.query';
-import { UserDataQuery } from '@/utils/query/User.query';
+import { ArticleQuery } from '@/utils/query/article.query';
+import { NotificationQuery } from '@/utils/query/notification.query';
+import { UserDataQuery } from '@/utils/query/user.query';
 
 type props = {
   user: User;

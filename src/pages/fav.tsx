@@ -7,12 +7,12 @@ import { getServerSession } from 'next-auth';
 
 import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
-import { Layout } from '@/layout/HomeLayout';
+import { Layout } from '@/layout/home-layout';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ArticleWithUserType } from '@/types/article';
-import { AllArticleWithUserQuery } from '@/utils/query/Article.query';
-import { NotificationQuery } from '@/utils/query/Notification.query';
-import { UserDataQuery } from '@/utils/query/User.query';
+import { AllArticleWithUserQuery } from '@/utils/query/article.query';
+import { NotificationQuery } from '@/utils/query/notification.query';
+import { UserDataQuery } from '@/utils/query/user.query';
 
 const fav = ({
   user,

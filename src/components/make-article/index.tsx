@@ -12,14 +12,14 @@ import {
   Toaster,
 } from 'react-hot-toast';
 
-import { Dialog } from '@/components/common/Dialog';
-import { InputField } from '@/components/common/InputField';
-import { PrimaryButton } from '@/components/common/PrimaryButton';
+import { Dialog } from '@/components/common/dialog';
+import { InputField } from '@/components/common/input-field';
+import { PrimaryButton } from '@/components/common/primary-button';
 import { Header } from '@/components/header';
 import { tagsToBinary } from '@/utils/binary';
 
-import { MarkdownEditor } from './Editor';
-import { TagSelect } from './TagSelect';
+import { MarkdownEditor } from './editor';
+import { TagSelect } from './tag-select';
 
 type MakeArticleProps = {
   userId: string;

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 
-import { Divider } from '@/components/common/Divider';
-import { FooterList } from '@/components/footer/FooterList';
+import { Divider } from '@/components/common/divider';
+import { FooterList } from '@/components/footer/footer-list';
 
 export const Footer = () => {
   return (

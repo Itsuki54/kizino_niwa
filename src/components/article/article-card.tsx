@@ -5,7 +5,7 @@ import {
 import Image from 'next/image';
 import { useState } from 'react';
 
-import { LikeBotton } from '@/components/common/LikeBotton';
+import { LikeBotton } from '@/components/common/like-button';
 import { binaryToTags } from '@/utils/binary';
 
 type ArticleCardProps = {

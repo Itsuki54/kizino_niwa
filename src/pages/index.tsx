@@ -6,12 +6,12 @@ import { GetServerSideProps } from 'next';
 import { getServerSession } from 'next-auth';
 import { useSession } from 'next-auth/react';
 
-import { Home } from '@/components/layout/Home';
+import { Home } from '@/components/layout/home';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ArticleWithUserType } from '@/types/article';
-import { AllArticleWithUserQuery } from '@/utils/query/Article.query';
-import { NotificationQuery } from '@/utils/query/Notification.query';
-import { UserDataQuery } from '@/utils/query/User.query';
+import { AllArticleWithUserQuery } from '@/utils/query/article.query';
+import { NotificationQuery } from '@/utils/query/notification.query';
+import { UserDataQuery } from '@/utils/query/user.query';
 
 type Props = {
   user: User | null;

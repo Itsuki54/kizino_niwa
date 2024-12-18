@@ -6,9 +6,9 @@ import {
 
 import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
-import { Layout } from '@/layout/HomeLayout';
+import { Layout } from '@/layout/home-layout';
 
-import { SettingProfile } from './SettingProfile';
+import { SettingProfile } from './setting-profile';
 
 type SettingProps = {
   user: User;

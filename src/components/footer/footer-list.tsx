@@ -1,7 +1,7 @@
 import {
   FooterItem,
   FooterItemProps,
-} from '@/components/footer/FooterItem';
+} from '@/components/footer/footer-item';
 
 type FooterListProps = {
   footerItems: FooterItemProps[];

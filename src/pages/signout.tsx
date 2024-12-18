@@ -8,7 +8,7 @@ import {
 
 import { Button } from '@/components/ui/button';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { UserDataQuery } from '@/utils/query/User.query';
+import { UserDataQuery } from '@/utils/query/user.query';
 
 const SignOut = () => {
   return (

@@ -2,7 +2,7 @@ import { Notification } from '@prisma/client';
 import { useState } from 'react';
 import { FaBell } from 'react-icons/fa6';
 
-import { NotificationList } from './NotificationList';
+import { NotificationList } from './notification-list';
 
 type NotificationButtonProps = {
   notifications: Notification[];

@@ -8,11 +8,11 @@ import { getServerSession } from 'next-auth';
 
 import { Setting } from '@/components/setting';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { NotificationQuery } from '@/utils/query/Notification.query';
+import { NotificationQuery } from '@/utils/query/notification.query';
 import {
   UserDataQuery,
   UserLinkQuery,
-} from '@/utils/query/User.query';
+} from '@/utils/query/user.query';
 
 type SettingProps = {
   user: User;

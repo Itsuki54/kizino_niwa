@@ -10,7 +10,7 @@ import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
 import { Divider } from '@/components/common/Divider';
-import { ProfileButton } from '@/components/header/ProfileButton';
+import { ProfileButton } from '@/components/header/profile-button';
 import { binaryToTags } from '@/utils/binary';
 
 type ArticlePageProps = {
