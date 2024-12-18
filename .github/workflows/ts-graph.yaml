@@ -1,0 +1,11 @@
+name: Delta TypeScript Graph
+on:
+    pull_request:
+        types: [opened, reopened, synchronize]
+
+jobs:
+  delta-ts-graph:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delta TypeScript Graph
+        uses: ysk8hori/delta-typescript-graph-action@v1.1.0
