@@ -2,7 +2,7 @@ import { IoSettingsOutline } from 'react-icons/io5';
 
 import { SideBarItem } from './SideBarItem';
 
-export const Sidebar=()=> {
+export const Sidebar = () => {
   return (
     <div className='max-w-2xl mx-auto'>
       <aside aria-label='Sidebar' className='w-64'>
@@ -22,4 +22,4 @@ export const Sidebar=()=> {
       </aside>
     </div>
   );
-}
+};

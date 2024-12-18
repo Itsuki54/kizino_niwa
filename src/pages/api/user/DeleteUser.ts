@@ -9,20 +9,22 @@ type deleteProps = {
   id: string;
 };
 
-export async function deleteUserMutation({ id }: deleteProps) {
+export const deleteUserMutation = async ({ id }: deleteProps) => {
   const deleteUser = await db.user.delete({
     where: {
       id: id,
     },
   });
   return deleteUser;
-}
+};
 
-export default async function handler(
+const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
-) {
+) => {
   const { id } = req.body;
   const deleteUser = await deleteUserMutation({ id });
   res.status(200).json(deleteUser);
-}
+};
+
+export default handler;

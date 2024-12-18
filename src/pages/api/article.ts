@@ -12,12 +12,12 @@ type createProps = {
   tags: string;
 };
 
-export async function createArticle({
+export const createArticle = async ({
   title,
   content,
   userId,
   tags,
-}: createProps) {
+}: createProps) => {
   const newArticle = await db.article.create({
     data: {
       title: title,
@@ -28,9 +28,9 @@ export async function createArticle({
     },
   });
   return newArticle;
-}
+};
 
-export async function updateArticle({
+export const updateArticle = async ({
   id,
   title,
   content,
@@ -44,7 +44,7 @@ export async function updateArticle({
   userId: string;
   tags: string;
   like: number;
-}) {
+}) => {
   const updatedArticle = await db.article.update({
     where: { id },
     data: {
@@ -56,12 +56,12 @@ export async function updateArticle({
     },
   });
   return updatedArticle;
-}
+};
 
-export default async function handler(
+export const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
-) {
+) => {
   const { title, content, userId, tags, like, id, method } = req.body;
   let newArticle;
   if (req.method === 'POST') {
@@ -96,4 +96,4 @@ export default async function handler(
   }
 
   res.status(200).json(newArticle);
-}
+};

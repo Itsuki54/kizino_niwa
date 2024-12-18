@@ -8,10 +8,11 @@ import 'github-markdown-css';
 
 import type { AppProps } from 'next/app';
 
-export default function App({
+const App = ({
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   Component,
   pageProps: { session, ...pageProps },
-}: AppProps) {
+}: AppProps) => {
   return (
     <SessionProvider session={session}>
       <Head>
@@ -45,4 +46,6 @@ export default function App({
       <Toaster />
     </SessionProvider>
   );
-}
+};
+
+export default App;

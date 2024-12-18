@@ -11,11 +11,10 @@ import {
   NotificationMock,
   userMock,
 } from '@/mock/user';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ArticleQuery } from '@/utils/query/Article.query';
 import { NotificationQuery } from '@/utils/query/Notification.query';
 import { UserDataQuery } from '@/utils/query/User.query';
-
-import { authOptions } from '../api/auth/[...nextauth]';
 
 type props = {
   user: User;
@@ -24,12 +23,12 @@ type props = {
   createdUser: User;
 };
 
-export default function articleIdPage({
+const articleIdPage = ({
   user,
   notification,
   article,
   createdUser,
-}: props) {
+}: props) => {
   return (
     <ArticlePage
       article={article}
@@ -38,7 +37,7 @@ export default function articleIdPage({
       user={user}
     />
   );
-}
+};
 
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const { articleId } = ctx.query;
@@ -86,3 +85,5 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     }
   }
 };
+
+export default articleIdPage;

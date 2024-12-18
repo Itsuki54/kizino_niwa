@@ -9,10 +9,9 @@ import rehypeSanitize from 'rehype-sanitize';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 
+import { Divider } from '@/components/common/Divider';
+import { ProfileButton } from '@/components/header/ProfileButton';
 import { binaryToTags } from '@/utils/binary';
-
-import { Divider } from '../common/Divider';
-import { ProfileButton } from '../header/ProfileButton';
 
 type ArticlePageProps = {
   article: Article;

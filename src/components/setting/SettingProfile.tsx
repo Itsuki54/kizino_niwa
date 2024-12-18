@@ -31,11 +31,11 @@ type SettingProfileProps = {
   notification: Notification[];
 };
 
-export const SettingProfile=({
+export const SettingProfile = ({
   user,
   link,
   notification,
-}: SettingProfileProps) =>{
+}: SettingProfileProps) => {
   const [email, setEmail] = useState(user.email);
   const [isDisabled, setIsDisabled] = useState(true);
   const [imageURL, setImageURL] = useState(user.image);
@@ -47,22 +47,6 @@ export const SettingProfile=({
 
   const editorRef = useRef<AvatarEditor | null>(null);
   const [scale, setScale] = useState(1);
-
-  const save=async()=> {
-    await fetch('/api/mutation/user/UpdateUser', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id: user.id,
-        name: user.name,
-        email: email,
-        image: imageURL,
-      }),
-    });
-    setIsDisabled(false);
-  }
 
   const onSubmit = async () => {
     const formData = new FormData();
@@ -76,14 +60,20 @@ export const SettingProfile=({
     });
     const res = await post.json();
     setImageURL(res.path.toString().replace('./public', ''));
+    await fetch('/api/mutation/user/UpdateUser', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id: user.id,
+        name: user.name,
+        email: email,
+        image: imageURL,
+      }),
+    });
+    setIsDisabled(false);
   };
-
-  useEffect(() => {
-    if (!imageURL) return;
-    (async () => {
-      await save();
-    })();
-  }, [imageURL]);
 
   const handleClickChangeIcon = useCallback(() => {
     if (!iconInputRef.current) return;
@@ -133,7 +123,7 @@ export const SettingProfile=({
   }, []);
 
   useEffect(() => {
-    if (email.length > 0 && images.length > 0) {
+    if (email && images.length) {
       setIsDisabled(false);
     }
     else {
@@ -186,11 +176,9 @@ export const SettingProfile=({
           </ModalComponent>
         </div>
         <UserEmailName
-          {...{
-            user,
-            email,
-            setEmail,
-          }}
+          email={email || ''}
+          setEmail={setEmail}
+          user={user}
         />
       </div>
       <div className='flex justify-end mt-4'>
@@ -205,4 +193,4 @@ export const SettingProfile=({
       </div>
     </div>
   );
-}
+};

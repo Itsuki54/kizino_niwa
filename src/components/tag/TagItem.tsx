@@ -3,7 +3,7 @@ type TagItemProps = {
   onClick: Function;
 };
 
-export const TagItem=({ tag, onClick }: TagItemProps) =>{
+export const TagItem = ({ tag, onClick }: TagItemProps) => {
   return (
     <div
       className='cursor-pointer w-full border-gray-100 border-b hover:bg-gray-50'
@@ -16,4 +16,4 @@ export const TagItem=({ tag, onClick }: TagItemProps) =>{
       </div>
     </div>
   );
-}
+};

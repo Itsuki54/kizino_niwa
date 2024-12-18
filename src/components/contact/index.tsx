@@ -35,7 +35,7 @@ const formShema = z.object({
 
 type formType = z.infer<typeof formShema>;
 
-const Contact = () => {
+export const Contact = () => {
   const [isSending, setIsSending] = useState(false);
 
   const form = useForm<formType>({
@@ -150,5 +150,3 @@ const Contact = () => {
     </div>
   );
 };
-
-export default Contact;

@@ -1,6 +1,6 @@
 import { Footer } from '@/components/footer';
 
-export default function About() {
+const About = () => {
   return (
     <div className='flex-col'>
       <h1>About</h1>
@@ -8,4 +8,6 @@ export default function About() {
       <Footer />
     </div>
   );
-}
+};
+
+export default About;
