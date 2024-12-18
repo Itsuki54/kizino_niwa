@@ -19,11 +19,11 @@ import {
 } from 'react-hot-toast';
 import { MdDriveFolderUpload } from 'react-icons/md';
 
-import { ModalComponent } from '@/components/common/Modal';
-import { PrimaryButton } from '@/components/common/PrimaryButton';
+import { ModalComponent } from '@/components/common/modal';
+import { PrimaryButton } from '@/components/common/primary-button';
 
-import { IconEditor } from './IconEditor';
-import { UserEmailName } from './UserEmailName';
+import { IconEditor } from './icon-editor';
+import { UserEmailName } from './user-email-name';
 
 type SettingProfileProps = {
   user: User;

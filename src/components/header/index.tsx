@@ -6,11 +6,11 @@ import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 
-import { LogoTitle } from './LogoTitle';
-import { MakeArticleButton } from './MakeArticleButton';
-import { NotificationButton } from './NotificationButton';
-import { ProfileButton } from './ProfileButton';
-import { SearchArticle } from './SearchArticle';
+import { LogoTitle } from './logo-title';
+import { MakeArticleButton } from './make-article-button';
+import { NotificationButton } from './notification-button';
+import { ProfileButton } from './profile-button';
+import { SearchArticle } from './search-article';
 
 type HeaderProps = {
   user: User | null;

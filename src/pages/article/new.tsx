@@ -7,10 +7,10 @@ import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { getServerSession } from 'next-auth';
 
-import { MakeArticle } from '@/components/makeArticle';
+import { MakeArticle } from '@/components/make-article';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
-import { NotificationQuery } from '@/utils/query/Notification.query';
-import { UserDataQuery } from '@/utils/query/User.query';
+import { NotificationQuery } from '@/utils/query/notification.query';
+import { UserDataQuery } from '@/utils/query/user.query';
 
 type props = {
   user: User;

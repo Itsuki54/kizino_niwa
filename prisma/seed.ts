@@ -252,19 +252,9 @@ ES2017で導入されたasync/awaitは、プロミスに基づいており、同
     admin: false,
   };
 
-  let createdUser;
-  const existingUser = await db.user.findUnique({
-    where: { email: user.email },
+  const createdUser = await db.user.create({
+    data: user,
   });
-
-  if (!existingUser) {
-    createdUser = await db.user.create({
-      data: user,
-    });
-  }
-  else {
-    createdUser = existingUser;
-  }
 
   for (const a of articles) {
     const randomTags = getRandomTags(3);

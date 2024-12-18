@@ -7,7 +7,7 @@ import {
 import React, { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { Layout } from '@/layout/HomeLayout';
+import { Layout } from '@/layout/home-layout';
 import { db } from '@/lib/prisma';
 
 type User = {

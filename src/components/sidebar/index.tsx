@@ -1,6 +1,6 @@
 import { IoSettingsOutline } from 'react-icons/io5';
 
-import { SideBarItem } from './SideBarItem';
+import { SideBarItem } from './side-bar-item';
 
 export const Sidebar = () => {
   return (
