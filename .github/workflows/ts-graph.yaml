@@ -1,11 +1,24 @@
-name: Delta TypeScript Graph
-on:
-    pull_request:
-        types: [opened, reopened, synchronize]
+on: pull_request
+
+# Sets permissions of the GITHUB_TOKEN to allow write pull-requests
+permissions:
+  pull-requests: write
 
 jobs:
-  delta-ts-graph:
+  delta-typescript-graph-job:
     runs-on: ubuntu-latest
+    name: Test dummy project
     steps:
-      - name: Delta TypeScript Graph
-        uses: ysk8hori/delta-typescript-graph-action@v1.1.0
+      - name: Checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - name: Delta Typescript Graph
+        id: tsg
+        uses: ysk8hori/delta-typescript-graph-action@d316cd3fce9aed2c8069d071ca2e6062c9e87117
+        with:
+          access-token: ${{ secrets.GITHUB_TOKEN }}
+          tsconfig: tsconfig.json
+          max-size: 100
+          orientation: LR
+          debug: true
+          include-index-file-dependencies: true
+          comment-title: 'Dummy project dependency graph'

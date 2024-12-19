@@ -79,7 +79,8 @@ export const MakeArticle = ({ userId, user, notification }: MakeArticleProps) =>
         setIsDisabled(true);
         setIsConfirm(false);
       }
-    } catch (error) {
+    }
+    catch (error) {
       toast.error('記事の投稿に失敗しました。もう一度お試しください。');
     }
   }, [tags, title, content, userId]);

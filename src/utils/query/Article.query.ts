@@ -1,5 +1,5 @@
 import { db } from '@/lib/prisma';
-import { ArticleWithUserType } from '@/types/article';
+import { ArticleWithUser } from '@/types/article';
 
 export const UserToArticleQuery = async (id: string) => {
   const article = db.article.findMany({
@@ -19,7 +19,7 @@ export const ArticleQuery = async (id: string) => {
   return article;
 };
 
-export const AllArticleWithUserQuery = async (): Promise<ArticleWithUserType[]> => {
+export const AllArticleWithUserQuery = async (): Promise<ArticleWithUser[]> => {
   const allArticleWithUser = await db.article.findMany({
     include: {
       user: true,
