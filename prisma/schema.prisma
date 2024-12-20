@@ -15,10 +15,6 @@ model User {
   admin         Boolean
   createdAt     DateTime       @default(now())
   articles      Article[]
-  likes         Like[]
-  link          Link[]
-  notifications Notification[]
-  stocks        Stock[]
 }
 
 model Article {
@@ -28,57 +24,8 @@ model Article {
   tags      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  like      Int      @default(0)
   userId    String
   user      User     @relation(fields: [userId], references: [id])
-  likes     Like[]
-  stocks    Stock[]
 
   @@index([userId], map: "Article_userId_fkey")
-}
-
-model Notification {
-  id          String   @id @default(cuid())
-  title       String
-  description String
-  icon        String
-  read        Boolean
-  createdAt   DateTime @default(now())
-  userId      String
-  user        User     @relation(fields: [userId], references: [id])
-
-  @@index([userId], map: "Notification_userId_fkey")
-}
-
-model Like {
-  id        String  @id @default(cuid())
-  userId    String
-  articleId String
-  article   Article @relation(fields: [articleId], references: [id])
-  user      User    @relation(fields: [userId], references: [id])
-
-  @@index([articleId], map: "Like_articleId_fkey")
-  @@index([userId], map: "Like_userId_fkey")
-}
-
-model Stock {
-  id        String  @id @default(cuid())
-  name      String
-  userId    String
-  articleId String
-  article   Article @relation(fields: [articleId], references: [id])
-  user      User    @relation(fields: [userId], references: [id])
-
-  @@index([articleId], map: "Stock_articleId_fkey")
-  @@index([userId], map: "Stock_userId_fkey")
-}
-
-model Link {
-  id     String @id @default(cuid())
-  name   String
-  url    String
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
-
-  @@index([userId], map: "Link_userId_fkey")
 }

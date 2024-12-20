@@ -13,7 +13,7 @@
     "seed": "tsx ./prisma/seed.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "format": "dprint fmt",
+    "format": "dprint fmt && eslint '**/*.{js,ts,tsx}' --fix",
     "format:check": "dprint check",
     "knip": "knip",
     "knip:fix": "knip --fix"

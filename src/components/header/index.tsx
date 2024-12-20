@@ -1,23 +1,18 @@
-import {
-  Notification,
-  User,
-} from '@prisma/client';
+import { User } from '@prisma/client';
 import Link from 'next/link';
 
 import { Button } from '@/components/ui/button';
 
 import { LogoTitle } from './logo-title';
 import { MakeArticleButton } from './make-article-button';
-import { NotificationButton } from './notification-button';
 import { ProfileButton } from './profile-button';
 import { SearchArticle } from './search-article';
 
 type HeaderProps = {
   user: User | null;
-  notification: Notification[] | null;
 };
 
-export const Header = ({ user, notification }: HeaderProps) => {
+export const Header = ({ user }: HeaderProps) => {
   return (
     <header className='flex justify-between items-center bg-white shadow sticky top-0 '>
       <div className='sticky top-0 flex-1 bg-white'>
@@ -31,7 +26,6 @@ export const Header = ({ user, notification }: HeaderProps) => {
           <div className='flex w-1/4 justify-end flex-row mr-4 gap-3'>
             {user ? (
               <>
-                {notification ? <NotificationButton notifications={notification} /> : null}
                 <ProfileButton
                   imageUrl={user.image}
                   name={user.name}

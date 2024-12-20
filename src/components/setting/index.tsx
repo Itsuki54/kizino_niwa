@@ -1,8 +1,4 @@
-import {
-  Link,
-  Notification,
-  User,
-} from '@prisma/client';
+import { User } from '@prisma/client';
 
 import { Header } from '@/components/header';
 import { Sidebar } from '@/components/sidebar';
@@ -12,16 +8,14 @@ import { SettingProfile } from './setting-profile';
 
 type SettingProps = {
   user: User;
-  link: Link[];
-  notification: Notification[];
 };
 
-export const Setting = ({ user, link, notification }: SettingProps) => {
+export const Setting = ({ user }: SettingProps) => {
   return (
     <Layout
-      header={<Header notification={notification} user={user} />}
+      header={<Header user={user} />}
       leftBar={<Sidebar />}
-      main={<SettingProfile link={link} notification={notification} user={user} />}
+      main={<SettingProfile user={user} />}
       rightBar={undefined}
     />
   );

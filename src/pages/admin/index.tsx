@@ -20,10 +20,6 @@ type User = {
 type DBStats = {
   totalUsers: number;
   totalArticles: number;
-  totalNotifications: number;
-  totalLikes: number;
-  totalStocks: number;
-  totalLinks: number;
 };
 
 type AdminDashboardProps = {
@@ -72,10 +68,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({
       <ul>
         <li>総ユーザー数: {dbStats.totalUsers}</li>
         <li>総記事数: {dbStats.totalArticles}</li>
-        <li>総通知数: {dbStats.totalNotifications}</li>
-        <li>総いいね数: {dbStats.totalLikes}</li>
-        <li>総ストック数: {dbStats.totalStocks}</li>
-        <li>総リンク数: {dbStats.totalLinks}</li>
       </ul>
     </div>
   );
@@ -120,26 +112,14 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const [
     totalUsers,
     totalArticles,
-    totalNotifications,
-    totalLikes,
-    totalStocks,
-    totalLinks,
   ] = await db.$transaction([
     db.user.count(),
     db.article.count(),
-    db.notification.count(),
-    db.like.count(),
-    db.stock.count(),
-    db.link.count(),
   ]);
 
   const dbStats = {
     totalUsers,
     totalArticles,
-    totalNotifications,
-    totalLikes,
-    totalStocks,
-    totalLinks,
   };
 
   return {

@@ -4,7 +4,6 @@ import { getServerSession } from 'next-auth';
 
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { UserToArticleQuery } from '@/utils/query/article.query';
-import { NotificationQuery } from '@/utils/query/notification.query';
 import { UserDataQuery } from '@/utils/query/user.query';
 
 const UserProfilePage = () => {
@@ -44,13 +43,10 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     else {
       const articleData = await UserToArticleQuery(user.id);
       const article = JSON.parse(JSON.stringify(articleData));
-      const notificationData = await NotificationQuery(user.id);
-      const notification = JSON.parse(JSON.stringify(notificationData));
       return {
         props: {
           user,
           article,
-          notification,
         },
       };
     }

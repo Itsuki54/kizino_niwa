@@ -1,31 +1,24 @@
 import {
   Article,
-  Notification,
   User,
 } from '@prisma/client';
 import { GetServerSideProps } from 'next';
 import { getServerSession } from 'next-auth';
 
 import { ArticlePage } from '@/components/article';
-import {
-  NotificationMock,
-  userMock,
-} from '@/mock/user';
+import { userMock } from '@/mock/user';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { ArticleQuery } from '@/utils/query/article.query';
-import { NotificationQuery } from '@/utils/query/notification.query';
 import { UserDataQuery } from '@/utils/query/user.query';
 
 type props = {
   user: User;
-  notification: Notification[];
   article: Article;
   createdUser: User;
 };
 
 const articleIdPage = ({
   user,
-  notification,
   article,
   createdUser,
 }: props) => {
@@ -33,7 +26,6 @@ const articleIdPage = ({
     <ArticlePage
       article={article}
       createdUser={createdUser}
-      notification={notification}
       user={user}
     />
   );
@@ -50,7 +42,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     return {
       props: {
         user: JSON.parse(JSON.stringify(userMock)),
-        notification: JSON.parse(JSON.stringify(NotificationMock)),
         article,
         createdUser,
       },
@@ -63,7 +54,6 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
       return {
         props: {
           user: JSON.parse(JSON.stringify(userMock)),
-          notification: JSON.parse(JSON.stringify(NotificationMock)),
           article,
           createdUser,
         },
@@ -72,12 +62,9 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     else {
       const userData = await UserDataQuery(session.user.uid);
       const user = JSON.parse(JSON.stringify(userData));
-      const notificationData = await NotificationQuery(user.id);
-      const notification = JSON.parse(JSON.stringify(notificationData));
       return {
         props: {
           user,
-          notification,
           article,
           createdUser,
         },

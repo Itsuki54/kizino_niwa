@@ -1,7 +1,4 @@
-import {
-  Notification,
-  User,
-} from '@prisma/client';
+import { User } from '@prisma/client';
 import {
   useCallback,
   useEffect,
@@ -24,10 +21,9 @@ import { TagSelect } from './tag-select';
 type MakeArticleProps = {
   userId: string;
   user: User;
-  notification: Notification[];
 };
 
-export const MakeArticle = ({ userId, user, notification }: MakeArticleProps) => {
+export const MakeArticle = ({ userId, user }: MakeArticleProps) => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [tags, setTags] = useState<string[]>([]);
@@ -100,7 +96,7 @@ export const MakeArticle = ({ userId, user, notification }: MakeArticleProps) =>
       <div>
         <Toaster />
       </div>
-      <Header notification={notification} user={user} />
+      <Header user={user} />
       <div className='flex-col p-4'>
         <div className='flex justify-center w-full'>
           <div className='w-full flex-col'>

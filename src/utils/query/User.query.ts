@@ -9,13 +9,3 @@ export const UserDataQuery = async (id: string) => {
 
   return user;
 };
-
-export const UserLinkQuery = async (id: string) => {
-  const link = db.link.findMany({
-    where: {
-      userId: id,
-    },
-  });
-
-  return link;
-};

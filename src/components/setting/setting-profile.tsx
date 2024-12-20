@@ -1,8 +1,4 @@
-import {
-  Link,
-  Notification,
-  User,
-} from '@prisma/client';
+import { User } from '@prisma/client';
 import pica from 'pica';
 import {
   ChangeEvent,
@@ -27,14 +23,10 @@ import { UserEmailName } from './user-email-name';
 
 type SettingProfileProps = {
   user: User;
-  link: Link[];
-  notification: Notification[];
 };
 
 export const SettingProfile = ({
   user,
-  link,
-  notification,
 }: SettingProfileProps) => {
   const [email, setEmail] = useState(user.email);
   const [isDisabled, setIsDisabled] = useState(true);

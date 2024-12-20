@@ -23,7 +23,6 @@ export const AllArticleWithUserQuery = async (): Promise<ArticleWithUser[]> => {
   const allArticleWithUser = await db.article.findMany({
     include: {
       user: true,
-      stocks: true,
     },
   });
   return allArticleWithUser;
