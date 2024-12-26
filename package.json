@@ -32,7 +32,7 @@
     "formidable": "^3.5.2",
     "github-markdown-css": "^5.8.0",
     "knip": "^5.37.2",
-    "lucide-react": "^0.383.0",
+    "lucide-react": "^0.469.0",
     "next": "14.2.15",
     "next-auth": "^4.24.10",
     "next-remove-imports": "^1.0.12",
