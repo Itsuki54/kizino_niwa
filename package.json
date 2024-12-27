@@ -28,7 +28,7 @@
     "@types/formidable": "^3.4.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "dprint": "^0.47.6",
+    "dprint": "^0.48.0",
     "formidable": "^3.5.2",
     "github-markdown-css": "^5.8.0",
     "knip": "^5.37.2",
